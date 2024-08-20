@@ -1,0 +1,28 @@
+object dmDatabases: TdmDatabases
+  OldCreateOrder = False
+  Height = 475
+  Width = 889
+  object conCoffeeShop: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Skool\IT\Graad 1' +
+      '1\IT PAT (2023)\Database\CoffeeShop.mdb;Mode=ReadWrite|Share Den' +
+      'y None;Persist Security Info=False'
+    LoginPrompt = False
+    Mode = ADODB
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 144
+    Top = 56
+  end
+  object dsEmployees: TDataSource
+    DataSet = tblEmployees
+    Left = 48
+    Top = 128
+  end
+  object tblEmployees: TADOTable
+    Connection = conCoffeeShop
+    TableName = 'tblEmployees'
+    Left = 48
+    Top = 208
+  end
+end

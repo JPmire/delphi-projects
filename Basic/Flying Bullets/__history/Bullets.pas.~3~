@@ -1,0 +1,34 @@
+unit Bullets;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls;
+
+type
+  TBullets = class
+    private
+      fBullet : TShape;
+    public
+      constructor Create(Parent : TObject); overload;
+      constructor Create(); overload;
+  end;
+
+implementation
+
+{ TBullets }
+
+constructor TBullets.Create(Parent: TObject);
+begin
+//
+end;
+
+constructor TBullets.Create();
+var
+  CursorPos : TPoint;
+begin
+  CursorPos := Mouse.CursorPos;
+end;
+
+end.

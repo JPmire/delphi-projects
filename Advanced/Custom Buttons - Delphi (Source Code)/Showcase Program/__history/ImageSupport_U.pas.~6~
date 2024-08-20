@@ -1,0 +1,49 @@
+unit ImageSupport_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, pngimage, jpeg, CustomButtons;
+
+type
+  TfrmImageSupport = class(TForm)
+    Label1: TLabel;
+    pnlContent: TPanel;
+    pnlImg1: TPanel;
+    pnlImg2: TPanel;
+    pnlImg3: TPanel;
+    pnlImg4: TPanel;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+    cbtnImg1, cbtnImg2, cbtnImg3, cbtnImg4 : TCustomButtons;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmImageSupport: TfrmImageSupport;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmImageSupport.FormActivate(Sender: TObject);
+begin
+  frmImageSupport.Color := RGB(130, 70, 150);
+end;
+
+procedure TfrmImageSupport.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  Self.Hide;
+  Application.MainForm.Show;
+end;
+
+end.

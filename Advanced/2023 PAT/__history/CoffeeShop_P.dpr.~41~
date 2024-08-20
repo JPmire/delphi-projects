@@ -1,0 +1,18 @@
+program CoffeeShop_P;
+
+uses
+  Forms,
+  Main_U in 'Main_U.pas' {frmAdmin},
+  dmCoffeeShop_U in 'dmCoffeeShop_U.pas' {dmCoffeeShop: TDataModule},
+  Login_U in 'Login_U.pas' {frmLogin};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmAdmin, frmAdmin);
+  Application.CreateForm(TdmCoffeeShop, dmCoffeeShop);
+  Application.Run;
+end.

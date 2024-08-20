@@ -1,0 +1,75 @@
+unit ReadFile_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ComCtrls;
+
+type
+  TForm1 = class(TForm)
+    btnEnter: TButton;
+    redJunior: TRichEdit;
+    redSenior: TRichEdit;
+    procedure btnEnterClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnEnterClick(Sender: TObject);
+var
+tFile : textfile;
+iPos, iAge : integer;
+sName, sLine : string;
+begin
+redJunior.Clear;
+redSenior.Clear;
+redJunior.Lines.Add('Junior' + #13);
+redSenior.Lines.Add('Senior' + #13);
+
+AssignFile(tfile, 'Test_1.txt');
+
+try
+  reset(tfile);
+except
+  showmessage('file does not exist');
+  exit;
+end;
+
+while not eof(tfile) do
+begin
+  readln(tfile, sLine);
+  iPos := Pos(',', sLine);
+  sName := copy(sLine, 1, iPos -1);
+  delete(sLine, 1, iPos);
+  iAge := strtoint(sLine);
+
+if iAge >= 18 then
+begin
+  redSenior.Lines.Add(sName + '(' + inttostr(iAge) + ')');
+end else
+begin
+  redJunior.Lines.Add(sName + '(' + inttostr(iAge) + ')');
+end;
+
+end;
+
+CloseFile(tfile);
+
+
+
+
+
+
+end;
+
+end.

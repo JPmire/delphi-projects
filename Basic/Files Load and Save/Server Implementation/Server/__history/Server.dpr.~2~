@@ -1,0 +1,22 @@
+program Server;
+
+uses
+  Forms,
+  ServerUnit in 'ServerUnit.pas' {Form1},
+  ServerMethodsUnit in 'ServerMethodsUnit.pas' {ServerMethods1: TDSServerModule},
+  ServerContainerUnit in 'ServerContainerUnit.pas' {ServerContainer1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TServerMethods1, ServerMethods1);
+  Application.CreateForm(TServerContainer1, ServerContainer1);
+  Application.Run;
+end.
+
+
+
+

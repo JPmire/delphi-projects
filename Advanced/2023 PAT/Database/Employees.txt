@@ -1,0 +1,6 @@
+EmployeeID;FirstName;LastName;DOB;Gender;JobTitle;Salary;HireDate
+1;John;Smith;1990/01/01;Male;Barista;180000;2023/01/01
+2;Jane;Doe;1992/02/02;Female;Barista;180000;2023/02/02
+3;Mary;Johnson;1980/03/03;Female;Manager;480000;2023/03/03
+4;Peter;Jones;1994/04/04;Male;Cashier;150000;2023/04/04
+5;Susan;Williams;1996/05/05;Female;Baker;240000;2023/05/05

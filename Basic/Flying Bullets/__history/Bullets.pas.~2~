@@ -1,0 +1,15 @@
+unit Bullets;
+
+interface
+
+type
+  TBullets = class
+    private
+
+    public
+
+  end;
+
+implementation
+
+end.

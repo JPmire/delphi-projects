@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/04/01 01:50:48.011.pas,C:\Users\jpjou\Documents\RAD Studio\Projects\Unit1.pas=D:\Skool\IT\Graad 12\Dragging and Dropping\DAD.pas</Transaction>
+    <Transaction>2024/04/01 01:50:48.012.dfm,C:\Users\jpjou\Documents\RAD Studio\Projects\Unit1.dfm=D:\Skool\IT\Graad 12\Dragging and Dropping\DAD.dfm</Transaction>
+    <Transaction>2024/04/01 01:50:52.482.dproj,C:\Users\jpjou\Documents\RAD Studio\Projects\Project1.dproj=D:\Skool\IT\Graad 12\Dragging and Dropping\DAD_P.dproj</Transaction>
+    <Transaction>2024/04/01 01:51:02.758.pas,D:\Skool\IT\Graad 12\Dragging and Dropping\DAD.pas=D:\Skool\IT\Graad 12\Dragging and Dropping\DAD_U.pas</Transaction>
+    <Transaction>2024/04/01 01:51:02.758.dfm,D:\Skool\IT\Graad 12\Dragging and Dropping\DAD.dfm=D:\Skool\IT\Graad 12\Dragging and Dropping\DAD_U.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

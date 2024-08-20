@@ -1,0 +1,70 @@
+unit GameMode_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, Game_U, Buttons, SelectDifficulty_U, ChasingGame_U;
+
+type
+  TfrmGameMode = class(TForm)
+    pnlInstruction: TPanel;
+    btnClassic: TButton;
+    btnCustomDifficulty: TButton;
+    bmbMainMenu: TBitBtn;
+    btnChasingGame: TButton;
+    procedure btnClassicClick(Sender: TObject);
+    procedure bmbMainMenuClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure btnCustomDifficultyClick(Sender: TObject);
+    procedure btnChasingGameClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmGameMode: TfrmGameMode;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmGameMode.bmbMainMenuClick(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+procedure TfrmGameMode.btnChasingGameClick(Sender: TObject);
+begin
+  frmChasing.Show;
+  Self.Hide;
+end;
+
+procedure TfrmGameMode.btnClassicClick(Sender: TObject);
+begin
+  frmGame.Show;
+  frmGame.tmrMove.Interval := 1800;
+  frmGame.tmrTooSlow.Interval := 1800;
+  frmGame.bClassic := True;
+  frmGame.bEasy := False;
+  frmGame.bIntermediate := False;
+  frmGame.bHard := False;
+  frmGame.Color := clSkyBlue;
+  frmGame.pnlHighScore.Caption := IntToStr(frmGame.iHighC);
+  Self.Hide;
+end;
+
+procedure TfrmGameMode.btnCustomDifficultyClick(Sender: TObject);
+begin
+  frmSelectDifficulty.Show;
+  Self.Hide;
+end;
+
+procedure TfrmGameMode.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  Application.MainForm.Show;
+end;
+
+end.

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/03/13 21:52:38.667.pas,C:\Users\jpjou\Documents\RAD Studio\Projects\Unit1.pas=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Main_U.pas</Transaction>
+    <Transaction>2024/03/13 21:52:38.667.dfm,C:\Users\jpjou\Documents\RAD Studio\Projects\Unit1.dfm=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Main_U.dfm</Transaction>
+    <Transaction>2024/03/13 21:52:51.522.dproj,C:\Users\jpjou\Documents\RAD Studio\Projects\Project1.dproj=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Property_P.dproj</Transaction>
+    <Transaction>2024/03/18 19:08:24.252.pas,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Unit1.pas=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Agent_U.pas</Transaction>
+    <Transaction>2024/03/18 19:08:24.252.dfm,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Unit1.dfm=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Agent_U.dfm</Transaction>
+    <Transaction>2024/03/24 15:26:17.420.pas,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Unit1.pas=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\dmProperties.pas</Transaction>
+    <Transaction>2024/03/24 15:26:17.420.dfm,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Unit1.dfm=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\dmProperties.dfm</Transaction>
+    <Transaction>2024/03/24 15:26:48.885.pas,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\dmProperties.pas=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\dmPropertyHub_U.pas</Transaction>
+    <Transaction>2024/03/24 15:26:48.885.dfm,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\dmProperties.dfm=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\dmPropertyHub_U.dfm</Transaction>
+    <Transaction>2024/04/02 20:40:08.070.pas,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Unit1.pas=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Classes\AgentPropertyCard.pas</Transaction>
+    <Transaction>2024/07/08 09:10:47.604.pas,S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Unit1.pas=S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Classes\Client.pas</Transaction>
+    <Transaction>2024/07/08 10:24:12.580.pas,S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Unit1.pas=S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Client_U.pas</Transaction>
+    <Transaction>2024/07/08 10:24:12.580.dfm,S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Unit1.dfm=S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Client_U.dfm</Transaction>
+    <Transaction>2024/07/18 09:39:31.551.pas,S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Unit1.pas=S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Classes\ColoredListBox.pas</Transaction>
+    <Transaction>2024/07/29 13:29:33.007.pas,S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Unit1.pas=S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Classes\ClientPropertyCard.pas</Transaction>
+    <Transaction>2024/08/05 12:19:26.419.pas,S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Unit1.pas=S:\2024 Gr12IT PAT Joubert Jean-Pierre\Fase 2\Classes\ListingDetails.pas</Transaction>
+    <Transaction>2024/08/10 14:23:33.819.dproj,D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\Property_P.dproj=D:\Skool\IT\Graad 12\IT PAT (2024) - Eiendom\PropertyHub.dproj</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="Classes"/>
+    <File Path="Classes\AgentPropertyCard.pas"/>
+    <File Path="Classes\Client.pas"/>
+    <File Path="Classes\CustomButtons.pas"/>
+    <File Path="Classes\PopupPanel.pas"/>
+    <File Path="Classes\ColoredListBox.pas"/>
+    <File Path="Classes\ClientPropertyCard.pas"/>
+    <File Path="Classes\ListingDetails.pas"/>
+    <File Path="Agent_U.pas"/>
+    <File Path="Agent_U.dfm"/>
+    <File Path="dmPropertyHub_U.pas"/>
+    <File Path="dmPropertyHub_U.dfm"/>
+    <File Path="Main_U.pas"/>
+    <File Path="Main_U.dfm"/>
+    <File Path="Client_U.pas"/>
+    <File Path="Client_U.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

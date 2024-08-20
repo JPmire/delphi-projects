@@ -1,0 +1,17 @@
+object dmDatabases: TdmDatabases
+  OldCreateOrder = False
+  Height = 475
+  Width = 889
+  object ADOConnection1: TADOConnection
+    Left = 144
+    Top = 56
+  end
+  object DataSource1: TDataSource
+    Left = 48
+    Top = 128
+  end
+  object ADOTable1: TADOTable
+    Left = 48
+    Top = 192
+  end
+end

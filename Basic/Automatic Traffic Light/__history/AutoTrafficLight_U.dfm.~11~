@@ -1,0 +1,168 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 793
+  ClientWidth = 432
+  Color = clBlack
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCloseQuery = FormCloseQuery
+  PixelsPerInch = 96
+  TextHeight = 13
+  object shpRed: TShape
+    Left = 120
+    Top = 123
+    Width = 185
+    Height = 208
+    Shape = stCircle
+  end
+  object shpYellow: TShape
+    Left = 120
+    Top = 337
+    Width = 185
+    Height = 208
+    Shape = stCircle
+  end
+  object shpGreen: TShape
+    Left = 120
+    Top = 559
+    Width = 185
+    Height = 208
+    Shape = stCircle
+  end
+  object Label1: TLabel
+    Left = 96
+    Top = 40
+    Width = 253
+    Height = 58
+    Caption = 'Traffic Light'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGreen: TLabel
+    Left = 8
+    Top = 632
+    Width = 58
+    Height = 58
+    Caption = 'Go'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object lblYellow: TLabel
+    Left = 8
+    Top = 408
+    Width = 100
+    Height = 58
+    Caption = 'Slow'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clYellow
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object lblRed: TLabel
+    Left = 8
+    Top = 200
+    Width = 96
+    Height = 58
+    Caption = 'Stop'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object WindowsMediaPlayer3: TWindowsMediaPlayer
+    Left = 416
+    Top = 575
+    Width = 229
+    Height = 240
+    TabOrder = 2
+    Visible = False
+    ControlData = {
+      0003000008008400000043003A005C00550073006500720073005C004A006500
+      61006E002D005000690065007200720065005C0044006F0077006E006C006F00
+      6100640073005C0051004200390047004C00430058002D006D0061006C006500
+      2D0076006F006900630065002D0063006F006C006F0072002D00670072006500
+      65006E002E006D007000330000000500000000000000F03F0300000000000500
+      000000000000000008000200000000000300010000000B000000030000000000
+      0B00FFFF08000200000000000300320000000B00000008000A0000006E006F00
+      6E00650000000B0000000B0000000B00FFFF0B00FFFF0B000000080002000000
+      00000800020000000000080002000000000008000200000000000B0000009D09
+      0000E9F6FFFF}
+  end
+  object WindowsMediaPlayer1: TWindowsMediaPlayer
+    Left = 416
+    Top = 91
+    Width = 245
+    Height = 240
+    TabOrder = 0
+    Visible = False
+    ControlData = {
+      0003000008008000000043003A005C00550073006500720073005C004A006500
+      61006E002D005000690065007200720065005C0044006F0077006E006C006F00
+      6100640073005C0050005800440053004D00510042002D006D0061006C006500
+      2D0076006F006900630065002D0063006F006C006F0072002D00720065006400
+      2E006D007000330000000500000000000000F03F030000000000050000000000
+      0000000008000200000000000300010000000B0000000300000000000B00FFFF
+      08000200000000000300320000000B00000008000A0000006E006F006E006500
+      00000B0000000B0000000B00FFFF0B00FFFF0B00000008000200000000000800
+      020000000000080002000000000008000200000000000B00000052190000CE18
+      0000}
+  end
+  object WindowsMediaPlayer2: TWindowsMediaPlayer
+    Left = 416
+    Top = 329
+    Width = 245
+    Height = 240
+    TabOrder = 1
+    Visible = False
+    ControlData = {
+      0003000008008600000043003A005C00550073006500720073005C004A006500
+      61006E002D005000690065007200720065005C0044006F0077006E006C006F00
+      6100640073005C0051005300580050003200460045002D006D0061006C006500
+      2D0076006F006900630065002D0063006F006C006F0072002D00790065006C00
+      6C006F0077002E006D007000330000000500000000000000F03F030000000000
+      0500000000000000000008000200000000000300010000000B00000003000000
+      00000B00FFFF08000200000000000300320000000B00000008000A0000006E00
+      6F006E00650000000B0000000B0000000B00FFFF0B00FFFF0B00000008000200
+      000000000800020000000000080002000000000008000200000000000B000000
+      52190000CE180000}
+  end
+  object tmrGreen: TTimer
+    OnTimer = tmrGreenTimer
+    Left = 202
+    Top = 664
+  end
+  object tmrYellow: TTimer
+    Enabled = False
+    OnTimer = tmrYellowTimer
+    Left = 194
+    Top = 416
+  end
+  object tmrRed: TTimer
+    Enabled = False
+    OnTimer = tmrRedTimer
+    Left = 202
+    Top = 216
+  end
+end

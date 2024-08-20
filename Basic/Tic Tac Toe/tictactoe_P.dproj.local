@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/02/04 09:18:55.570.pas,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Unit1.pas=D:\Skool\IT\Delphi (Testing)\Tic Tac Toe\tictactoe_U.pas</Transaction>
+    <Transaction>2023/02/04 09:18:55.570.dfm,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Unit1.dfm=D:\Skool\IT\Delphi (Testing)\Tic Tac Toe\tictactoe_U.dfm</Transaction>
+    <Transaction>2023/02/04 09:19:01.609.dproj,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Project1.dproj=D:\Skool\IT\Delphi (Testing)\Tic Tac Toe\tictactoe_P.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

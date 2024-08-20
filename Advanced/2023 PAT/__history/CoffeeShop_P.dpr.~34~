@@ -1,0 +1,20 @@
+program CoffeeShop_P;
+
+uses
+  Forms,
+  adminView_U in 'adminView_U.pas' {frmAdmin},
+  dmCoffeeShop_U in 'dmCoffeeShop_U.pas' {dmCoffeeShop: TDataModule},
+  frmHelp_SearchSyntax_U in 'frmHelp_SearchSyntax_U.pas' {frmSearchSyntax},
+  Login_U in 'Login_U.pas' {frmLogin};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmAdmin, frmAdmin);
+  Application.CreateForm(TdmCoffeeShop, dmCoffeeShop);
+  Application.CreateForm(TfrmSearchSyntax, frmSearchSyntax);
+  Application.Run;
+end.

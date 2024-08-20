@@ -1,0 +1,151 @@
+object frmSettings: TfrmSettings
+  Left = 0
+  Top = 0
+  Caption = 'Settings'
+  ClientHeight = 381
+  ClientWidth = 539
+  Color = clSkyBlue
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCloseQuery = FormCloseQuery
+  PixelsPerInch = 96
+  TextHeight = 16
+  object Label1: TLabel
+    Left = 32
+    Top = 8
+    Width = 67
+    Height = 25
+    Caption = 'Reset:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object bmbMainMenu: TBitBtn
+    Left = 446
+    Top = 346
+    Width = 85
+    Height = 27
+    Caption = '&Quit'
+    DoubleBuffered = True
+    Kind = bkIgnore
+    ParentDoubleBuffered = False
+    TabOrder = 0
+    OnClick = bmbMainMenuClick
+  end
+  object bmbAllHighScores: TBitBtn
+    Left = 32
+    Top = 48
+    Width = 177
+    Height = 41
+    Caption = '&All High Scores'
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Kind = bkNo
+    ParentDoubleBuffered = False
+    ParentFont = False
+    TabOrder = 1
+    OnClick = bmbAllHighScoresClick
+  end
+  object bmbClassicHighScore: TBitBtn
+    Left = 32
+    Top = 104
+    Width = 177
+    Height = 41
+    Caption = '&Classic High Score'
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Kind = bkNo
+    ParentDoubleBuffered = False
+    ParentFont = False
+    TabOrder = 2
+    OnClick = bmbClassicHighScoreClick
+  end
+  object bmbEasyHighScore: TBitBtn
+    Left = 32
+    Top = 160
+    Width = 177
+    Height = 41
+    Caption = '&Easy High Score'
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Kind = bkNo
+    ParentDoubleBuffered = False
+    ParentFont = False
+    TabOrder = 3
+    OnClick = bmbEasyHighScoreClick
+  end
+  object bmbInterHighScore: TBitBtn
+    Left = 32
+    Top = 216
+    Width = 177
+    Height = 41
+    Caption = '&Interm High Score'
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Kind = bkNo
+    ParentDoubleBuffered = False
+    ParentFont = False
+    TabOrder = 4
+    OnClick = bmbInterHighScoreClick
+  end
+  object bmbHardHighScore: TBitBtn
+    Left = 32
+    Top = 272
+    Width = 177
+    Height = 41
+    Caption = '&Hard High Score'
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Kind = bkNo
+    ParentDoubleBuffered = False
+    ParentFont = False
+    TabOrder = 5
+    OnClick = bmbHardHighScoreClick
+  end
+  object bmbChasing: TBitBtn
+    Left = 32
+    Top = 328
+    Width = 177
+    Height = 41
+    Caption = '&Chasing High Score'
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Kind = bkNo
+    ParentDoubleBuffered = False
+    ParentFont = False
+    TabOrder = 6
+    OnClick = bmbChasingClick
+  end
+end

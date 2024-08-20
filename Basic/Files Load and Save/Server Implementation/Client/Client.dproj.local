@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2024/08/09 23:26:33.391.pas,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Unit1.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Client.pas</Transaction>
+    <Transaction>2024/08/09 23:26:33.391.dfm,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Unit1.dfm=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Client.dfm</Transaction>
+    <Transaction>2024/08/09 23:27:06.548.pas,D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Client.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\ClientUnit.pas</Transaction>
+    <Transaction>2024/08/09 23:27:06.548.dfm,D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Client.dfm=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\ClientUnit.dfm</Transaction>
+    <Transaction>2024/08/09 23:27:11.795.dproj,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Project1.dproj=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Client.dproj</Transaction>
+    <Transaction>2024/08/09 23:27:38.791.pas,D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Unit1.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\dmServer.pas</Transaction>
+    <Transaction>2024/08/09 23:27:38.791.dfm,D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Unit1.dfm=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\dmServer.dfm</Transaction>
+    <Transaction>2024/08/09 23:28:34.248.pas,D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\Unit1.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Client\ServerMethod.pas</Transaction>
+  </Transactions>
+</BorlandProject>

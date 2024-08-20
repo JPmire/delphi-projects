@@ -1,0 +1,111 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 793
+  ClientWidth = 432
+  Color = clBlack
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object shpRed: TShape
+    Left = 120
+    Top = 123
+    Width = 185
+    Height = 208
+    Shape = stCircle
+  end
+  object shpYellow: TShape
+    Left = 120
+    Top = 337
+    Width = 185
+    Height = 208
+    Shape = stCircle
+  end
+  object shpGreen: TShape
+    Left = 120
+    Top = 559
+    Width = 185
+    Height = 208
+    Shape = stCircle
+  end
+  object Label1: TLabel
+    Left = 96
+    Top = 40
+    Width = 253
+    Height = 58
+    Caption = 'Traffic Light'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGreen: TLabel
+    Left = 8
+    Top = 632
+    Width = 58
+    Height = 58
+    Caption = 'Go'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object lblYellow: TLabel
+    Left = 8
+    Top = 408
+    Width = 100
+    Height = 58
+    Caption = 'Slow'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clYellow
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object lblRed: TLabel
+    Left = 8
+    Top = 200
+    Width = 95
+    Height = 58
+    Caption = 'Wait'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -48
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object tmrGreen: TTimer
+    Interval = 2000
+    OnTimer = tmrGreenTimer
+    Left = 202
+    Top = 664
+  end
+  object tmrYellow: TTimer
+    Enabled = False
+    OnTimer = tmrYellowTimer
+    Left = 194
+    Top = 416
+  end
+  object tmrRed: TTimer
+    Enabled = False
+    OnTimer = tmrRedTimer
+    Left = 202
+    Top = 216
+  end
+end

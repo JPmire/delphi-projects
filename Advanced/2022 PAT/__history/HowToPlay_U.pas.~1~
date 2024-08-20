@@ -1,0 +1,24 @@
+unit HowToPlay_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TfrmHowToPlay = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmHowToPlay: TfrmHowToPlay;
+
+implementation
+
+{$R *.dfm}
+
+end.

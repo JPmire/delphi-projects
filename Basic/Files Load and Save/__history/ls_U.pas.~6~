@@ -1,0 +1,154 @@
+unit ls_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, IOUtils;
+
+type
+  TForm1 = class(TForm)
+    btnLoad: TButton;
+    btnSave: TButton;
+    fodFolder: TFileOpenDialog;
+    procedure btnLoadClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure LoadDirectory(const SourcePath: string);
+    procedure SaveDirectory(const DestPath: string);
+    function GetRelativePath(const BasePath, FullPath: string): string;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  FileNames: TStringList;
+  FileStreams: TList;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnLoadClick(Sender: TObject);
+var
+  FolderPath: string;
+begin
+    fodFolder.Title := 'Select Folder';
+    fodFolder.Options := [fdoPickFolders];
+    if fodFolder.Execute then
+    begin
+      FolderPath := fodFolder.FileName;
+      FileNames := TStringList.Create;
+      FileStreams := TList.Create;
+      try
+        LoadDirectory(FolderPath);
+      except
+        FileNames.Free;
+        FileStreams.Free;
+        raise;
+      end;
+    end;
+end;
+
+procedure TForm1.btnSaveClick(Sender: TObject);
+var
+  DestFolder: string;
+  i : integer;
+begin
+  try
+    fodFolder.Title := 'Select Destination Folder';
+    fodFolder.Options := [fdoPickFolders];
+    if fodFolder.Execute then
+    begin
+      DestFolder := fodFolder.FileName;
+      SaveDirectory(DestFolder);
+    end;
+  finally
+    FileNames.Free; // Free the list of filenames
+    for i := 0 to FileStreams.Count - 1 do
+      TStream(FileStreams[i]).Free; // Free each stream
+    FileStreams.Free; // Free the list of streams
+  end;
+end;
+
+function TForm1.GetRelativePath(const BasePath, FullPath: string): string;
+var
+  BaseDir, FileDir: string;
+  PathLen: Integer;
+begin
+  BaseDir := IncludeTrailingPathDelimiter(BasePath);
+  FileDir := IncludeTrailingPathDelimiter(ExtractFileDir(FullPath));
+
+  // Check if FileDir starts with BaseDir
+  PathLen := Length(BaseDir);
+  if (Pos(BaseDir, FileDir) = 1) and (Length(FileDir) > PathLen) then
+    Result := Copy(FileDir, PathLen + 1, Length(FileDir) - PathLen) + ExtractFileName(FullPath)
+  else
+    Result := ExtractFileName(FullPath);
+end;
+
+procedure TForm1.LoadDirectory(const SourcePath: string);
+var
+  SearchRec: TSearchRec;
+  SubDirPath: string;
+  Stream: TStream;
+begin
+  if FindFirst(TPath.Combine(SourcePath, '*.*'), faAnyFile, SearchRec) = 0 then
+  begin
+    repeat
+      if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') then
+      begin
+        if (SearchRec.Attr and faDirectory) = faDirectory then
+        begin
+          // It's a directory, recurse into it
+          SubDirPath := TPath.Combine(SourcePath, SearchRec.Name);
+          LoadDirectory(SubDirPath);
+        end
+        else
+        begin
+          // It's a file, create a stream for it
+          Stream := TFileStream.Create(TPath.Combine(SourcePath, SearchRec.Name), fmOpenRead or fmShareDenyWrite);
+          FileNames.Add(GetRelativePath(SourcePath, TPath.Combine(SourcePath, SearchRec.Name)));
+          FileStreams.Add(Stream);
+        end;
+      end;
+    until FindNext(SearchRec) <> 0;
+    FindClose(SearchRec);
+  end;
+end;
+
+procedure TForm1.SaveDirectory(const DestPath: string);
+var
+  i: Integer;
+  FileName: string;
+  Stream: TStream;
+  FileStream: TFileStream;
+  FullPath: string;
+  DirPath: string;
+begin
+  for i := 0 to FileStreams.Count - 1 do
+  begin
+    FileName := FileNames[i];
+    Stream := FileStreams[i];
+    FullPath := TPath.Combine(DestPath, FileName);
+
+    // Extract the directory path from the full path
+    DirPath := TPath.GetDirectoryName(FullPath);
+
+    // Create directories if necessary
+    if not DirectoryExists(DirPath) then
+      ForceDirectories(DirPath);
+
+    FileStream := TFileStream.Create(FullPath, fmCreate);
+    try
+      Stream.Position := 0; // Reset stream position to the beginning
+      FileStream.CopyFrom(Stream, Stream.Size);
+    finally
+      FileStream.Free;
+    end;
+  end;
+end;
+
+end.

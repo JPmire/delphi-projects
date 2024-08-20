@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/05/08 18:53:47.680.pas,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Unit1.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Game_U.pas</Transaction>
+    <Transaction>2022/05/08 18:53:47.680.dfm,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Unit1.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Game_U.dfm</Transaction>
+    <Transaction>2022/05/08 18:53:53.824.dproj,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Project1.dproj=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Game_P.dproj</Transaction>
+    <Transaction>2022/05/13 15:28:36.261.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit2.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\OpeningScreen_U.pas</Transaction>
+    <Transaction>2022/05/13 15:28:36.261.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit2.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\OpeningScreen_U.dfm</Transaction>
+    <Transaction>2022/05/13 15:29:12.601.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\OpeningScreen_U.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\MainMenu_U.pas</Transaction>
+    <Transaction>2022/05/13 15:29:12.601.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\OpeningScreen_U.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\MainMenu_U.dfm</Transaction>
+    <Transaction>2022/05/13 15:29:29.694.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Game_U.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\CasualGame_U.pas</Transaction>
+    <Transaction>2022/05/13 15:29:29.694.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Game_U.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\CasualGame_U.dfm</Transaction>
+    <Transaction>2022/05/13 15:54:07.312.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\GameMode_U.pas</Transaction>
+    <Transaction>2022/05/13 15:54:07.312.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\GameMode_U.dfm</Transaction>
+    <Transaction>2022/05/13 15:57:29.845.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\CasualGame_U.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\ClassicGame_U.pas</Transaction>
+    <Transaction>2022/05/13 15:57:29.845.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\CasualGame_U.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\ClassicGame_U.dfm</Transaction>
+    <Transaction>2022/05/13 18:22:35.934.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Shop_U.pas</Transaction>
+    <Transaction>2022/05/13 18:22:35.934.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Shop_U.dfm</Transaction>
+    <Transaction>2022/05/15 12:53:26.060.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Settings_U.pas</Transaction>
+    <Transaction>2022/05/15 12:53:26.060.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Settings_U.dfm</Transaction>
+    <Transaction>2022/05/15 13:12:49.259.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\SelectDifficulty_U.pas</Transaction>
+    <Transaction>2022/05/15 13:12:49.259.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\Unit1.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 (Opvoedgundige Game)\SelectDifficulty_U.dfm</Transaction>
+    <Transaction>2022/05/15 19:45:54.524.pas,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 Opvoedkundige Speletjie\ClassicGame_U.pas=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 Opvoedkundige Speletjie\Game_U.pas</Transaction>
+    <Transaction>2022/05/15 19:45:54.524.dfm,D:\Werk\IT\Delphi (Skool)\Kwartaal 2 Opvoedkundige Speletjie\ClassicGame_U.dfm=D:\Werk\IT\Delphi (Skool)\Kwartaal 2 Opvoedkundige Speletjie\Game_U.dfm</Transaction>
+    <Transaction>2022/06/09 16:14:23.288.pas,D:\Skool\IT\Delphi (Testing)\Game Idea\GameIdea_U.pas=D:\Skool\IT\Delphi (Testing)\Game Idea\ChasingGame_U.pas</Transaction>
+    <Transaction>2022/06/09 16:14:23.288.dfm,D:\Skool\IT\Delphi (Testing)\Game Idea\GameIdea_U.dfm=D:\Skool\IT\Delphi (Testing)\Game Idea\ChasingGame_U.dfm</Transaction>
+    <Transaction>2022/06/09 16:29:21.443.pas,D:\Skool\IT\Delphi (Testing)\Game Idea\ChasingGame_U.pas=D:\Skool\IT\Delphi (Skool)\Kwartaal 2 Opvoedkundige Speletjie\ChasingGame_U.pas</Transaction>
+    <Transaction>2022/06/09 16:29:21.443.dfm,D:\Skool\IT\Delphi (Testing)\Game Idea\ChasingGame_U.dfm=D:\Skool\IT\Delphi (Skool)\Kwartaal 2 Opvoedkundige Speletjie\ChasingGame_U.dfm</Transaction>
+    <Transaction>2022/07/09 00:27:14.433.pas,D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Unit1.pas=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\HowToPlay_U.pas</Transaction>
+    <Transaction>2022/07/09 00:27:14.433.dfm,D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Unit1.dfm=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\HowToPlay_U.dfm</Transaction>
+    <Transaction>2022/07/30 11:50:41.922.pas,D:\Skool\IT\Delphi (Skool)\Nuwe Game Mode\Jumper_U.pas=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Jumper_U.pas</Transaction>
+    <Transaction>2022/07/30 11:50:41.922.dfm,D:\Skool\IT\Delphi (Skool)\Nuwe Game Mode\Jumper_U.dfm=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Jumper_U.dfm</Transaction>
+    <Transaction>2022/07/30 21:13:42.238.dproj,D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Game_P.dproj=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\ReactaClick_P.dproj</Transaction>
+    <Transaction>2022/08/26 20:31:17.651.pas,D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Unit1.pas=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Admin_U.pas</Transaction>
+    <Transaction>2022/08/26 20:31:17.651.dfm,D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Unit1.dfm=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\Admin_U.dfm</Transaction>
+    <Transaction>2022/10/15 16:46:41.667.pas,D:\Skool\IT\Delphi (Testing)\Ping Pong\PingPong_U.pas=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\PingPong_U.pas</Transaction>
+    <Transaction>2022/10/15 16:46:41.667.dfm,D:\Skool\IT\Delphi (Testing)\Ping Pong\PingPong_U.dfm=D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\PingPong_U.dfm</Transaction>
+    <Transaction>2022/10/15 17:29:39.798.pas,D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\ChasingGame_U.pas=</Transaction>
+    <Transaction>2022/10/15 17:29:39.798.dfm,D:\Skool\IT\Delphi (Skool)\Opvoedkundige Speletjie\ChasingGame_U.dfm=</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="GameMode_U.pas"/>
+    <File Path="GameMode_U.dfm"/>
+    <File Path="Shop_U.pas"/>
+    <File Path="Shop_U.dfm"/>
+    <File Path="MainMenu_U.pas"/>
+    <File Path="MainMenu_U.dfm"/>
+    <File Path="Settings_U.pas"/>
+    <File Path="Settings_U.dfm"/>
+    <File Path="SelectDifficulty_U.pas"/>
+    <File Path="SelectDifficulty_U.dfm"/>
+    <File Path="Game_U.pas"/>
+    <File Path="Game_U.dfm"/>
+    <File Path="HowToPlay_U.pas"/>
+    <File Path="HowToPlay_U.dfm"/>
+    <File Path="Jumper_U.pas"/>
+    <File Path="Jumper_U.dfm"/>
+    <File Path="Admin_U.pas"/>
+    <File Path="Admin_U.dfm"/>
+    <File Path="PingPong_U.pas"/>
+    <File Path="PingPong_U.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

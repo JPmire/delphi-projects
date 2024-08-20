@@ -1,0 +1,35 @@
+unit Showcase_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, CustomButtons, StdCtrls, pngimage, ExtCtrls;
+
+type
+  TfrmFrontPage = class(TForm)
+    Label1: TLabel;
+    pnlBasic: TPanel;
+    pnlAdvanced: TPanel;
+    pnlImageSupport: TPanel;
+    imgIcon: TImage;
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFrontPage: TfrmFrontPage;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmFrontPage.FormActivate(Sender: TObject);
+begin
+  frmFrontPage.Color := RGB(240, 240, 240);
+end;
+
+end.

@@ -1,0 +1,84 @@
+object frmSelectDifficulty: TfrmSelectDifficulty
+  Left = 0
+  Top = 0
+  Caption = 'Select Difficulty'
+  ClientHeight = 489
+  ClientWidth = 808
+  Color = clSkyBlue
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCloseQuery = FormCloseQuery
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnEasy: TButton
+    Left = 8
+    Top = 151
+    Width = 231
+    Height = 231
+    Align = alCustom
+    Caption = 'Easy'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -37
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnEasyClick
+  end
+  object btnIntermediate: TButton
+    Left = 288
+    Top = 151
+    Width = 231
+    Height = 231
+    Align = alCustom
+    Caption = 'Intermediate'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clYellow
+    Font.Height = -37
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = btnIntermediateClick
+  end
+  object btnHard: TButton
+    Left = 569
+    Top = 151
+    Width = 231
+    Height = 231
+    Align = alCustom
+    Caption = 'Hard'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -37
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnHardClick
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 808
+    Height = 65
+    Align = alTop
+    Caption = 'Select Difficulty:'
+    Color = clYellow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -37
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 3
+    ExplicitLeft = -8
+  end
+end

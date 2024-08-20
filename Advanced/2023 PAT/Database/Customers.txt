@@ -1,0 +1,16 @@
+"CustomerID","FirstName","LastName","DOB","Gender","Email","Phone","Points"
+1,"Michael","Anderson",1990/1/1 00:00:00,"Male","michael.anderson@gmail.com","+27 12 345 67",100
+2,"Jessica","Smith",1992/2/2 00:00:00,"Female","jessica.smith@gmail.com","+27 82 012 34",50
+3,"William","Johnson",1980/3/3 00:00:00,"Male","william.johnson@gmail.com","+27 11 456 78",200
+4,"Elizabeth","Jones",1994/4/4 00:00:00,"Female","elizabeth.jones@gmail.com","+27 21 567 89",30
+5,"Thomas","Williams",1996/5/5 00:00:00,"Male","thomas.williams@gmail.com","+27 083 678 9",150
+6,"Ashley","Franklin",1990/6/6 00:00:00,"Female","ashley.franklin@gmail.com","+27 12 345 67",200
+7,"David","Brown",1992/7/7 00:00:00,"Male","david.brown@gmail.com","+27 82 012 34",150
+8,"Sarah","Becker",1980/8/8 00:00:00,"Female","sarah.becker@gmail.com","+27 11 456 78",100
+9,"James","Litchen",1994/9/9 00:00:00,"Male","james.litchen@gmail.com","+27 21 567 89",50
+10,"Emily","Sanders",1996/10/10 00:00:00,"Female","emily.sanders@gmail.com","+27 083 678 9",30
+11,"Benjamin","Jona",1990/11/11 00:00:00,"Male","benjamin.jona@gmail.com","+27 12 345 67",200
+12,"Olivia","Tree",1992/12/12 00:00:00,"Female","olivia.tree@gmail.com","+27 82 012 34",150
+13,"Noah","Beckem",1980/1/1 00:00:00,"Male","noah.beckem@gmail.com","+27 11 456 78",100
+14,"Ava","Max",1994/2/2 00:00:00,"Female","ava.max@gmail.com","+27 21 567 89",50
+15,"Lucas","Wensley",1996/3/3 00:00:00,"Male","lucas.wensley@gmail.com","+27 083 678 9",30

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/08/09 20:05:22.251.pas,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\ServerMethodsUnit1.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Server\ServerMethodsUnit.pas</Transaction>
+    <Transaction>2024/08/09 20:05:22.251.dfm,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\ServerMethodsUnit1.dfm=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Server\ServerMethodsUnit.dfm</Transaction>
+    <Transaction>2024/08/09 20:05:30.685.pas,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Unit1.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Server\ServerUnit.pas</Transaction>
+    <Transaction>2024/08/09 20:05:30.685.dfm,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Unit1.dfm=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Server\ServerUnit.dfm</Transaction>
+    <Transaction>2024/08/09 20:05:35.866.pas,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\ServerContainerUnit1.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Server\ServerContainerUnit.pas</Transaction>
+    <Transaction>2024/08/09 20:05:35.866.dfm,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\ServerContainerUnit1.dfm=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Server\ServerContainerUnit.dfm</Transaction>
+    <Transaction>2024/08/09 20:05:40.236.dproj,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Project1.dproj=D:\Skool\IT\Delphi (Testing)\Files Load and Save\Server Implementation\Server\Server.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

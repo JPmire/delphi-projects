@@ -1,0 +1,110 @@
+object frmImageSupport: TfrmImageSupport
+  Left = 0
+  Top = 0
+  Caption = 'Image Support'
+  ClientHeight = 398
+  ClientWidth = 900
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnActivate = FormActivate
+  OnCloseQuery = FormCloseQuery
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 296
+    Top = 8
+    Width = 326
+    Height = 56
+    Caption = 'Image Support'
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -40
+    Font.Name = 'Arial Black'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object pnlContent: TPanel
+    Left = 74
+    Top = 103
+    Width = 759
+    Height = 274
+    Color = clWindow
+    ParentBackground = False
+    TabOrder = 0
+    object pnlComb1: TPanel
+      Left = 72
+      Top = 26
+      Width = 200
+      Height = 64
+      BevelOuter = bvNone
+      Caption = 'Combination 1'
+      Color = clNavy
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Panel1: TPanel
+      Left = 72
+      Top = 179
+      Width = 200
+      Height = 64
+      BevelOuter = bvNone
+      Caption = 'Combination 1'
+      Color = clNavy
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Panel2: TPanel
+      Left = 480
+      Top = 26
+      Width = 200
+      Height = 64
+      BevelOuter = bvNone
+      Caption = 'Combination 1'
+      Color = clNavy
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 2
+    end
+    object Panel3: TPanel
+      Left = 480
+      Top = 179
+      Width = 200
+      Height = 64
+      BevelOuter = bvNone
+      Caption = 'Combination 1'
+      Color = clNavy
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 3
+    end
+  end
+end

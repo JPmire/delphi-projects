@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/08/09 17:47:59.850.pas,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Unit1.pas=D:\Skool\IT\Delphi (Testing)\Files Load and Save\ls_U.pas</Transaction>
+    <Transaction>2024/08/09 17:47:59.850.dfm,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Unit1.dfm=D:\Skool\IT\Delphi (Testing)\Files Load and Save\ls_U.dfm</Transaction>
+    <Transaction>2024/08/09 17:48:06.761.dproj,C:\Users\jpjou\OneDrive - MSFT\Documents\RAD Studio\Projects\Project1.dproj=D:\Skool\IT\Delphi (Testing)\Files Load and Save\LoadSave.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

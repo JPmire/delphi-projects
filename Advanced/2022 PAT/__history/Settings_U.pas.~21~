@@ -1,0 +1,138 @@
+unit Settings_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, Game_U, ChasingGame_U, Jumper_U, pngimage,
+  ExtCtrls;
+
+type
+  TfrmSettings = class(TForm)
+    bmbMainMenu: TBitBtn;
+    bmbAllHighScores: TBitBtn;
+    bmbClassicHighScore: TBitBtn;
+    bmbEasyHighScore: TBitBtn;
+    bmbInterHighScore: TBitBtn;
+    bmbHardHighScore: TBitBtn;
+    Label1: TLabel;
+    bmbChasing: TBitBtn;
+    bmbJumperHighScore: TBitBtn;
+    imgBackground: TImage;
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure bmbMainMenuClick(Sender: TObject);
+    procedure bmbAllHighScoresClick(Sender: TObject);
+    procedure bmbClassicHighScoreClick(Sender: TObject);
+    procedure bmbEasyHighScoreClick(Sender: TObject);
+    procedure bmbInterHighScoreClick(Sender: TObject);
+    procedure bmbHardHighScoreClick(Sender: TObject);
+    procedure bmbChasingClick(Sender: TObject);
+    procedure bmbJumperHighScoreClick(Sender: TObject);
+  private
+    { Private declarations }
+  tFileClassic, tFileEasy, tFileInter, tFileHard, tFileChasing, tFileJumper, tFileUsers : TextFile;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmSettings: TfrmSettings;
+
+implementation
+
+uses MainMenu_U;
+
+{$R *.dfm}
+
+procedure TfrmSettings.bmbChasingClick(Sender: TObject);
+begin
+  frmChasing.iHighScore := 0;
+  AssignFile(tFileChasing, 'Chasing.txt');
+  Rewrite(tFileChasing);
+  Writeln(tFileChasing, '0');
+  CloseFile(tFileChasing);
+  ShowMessage('Chasing HighScore cleared');
+end;
+
+procedure TfrmSettings.bmbClassicHighScoreClick(Sender: TObject);
+begin
+  frmGame.iHighC := 0;
+  AssignFile(tFileClassic, 'Classic.txt');
+  Rewrite(tFileClassic);
+  Writeln(tFileClassic, '0');
+  CloseFile(tFileClassic);
+  ShowMessage('Classic HighScore cleared');
+end;
+
+procedure TfrmSettings.bmbEasyHighScoreClick(Sender: TObject);
+begin
+  frmGame.iHighE := 0;
+  AssignFile(tFileEasy, 'Easy.txt');
+  Rewrite(tFileEasy);
+  Writeln(tFileEasy, '0');
+  CloseFile(tFileEasy);
+  ShowMessage('Easy HighScore cleared');
+end;
+
+procedure TfrmSettings.bmbHardHighScoreClick(Sender: TObject);
+begin
+  frmGame.iHighH := 0;
+  AssignFile(tFileHard, 'Hard.txt');
+  Rewrite(tFileHard);
+  Writeln(tFileHard, '0');
+  CloseFile(tFileHard);
+  ShowMessage('Hard HighScore cleared');
+end;
+
+procedure TfrmSettings.bmbInterHighScoreClick(Sender: TObject);
+begin
+  frmGame.iHighI := 0;
+  AssignFile(tFileInter, 'Intermediate.txt');
+  Rewrite(tFileInter);
+  Writeln(tFileInter, '0');
+  CloseFile(tFileInter);
+  ShowMessage('Intermediate HighScore cleared');
+end;
+
+procedure TfrmSettings.bmbJumperHighScoreClick(Sender: TObject);
+begin
+  frmJumper.iHighScoreJ := 0;
+  AssignFile(tFileJumper, 'Jumper.txt');
+  Rewrite(tFileJumper);
+  Writeln(tFileJumper, '0');
+  CloseFile(tFileJumper);
+  ShowMessage('Jumper HighScore cleared');
+end;
+
+procedure TfrmSettings.bmbMainMenuClick(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+procedure TfrmSettings.bmbAllHighScoresClick(Sender: TObject);
+begin
+  frmGame.iHighC := 0;
+  frmGame.iHighE := 0;
+  frmGame.iHighI := 0;
+  frmGame.iHighH := 0;
+  frmChasing.iHighScore := 0;
+  frmJumper.iHighScoreJ := 0;
+
+
+  Rewrite(frmMainMenu.tFileUsers);
+  Writeln(frmMainMenu.tFileUsers, '!0@0#0$0%0^0');
+  Reset(frmMainMenu.tFileUsers);
+  Readln(frmMainMenu.tFileUsers, frmMainMenu.sUserLine);
+  frmMainMenu.sCurrentUser := frmMainMenu.sUserLine;
+  frmMainMenu.sCurrentUser := frmMainMenu.sUserLine;
+  CloseFile(frmMainMenu.tFileUsers);
+  ShowMessage('All HighScores cleared');
+
+end;
+
+procedure TfrmSettings.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  Application.MainForm.Show;
+end;
+
+end.

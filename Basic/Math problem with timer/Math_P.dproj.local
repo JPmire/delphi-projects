@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/03/29 16:24:41.632.pas,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Unit1.pas=D:\Werk\IT\Delphi (Testing)\Math problem with timer\Math_U.pas</Transaction>
+    <Transaction>2022/03/29 16:24:41.632.dfm,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Unit1.dfm=D:\Werk\IT\Delphi (Testing)\Math problem with timer\Math_U.dfm</Transaction>
+    <Transaction>2022/03/29 16:24:46.489.dproj,C:\Users\Jean-Pierre\OneDrive\Documents\RAD Studio\Projects\Project1.dproj=D:\Werk\IT\Delphi (Testing)\Math problem with timer\Math_P.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

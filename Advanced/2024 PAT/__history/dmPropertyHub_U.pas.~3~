@@ -1,0 +1,48 @@
+unit dmPropertyHub_U;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB;
+
+type
+  TdmPropertyHub = class(TDataModule)
+    conProperties: TADOConnection;
+    tblProperties: TADOTable;
+    tblListings: TADOTable;
+    dsProperties: TDataSource;
+    dsListings: TDataSource;
+    qryProperties: TADOQuery;
+    qryListings: TADOQuery;
+    ADOTable1: TADOTable;
+    ADOTable2: TADOTable;
+    ADOTable3: TADOTable;
+    ADOTable4: TADOTable;
+    ADOTable5: TADOTable;
+    ADOTable6: TADOTable;
+    DataSource1: TDataSource;
+    DataSource2: TDataSource;
+    DataSource3: TDataSource;
+    DataSource4: TDataSource;
+    DataSource5: TDataSource;
+    DataSource6: TDataSource;
+    ADOQuery1: TADOQuery;
+    ADOQuery2: TADOQuery;
+    ADOQuery3: TADOQuery;
+    ADOQuery4: TADOQuery;
+    ADOQuery5: TADOQuery;
+    ADOQuery6: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmPropertyHub: TdmPropertyHub;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,14 @@
+program Showcase_P;
+
+uses
+  Forms,
+  Showcase_U in 'Showcase_U.pas' {frmFrontPage};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmFrontPage, frmFrontPage);
+  Application.Run;
+end.

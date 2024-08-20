@@ -1,0 +1,32 @@
+unit dmCoffeeShop_U;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB;
+
+type
+  TdmCoffeeShop = class(TDataModule)
+    conCoffeeShop: TADOConnection;
+    dsEmployees: TDataSource;
+    tblEmployees: TADOTable;
+    dsCustomers: TDataSource;
+    dsInventory: TDataSource;
+    tblCustomers: TADOTable;
+    tblInventory: TADOTable;
+    qryCustomers: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+  end;
+
+var
+  dmCoffeeShop: TdmCoffeeShop;
+
+implementation
+
+{$R *.dfm}
+
+end.

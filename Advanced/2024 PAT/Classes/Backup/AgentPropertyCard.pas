@@ -1,0 +1,594 @@
+unit AgentPropertyCard;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, pngimage, ComCtrls, ToolWin, StdCtrls, Grids, DBGrids,
+  Menus, PopupPanel, CustomButtons, ADODB, Spin;
+
+type
+  TPropertyCard = class(TPanel)
+  private
+    FPropertyID: Integer;
+
+    // Card Components
+    fEditPanel: TPanel;
+    flblPropertyID, flblProvince, flblCategory, flblNotes, flblSqrMeters : TLabel;
+    fpnlPropertyID : TPanel;
+    flbledtCity, flbledtPostalCode : TLabeledEdit;
+    flbledtBedrooms, flbledtBathrooms : TLabeledEdit;
+    fDeletePanel: TPanel;
+    fConfirmPanel : TPanel;
+    flblPropertyStreet : TLabel;
+    fcmbxProvince, fcmbxCategory : TComboBox;
+    frdgType : TRadioGroup;
+    fsedSqrMeters : TSpinEdit;
+    fmemNotes : TMemo;
+  public
+    constructor Create(AOwner: TWinControl; APropertyID: Integer); reintroduce;
+    procedure EditProperty(Sender: TObject);
+    procedure DeleteProperty(Sender: TObject);
+    procedure ConfirmProperty(Sender: TObject);
+    property PropertyID: Integer read FPropertyID;
+
+  end;
+
+  TPropertyCardManager = class
+  private
+    FScrollBox: TScrollBox;
+    FCards: TList;
+    function GetCard(Index: Integer): TPropertyCard;
+
+  public
+    constructor Create(AScrollBox: TScrollBox);
+    destructor Destroy; override;
+    procedure Add(APropertyID: Integer);
+    procedure Delete(Index: Integer);
+    property Cards[Index: Integer]: TPropertyCard read GetCard; default;
+    procedure MoveLastToFirst;
+  end;
+
+implementation
+
+uses
+  dmPropertyHub_U; // Replace with the actual unit name where your data module is
+
+{ TPropertyCard }
+
+procedure TPropertyCard.ConfirmProperty(Sender: TObject);
+begin
+ // Confirm Property Code
+ if MessageDlg('Are you sure?', mtConfirmation, [mbYes, mbCancel], 0) = mrYes then
+ begin
+   with dmPropertyHub do
+   begin
+    dsProperties.DataSet := tblProperties;
+    tblProperties.Open;
+
+    while not tblProperties.Eof do
+    begin
+      if tblProperties['PropertyID'] = FPropertyID then
+      begin
+        tblProperties.Edit;
+        tblProperties['City'] := flbledtCity.Text;
+        tblProperties['Province'] := fcmbxProvince.Text;
+        tblProperties['PostalCode'] := flbledtPostalCode.Text;
+        tblProperties['Category'] := fcmbxCategory.Text;
+        tblProperties['Type'] := frdgType.Items[frdgType.ItemIndex];
+        tblProperties['Bedrooms'] := flbledtBedrooms.Text;
+        tblProperties['Bathrooms'] := flbledtBathrooms.Text;
+        tblProperties['Notes'] := fmemNotes.Text;
+        tblProperties['SqrMeters'] := fsedSqrMeters.Text;
+      end;
+      tblProperties.Next;
+    end;
+    tblProperties.Edit;
+    tblProperties.Post;
+   end;
+
+    fConfirmPanel.Enabled := True;
+    fConfirmPanel.Color := clGray;
+    flbledtCity.Enabled := False;
+    flbledtPostalCode.Enabled := False;
+    flbledtBedrooms.Enabled := False;
+    flbledtBathrooms.Enabled := False;
+    frdgType.Enabled := False;
+    fmemNotes.Enabled := False;
+    fsedSqrMeters.Enabled := False;
+    fcmbxProvince.Enabled := False;
+    fcmbxCategory.Enabled := False;
+ end;
+
+end;
+
+constructor TPropertyCard.Create(AOwner: TWinControl; APropertyID: Integer);
+var
+  ButtonWidth, ButtonSpacing, TotalWidth, StartPos: Integer;
+  CardHeight : integer;
+
+  sProvinces : TStrings;
+begin
+  inherited Create(AOwner);
+  fPropertyID := APropertyID;
+  CardHeight := 300;
+  // Set up the card layout
+
+  Self.Width := AOwner.Width - 30; // Adjust as needed
+  Self.BevelOuter := bvNone;
+  Self.ParentBackground := False;
+  Self.Color := clWhite; // Adjust as needed
+  Self.Parent := TWinControl(AOwner);
+  Self.Height := CardHeight; // Adjust as needed
+  ButtonWidth := 50; // The width of each button panel
+  ButtonSpacing := 10; // The space between the buttons
+
+  // Calculate the total width of both buttons including the space between them
+  TotalWidth := (ButtonWidth * 2) + ButtonSpacing;
+
+  // Calculate the starting position for the first button so that they are centered
+  StartPos := (Self.Width - TotalWidth) div 2;
+
+  // Create and configure the Edit panel
+  fEditPanel := TPanel.Create(Self);
+  with fEditPanel do
+  begin
+    Parent := Self;
+    ParentBackground := False;
+    Caption := 'Edit';
+    BevelInner := bvNone;
+    BevelKind := bkNone;
+    BevelOuter := bvNone;
+    Width := 94;
+    Height := 33;
+    Top :=  252;
+    Left := 206;
+    Color := clYellow;
+    Font.Name := 'Arail';
+    Font.Size := 12;
+    Font.Style := [fsBold];
+    OnClick := EditProperty;
+  end;
+
+  // Create and configure the Delete panel
+  fDeletePanel := TPanel.Create(Self);
+  with fDeletePanel do
+  begin
+    Parent := Self;
+    ParentBackground := False;
+    Caption := 'Delete';
+    BevelInner := bvNone;
+    BevelKind := bkNone;
+    BevelOuter := bvNone;
+    Font.Color := clWhite;
+    Width := 94;
+    Height := 33;
+    Top :=  252;
+    Left := 314;
+    Color := clRed;
+    Font.Name := 'Arail';
+    Font.Size := 12;
+    Font.Style := [fsBold];
+    OnClick := DeleteProperty;
+  end;
+
+  fConfirmPanel := TPanel.Create(Self);
+  with fConfirmPanel do
+  begin
+    Parent := Self;
+    ParentBackground := False;
+    Caption := 'Confirm';
+    BevelInner := bvNone;
+    BevelKind := bkNone;
+    BevelOuter := bvNone;
+    Font.Color := clWhite;
+    Width := 94;
+    Height := 33;
+    Top :=  213;
+    Left := 263;
+    //Color := clSkyBlue;
+    Color := clGray;
+    Enabled := False;
+    Font.Name := 'Arail';
+    Font.Size := 12;
+    Font.Style := [fsBold];
+    OnClick := ConfirmProperty;
+  end;
+
+  // Load property details from the database
+  with dmPropertyHub.tblProperties do
+  begin
+    dmPropertyHub.dsProperties.DataSet := dmPropertyHub.tblProperties;
+    Locate('PropertyID', APropertyID, []);
+    // Populate card with details from the dataset
+  end;
+
+  fpnlPropertyID := TPanel.Create(Self);
+  // Create Labels
+  flblPropertyStreet := TLabel.Create(Self);
+  flblPropertyID := TLabel.Create(Self);
+  flblProvince := TLabel.Create(Self);
+  flblCategory := TLabel.Create(Self);
+  flblNotes := TLabel.Create(Self);
+  flblSqrMeters := TLabel.Create(Self);
+
+  // Create LabeledEdits
+  flbledtCity := TLabeledEdit.Create(Self);
+  flbledtPostalCode := TLabeledEdit.Create(Self);
+  flbledtBedrooms := TLabeledEdit.Create(Self);
+  flbledtBathrooms := TLabeledEdit.Create(Self);
+
+  // Create Comboboxes
+  fcmbxProvince := TComboBox.Create(Self);
+  fcmbxCategory := TComboBox.Create(Self);
+
+  // Create SpinEdit
+  fsedSqrMeters := TSpinEdit.Create(Self);
+
+  // Create Radiogroup
+  frdgType := TRadioGroup.Create(Self);
+
+  // Create Memo
+  fmemNotes := TMemo.Create(Self);
+
+
+  with fpnlPropertyID do
+  begin
+    Parent := Self;
+    ParentBackground := False;
+    Caption := IntToStr(FPropertyID);
+    BevelInner := bvNone;
+    BevelKind := bkNone;
+    BevelOuter := bvNone;
+    Font.Color := clWhite;
+    Width := 55;
+    Height := 38;
+    Top :=  57;
+    Left := 31;
+    Color := rgb(22, 121, 171);
+    Font.Name := 'Arail';
+    Font.Size := 12;
+    Font.Style := [fsBold];
+  end;
+
+  with flblPropertyStreet do
+  begin
+    Caption := dmPropertyHub.tblProperties['StreetAddress'];
+    Font.Name := 'Arial';
+    Font.Color := clWhite;
+    Font.Size := 14;
+    Font.Style := [fsBold];
+    Layout := tlCenter;
+    Alignment := taCenter;
+    Align := alTop;
+    Height := 32;
+    Parent := Self;
+  end;
+
+  with flblPropertyID do
+  begin
+    Font.Size := 10;
+    Top := 35;
+    Left := 31;
+    Caption := 'PropertyID:';
+    Font.Name := 'Arial';
+    Font.Color := clWhite;
+    Parent := Self;
+  end;
+
+  with flblProvince do
+  begin
+    Font.Size := 10;
+    Top := 154;
+    Left := 31;
+    Caption := 'Province:';
+    Font.Name := 'Arial';
+    Font.Color := clWhite;
+    Parent := Self;
+  end;
+
+  with flblCategory do
+  begin
+    Font.Size := 10;
+    Top := 35;
+    Left := 214;
+    Caption := 'Category:';
+    Font.Name := 'Arial';
+    Font.Color := clWhite;
+    Parent := Self;
+  end;
+
+  with flblNotes do
+  begin
+    Font.Size := 10;
+    Top := 35;
+    Left := 456;
+    Caption := 'Notes:';
+    Font.Name := 'Arial';
+    Font.Color := clWhite;
+    Parent := Self;
+  end;
+
+  with flblSqrMeters do
+  begin
+    Font.Size := 10;
+    Top := 210;
+    Left := 456;
+    Caption := 'Square Meters (Approx.)';
+    Font.Name := 'Arial';
+    Font.Color := clWhite;
+    Parent := Self;
+  end;
+
+  with flbledtCity do
+  begin
+    Font.Size := 10;
+    Enabled := False;
+    Top := 119;
+    Left := 31;
+    EditLabel.Caption := 'City:';
+    Font.Name := 'Arial';
+    EditLabel.Font.Color := clWhite;
+    Text := dmPropertyHub.tblProperties['City'];
+    Parent := Self;
+  end;
+
+  with flbledtPostalCode do
+  begin
+    Font.Size := 10;
+    Enabled := False;
+    Top := 235;
+    Left := 31;
+    EditLabel.Caption := 'Postal Code:';
+    Font.Name := 'Arial';
+    EditLabel.Font.Color := clWhite;
+    Text := Copy(dmPropertyHub.tblProperties['PostalCode'],2, length(dmPropertyHub.tblProperties['PostalCode']));
+    Parent := Self;
+  end;
+
+  with flbledtBedrooms do
+  begin
+    Font.Size := 10;
+    Enabled := False;
+    Top := 176;
+    Left := 214;
+    Width := 66;
+    EditLabel.Caption := 'Bedrooms:';
+    Font.Name := 'Arial';
+    EditLabel.Font.Color := clWhite;
+    Text := dmPropertyHub.tblProperties['Bedrooms'];
+    Parent := Self;
+  end;
+
+  with flbledtBathrooms do
+  begin
+    Font.Size := 10;
+    Enabled := False;
+    Top := 176;
+    Left := 330;
+    Width := 66;
+    EditLabel.Caption := 'Bathrooms:';
+    Font.Name := 'Arial';
+    EditLabel.Font.Color := clWhite;
+    Text := dmPropertyHub.tblProperties['Bathrooms'];
+    Parent := Self;
+  end;
+
+
+  with fcmbxProvince do
+  begin
+    Parent := Self;
+    Enabled := False;
+    Font.Size := 9;
+    Font.Name := 'Arial';
+    Top := 176;
+    Left := 31;
+    Items.Add('Eastern Cape');
+    Items.Add('Free State');
+    Items.Add('Gauteng');
+    Items.Add('KwaZulu-Natal');
+    Items.Add('Limpopo');
+    Items.Add('Mpumalanga');
+    Items.Add('Northern Cape');
+    Items.Add('North West');
+    Items.Add('Western Cape');
+    ItemIndex := Items.IndexOf(dmPropertyHub.tblProperties['Province']);
+  end;
+
+  with fcmbxCategory do
+  begin
+    Parent := Self;
+    Enabled := False;
+    Font.Size := 9;
+    Font.Name := 'Arial';
+    Top := 57;
+    Left := 214;
+    Items.Add('Residential');
+    Items.Add('Apartment');
+    ItemIndex := Items.IndexOf(dmPropertyHub.tblProperties['Category']);
+  end;
+
+  with fsedSqrMeters do
+  begin
+    Parent := Self;
+    Enabled := False;
+    Width := 73;
+    Font.Size := 9;
+    Font.Name := 'Arial';
+    Top := 232;
+    left := 456;
+    Value := dmPropertyHub.tblProperties['SqrMeters'];
+    MinValue := 1;
+    MaxValue := 10000;
+  end;
+
+  with frdgType do
+  begin
+    Parent := Self;
+    Enabled := False;
+    ParentBackground := False;
+    ParentColor := False;
+    Width := 185;
+    Height := 51;
+    Color := clWhite;
+    Top := 95;
+    Left := 214;
+    Font.Size := 9;
+    Font.Name := 'Arial';
+    Columns := 3;
+    Items.Add('Listing');
+    Items.Add('Rental');
+    Items.Add('None');
+    Caption := 'Type:';
+    ItemIndex := Items.IndexOf(dmPropertyHub.tblProperties['Type']);
+  end;
+
+  with fMemNotes do
+  begin
+    Parent := Self;
+    Enabled := False;
+    Width := 209;
+    Height := 144;
+    ScrollBars := ssVertical;
+    Top := 57;
+    Left := 456;
+    Font.Size := 9;
+    Text := dmPropertyHub.tblProperties['Notes'];
+    Font.Name := 'Arial';
+  end;
+end;
+
+procedure TPropertyCard.EditProperty(Sender: TObject);
+begin
+  // Implement the editing functionality
+  if MessageDlg('Are you sure you want to edit this Property?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    fConfirmPanel.Enabled := True;
+    fConfirmPanel.Color := clSkyBlue;
+    flbledtCity.Enabled := True;
+    flbledtPostalCode.Enabled := True;
+    flbledtBedrooms.Enabled := True;
+    flbledtBathrooms.Enabled := True;
+    frdgType.Enabled := True;
+    fmemNotes.Enabled := True;
+    fsedSqrMeters.Enabled := True;
+    fcmbxProvince.Enabled := True;
+    fcmbxCategory.Enabled := True;
+  end;
+
+end;
+
+procedure TPropertyCard.DeleteProperty(Sender: TObject);
+begin
+  // Implement the deletion functionality
+  if MessageDlg('Are you sure you want to delete this property?', mtWarning, [mbYes, mbNo], 0) = mrYes then
+  begin
+    with dmPropertyHub do
+    begin
+      tblProperties.Open;
+      tblProperties.First;
+      while not tblProperties.Eof do
+      begin
+        if tblProperties['PropertyID'] = fPropertyID then
+        begin
+          tblProperties.Delete;
+          ShowMessage('Property [' + IntToStr(FPropertyID) + '] was deleted succesfully');
+          exit;
+        end;
+        tblProperties.Next;
+      end;
+    end;
+  end;
+
+end;
+
+{ TPropertyCardManager }
+
+
+constructor TPropertyCardManager.Create(AScrollBox: TScrollBox);
+begin
+  inherited Create;
+  FScrollBox := AScrollBox;
+  FCards := TList.Create;
+end;
+
+destructor TPropertyCardManager.Destroy;
+var
+  I: Integer;
+begin
+  for I := 0 to FCards.Count - 1 do
+    TPropertyCard(FCards[I]).Free;
+    FCards.Free;
+  inherited;
+end;
+
+function TPropertyCardManager.GetCard(Index: Integer): TPropertyCard;
+begin
+  Result := TPropertyCard(FCards[Index]);
+end;
+
+procedure TPropertyCardManager.MoveLastToFirst;
+var
+  CardHeight: Integer;
+  LastCard: TPropertyCard;
+  i: Integer;
+begin
+  if FCards.Count = 0 then  // Handle empty list case
+    Exit;
+
+  CardHeight := 300; // Or use whatever your card height is
+
+  // Store the last card temporarily
+  LastCard := TPropertyCard(FCards.Last);
+
+  // Shift all cards one position upwards, starting from the penultimate card
+  for i := FCards.Count - 2 downto 0 do
+  begin
+    TPropertyCard(FCards[i]).Top := (i + 1) * CardHeight;
+  end;
+
+  // Place the last card at the first position
+  LastCard.Top := 0;
+
+  // Move the last card to the beginning of the list
+  FCards.Delete(FCards.Count - 1); // Remove from the end
+  FCards.Insert(0, LastCard);        // Insert at the beginning
+end;
+
+procedure TPropertyCardManager.Add(APropertyID: Integer);
+var
+  Card: TPropertyCard;
+  CardHeight: Integer;
+begin
+  CardHeight := 300; // Adjust the card height as needed
+  Card := TPropertyCard.Create(FScrollBox, APropertyID);
+  FCards.Add(Card);
+  Card.Color := RGB(64, 64, 64);
+  Card.BevelInner := bvNone;
+  Card.BevelKind := bkFlat;
+  Card.BevelOuter := bvNone;
+  Card.Align := alTop;
+  Card.Width := FScrollBox.ClientWidth; // Make the card the same width as the scrollbox
+  Card.Height := CardHeight;
+  Card.Top := (FCards.Count - 1) * CardHeight; // Position the card at the correct vertical position
+  Card.Anchors := [akLeft, akTop, akRight]; // Ensure the card stays docked to the top when resized
+end;
+
+procedure TPropertyCardManager.Delete(Index: Integer);
+var
+  I: Integer;
+begin
+  try
+    TPropertyCard(FCards[Index]).Free;
+    FCards.Delete(Index);
+    // Reposition remaining cards
+    for I := Index to FCards.Count - 1 do
+      TPropertyCard(FCards[I]).Top := I * (TPropertyCard(FCards[I]).Height + 5); // Adjust spacing as needed
+  except
+    //
+  end;
+
+
+end;
+
+end.

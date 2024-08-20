@@ -1,0 +1,109 @@
+object frmGameMode: TfrmGameMode
+  Left = 0
+  Top = 0
+  Caption = 'Game Mode'
+  ClientHeight = 410
+  ClientWidth = 830
+  Color = clSkyBlue
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCloseQuery = FormCloseQuery
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlInstruction: TPanel
+    Left = 0
+    Top = 0
+    Width = 830
+    Height = 73
+    Align = alTop
+    Caption = 'Select a Game Mode:'
+    Color = clYellow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -37
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+  end
+  object btnClassic: TButton
+    Left = 64
+    Top = 184
+    Width = 129
+    Height = 129
+    Caption = 'Classic'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = btnClassicClick
+  end
+  object btnCustomDifficulty: TButton
+    Left = 256
+    Top = 184
+    Width = 129
+    Height = 129
+    Caption = 'Custom Difficulty'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    WordWrap = True
+    OnClick = btnCustomDifficultyClick
+  end
+  object bmbMainMenu: TBitBtn
+    Left = 736
+    Top = 368
+    Width = 86
+    Height = 34
+    Caption = '&Quit'
+    DoubleBuffered = True
+    Kind = bkIgnore
+    ParentDoubleBuffered = False
+    TabOrder = 3
+    OnClick = bmbMainMenuClick
+  end
+  object btnChasingGame: TButton
+    Left = 448
+    Top = 184
+    Width = 129
+    Height = 129
+    Caption = 'Chasing Mode'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    WordWrap = True
+    OnClick = btnChasingGameClick
+  end
+  object btnJumper: TButton
+    Left = 632
+    Top = 184
+    Width = 129
+    Height = 129
+    Caption = 'Jumper Mode'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    WordWrap = True
+  end
+end

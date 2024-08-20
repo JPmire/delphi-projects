@@ -1,0 +1,25 @@
+program Game_P;
+
+uses
+  Forms,
+  ClassicGame_U in 'ClassicGame_U.pas' {frmClassicGame},
+  MainMenu_U in 'MainMenu_U.pas' {frmMainMenu},
+  GameMode_U in 'GameMode_U.pas' {frmGameMode},
+  Shop_U in 'Shop_U.pas' {frmShop},
+  Settings_U in 'Settings_U.pas' {frmSettings},
+  SelectDifficulty_U in 'SelectDifficulty_U.pas' {frmSelectDifficulty};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.Title := 'Reacta Click';
+  Application.CreateForm(TfrmMainMenu, frmMainMenu);
+  Application.CreateForm(TfrmClassicGame, frmClassicGame);
+  Application.CreateForm(TfrmGameMode, frmGameMode);
+  Application.CreateForm(TfrmShop, frmShop);
+  Application.CreateForm(TfrmSettings, frmSettings);
+  Application.CreateForm(TfrmSelectDifficulty, frmSelectDifficulty);
+  Application.Run;
+end.

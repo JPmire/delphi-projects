@@ -1,0 +1,168 @@
+object frmHowToPlay: TfrmHowToPlay
+  Left = 0
+  Top = 0
+  Caption = 'How To Play'
+  ClientHeight = 296
+  ClientWidth = 708
+  Color = clAqua
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCloseQuery = FormCloseQuery
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 256
+    Top = 24
+    Width = 210
+    Height = 39
+    Caption = 'How To Play:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -32
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 40
+    Top = 85
+    Width = 219
+    Height = 19
+    Caption = 'Classic / Custom Difficulty:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 488
+    Top = 85
+    Width = 119
+    Height = 19
+    Caption = 'Chasing Mode:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 40
+    Top = 136
+    Width = 281
+    Height = 16
+    Caption = 'Click the item as fast as you can to score 1 point.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 40
+    Top = 168
+    Width = 156
+    Height = 16
+    Caption = 'Avoid clicking on the bomb.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 40
+    Top = 200
+    Width = 195
+    Height = 16
+    Caption = 'Click on the star to score 3 points.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 40
+    Top = 232
+    Width = 319
+    Height = 16
+    Caption = 'Purchase new items from the shop with your highscore.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Shape1: TShape
+    Left = 376
+    Top = 87
+    Width = 1
+    Height = 201
+    Brush.Color = clBlack
+  end
+  object Label8: TLabel
+    Left = 408
+    Top = 138
+    Width = 232
+    Height = 16
+    Caption = 'Avoid the enemy by moving your mouse.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label9: TLabel
+    Left = 408
+    Top = 170
+    Width = 183
+    Height = 16
+    Caption = 'Collect the star to score a point.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label10: TLabel
+    Left = 408
+    Top = 202
+    Width = 145
+    Height = 16
+    Caption = 'Avoid touching the bomb.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label11: TLabel
+    Left = 408
+    Top = 234
+    Width = 154
+    Height = 16
+    Caption = 'See how long you can last.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+end

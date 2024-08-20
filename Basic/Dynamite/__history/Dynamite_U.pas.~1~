@@ -1,0 +1,57 @@
+unit Dynamite_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, pngimage;
+
+type
+  TForm1 = class(TForm)
+    btnCountdown: TButton;
+    lblCountdown: TLabel;
+    imgOnFire: TImage;
+    shpWick: TShape;
+    shpDynamite: TShape;
+    lblDynamite: TLabel;
+    imgKaboom: TImage;
+    procedure FormActivate(Sender: TObject);
+    procedure btnCountdownClick(Sender: TObject);
+    procedure imgOnFireClick(Sender: TObject);
+      var
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TForm1.btnCountdownClick(Sender: TObject);
+begin
+  imgOnFire.Visible := true;
+  lblCountdown.Caption := '9';
+  btnCountdown.Caption := 'Click on the flame';
+  Form1.Caption := 'Watch Out!';
+end;
+
+procedure TForm1.FormActivate(Sender: TObject);
+begin
+  imgOnFire.Visible := false;
+  imgKaboom.Visible := false;
+
+end;
+
+procedure TForm1.imgOnFireClick(Sender: TObject);
+begin
+  imgOnFire.Visible := False;
+  imgKaboom.Visible := True;
+end;
+
+end.

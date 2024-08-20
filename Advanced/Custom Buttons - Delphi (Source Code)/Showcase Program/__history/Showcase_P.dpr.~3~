@@ -1,0 +1,20 @@
+program Showcase_P;
+
+uses
+  Forms,
+  Showcase_U in 'Showcase_U.pas' {frmFrontPage},
+  Basic_U in 'Basic_U.pas' {Form1},
+  ImageSupport_U in 'ImageSupport_U.pas' {Form2},
+  Advanced_U in 'Advanced_U.pas' {Form3};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmFrontPage, frmFrontPage);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TForm3, Form3);
+  Application.Run;
+end.

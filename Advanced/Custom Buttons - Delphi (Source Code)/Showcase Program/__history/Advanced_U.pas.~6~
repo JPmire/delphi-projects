@@ -1,0 +1,46 @@
+unit Advanced_U;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TfrmAdvanced = class(TForm)
+    Label1: TLabel;
+    pnlContent: TPanel;
+    pnlStaticColor: TPanel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAdvanced: TfrmAdvanced;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmAdvanced.FormActivate(Sender: TObject);
+begin
+  frmAdvanced.Color := RGB(0, 120, 110);
+  pnlContent.Color := RGB(240, 240, 240);
+end;
+
+procedure TfrmAdvanced.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  Self.Hide;
+  Application.MainForm.Show;
+end;
+
+end.

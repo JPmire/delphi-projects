@@ -1,0 +1,314 @@
+unit ListingDetails;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, pngimage, ComCtrls, ToolWin, StdCtrls, Grids, DBGrids,
+  Menus, PopupPanel, CustomButtons, ADODB, Spin, Client, dmPropertyHub_U, DateUtils;
+type
+  TListingDetails = class(TPanel)
+  private
+    fOwner : TClient;
+    fPropertyID : integer;
+    fOwnerID : integer;
+    fListingID : integer;
+    fPrice : real;
+    fListDate : TDateTime;
+    fSaleStatus : string;
+    fOwnerClientID : integer;
+
+    fDaysOnMarket : integer;
+    fStreetAddress : string;
+
+    //GUI Components
+    flblStreetAddress: TLabel;
+    flblPrice: TLabel;
+    fredOwnerDetails: TRichEdit;
+    fredGeneralDetails: TRichEdit;
+    fedtOfferAmount: TEdit;
+    fpnlMakeOffer: TPanel;
+
+    procedure MakeOfferClick(Sender: TObject);
+  public
+    constructor Create(AOwner : TWinControl; APropertyID : integer); reintroduce;
+    property Owner : TClient read fOwner;
+
+
+end;
+
+  TListingDetailsManager = class
+    private
+      fContainer : TWinControl;
+      fCards : TList;
+      fOwner: TClient;
+      fPropertyID : integer;
+    public
+      constructor Create(AContainer : TWinControl);
+      destructor Destroy; override;
+      property Owner : TClient read fOwner;
+      procedure Add(APropertyID : integer);
+      procedure AddOffer(OfferPrice : real; APropertyID : integer);
+  end;
+
+const
+  CARD_HEIGHT = 300;
+
+
+implementation
+  uses
+  Client_U;
+{ TListingDetails }
+
+constructor TListingDetails.Create(AOwner: TWinControl; APropertyID : integer);
+var
+  fCurrentDate : TDateTime;
+begin
+  inherited Create(AOwner);
+  fPropertyID := APropertyID;
+  with dmPropertyHub do
+  begin
+
+    dsListings.DataSet := qryListings;
+    qryListings.SQL.Clear;
+    qryListings.SQL.Add('SELECT * FROM tblListings WHERE PropertyID = ' + IntToStr(fPropertyID));
+    qryListings.Open;
+    fListingID := qryListings.FieldByName('ListingID').AsInteger;
+    fOwnerID := qryListings.FieldByName('OwnerID').AsInteger;
+    fPrice := qryListings.FieldByName('Price').AsCurrency;
+    fListDate := qryListings.FieldByName('ListDate').AsDateTime;
+    fSaleStatus := qryListings.FieldByName('SaleStatus').AsString;
+
+    dsOwners.DataSet := qryOwners;
+    qryOwners.SQL.Clear;
+    qryOwners.SQL.Add('SELECT * FROM tblOwners WHERE OwnerID = ' + IntToStr(fOwnerID));
+    qryOwners.Open;
+    fOwnerClientID := qryOwners.FieldByName('ClientID').AsInteger;
+
+    dsProperties.DataSet := tblProperties;
+    tblProperties.Open;
+    tblProperties.Locate('PropertyID', fPropertyID, []);
+    fStreetAddress := tblProperties['StreetAddress'];
+
+  end;
+
+  Self.Parent := TWinControl(AOwner);
+  Self.Align := alClient;
+  Self.BevelOuter := bvNone;
+  Self.Color := clSilver;
+  Self.ParentBackground := False ;
+  Self.TabOrder := 0;
+
+  flblStreetAddress := TLabel.Create(self);
+  flblPrice := TLabel.Create(self);
+
+  fredOwnerDetails := TRichEdit.Create(self);
+  fredGeneralDetails := TRichEdit.Create(self);
+
+  fedtOfferAmount := TEdit.Create(self);
+  fpnlMakeOffer := TPanel.Create(self);
+
+  with flblPrice do
+  begin
+    Left := 168 ;
+    Top := 56;
+    Width := 249;
+    Height := 33;
+    Caption := FloatToStrF(fPrice, ffCurrency, 10, 2);
+    Color := clGreen;
+    Font.Charset := DEFAULT_CHARSET;
+    Font.Color := clGreen ;
+    Font.Height := -27;
+    Font.Name := 'Tahoma';
+    Font.Style := [fsBold];
+    ParentColor := False;
+    ParentFont := False;
+    Parent := Self;
+  end;
+
+
+  with flblStreetAddress do
+  begin
+    Left := 144;
+    Top := 10 ;
+    Width := 301;
+    Height := 40;
+    Caption := fStreetAddress;
+    Font.Charset := ANSI_CHARSET ;
+    Font.Color := clYellow ;
+    Font.Height := -35 ;
+    Font.Name := 'Arial';
+    Font.Style := [];
+    ParentFont := False ;
+    Parent := Self;
+  end;
+
+
+  with fpnlMakeOffer do
+  begin
+    Parent := Self;
+    Left := 242 ;
+    Top := 280 ;
+    Width := 97 ;
+    Height := 25;
+    BevelOuter := bvNone;
+    Caption := 'Make Offer';
+    Color := clNavy ;
+    Font.Charset := ANSI_CHARSET ;
+    Font.Color := clWhite;
+    Font.Height := -16 ;
+    Font.Name := 'Arial';
+    Font.Style := [fsBold];
+    ParentBackground := False ;
+    ParentFont := False;
+    TabOrder := 0;
+    OnClick := MakeOfferClick;
+
+  end;
+
+
+  with fedtOfferAmount do
+  begin
+    Parent := Self;
+    Left := 232;
+    Top := 245;
+    Width := 121;
+    Height := 21;
+    TabOrder := 1;
+    TextHint := 'Offer Amount';
+
+  end;
+
+  fOwner := TClient.Create(fOwnerClientID);
+  with fredOwnerDetails do
+  begin
+    Parent := Self;
+    Left := 24;
+    Top := 117;
+    Width := 241;
+    Height := 100;
+    Font.Charset := ANSI_CHARSET;
+    //Font.Color := clWindowText;
+    Font.Height := -13;
+    Font.Name := 'Arial';
+    Font.Style := [];
+    Lines.Add('Owner Details:');
+    Lines.Add('Name: ' + fOwner.FirstName + ' ' + fOwner.LastName);
+    Lines.Add('Email: ' + fOwner.Email);
+    Lines.Add('Phone: ' + fOwner.PhoneNum);
+    ParentFont := False;
+    TabOrder := 2;
+
+  end;
+
+  fCurrentDate := Date;
+  fDaysOnMarket := DaysBetween(fCurrentDate, fListDate);
+
+  with fredGeneralDetails do
+  begin
+    Parent := Self;
+    Left := 312;
+    Top := 117;
+    Width := 241;
+    Height := 100;
+    Font.Charset := ANSI_CHARSET;
+    //Font.Color := clWindowText;
+    Font.Height := -13;
+    Font.Name := 'Arial';
+    Font.Style := [];
+    Lines.Add('General Details:');
+    Lines.Add('Listing Date: ' + DateToStr(fListDate));
+    Lines.Add('Days on Market: ' + IntToStr(fDaysOnMarket));
+    Lines.Add('Sale Status: ' + fSaleStatus);
+    ParentFont := False;
+    TabOrder := 3;
+
+  end;
+
+
+end;
+
+procedure TListingDetails.MakeOfferClick(Sender: TObject);
+var
+  rOfferAmount : real;
+  iOfferID, iClientID : integer;
+begin
+  rOfferAmount := StrToFloat(fedtOfferAmount.Text);
+  iClientID := frmClient.iClientID;
+  if rOfferAmount >= fPrice then
+  begin
+    with dmPropertyHub do
+    begin
+      dsOffers.DataSet := tblOffers;
+
+      tblOffers.Open;
+      tblOffers.Last;
+      if tblOffers.RecordCount > 0 then
+      begin
+        iOfferID := tblOffers['OfferID'] + 1;
+      end else
+      begin
+        iOfferID := 1;
+      end;
+
+
+
+      tblOffers.Insert;
+      tblOffers['OfferID'] := iOfferID;
+      tblOffers['ListingID'] := fListingID;
+      tblOffers['ClientID'] := iClientID;
+      tblOffers['OfferPrice'] := rOfferAmount;
+      tblOffers['OfferDate'] := Date;
+      tblOffers['OfferStatus'] := 'Pending';
+      tblOffers.Post;
+    end;
+
+    ShowMessage('Offer successfully made');
+  end else
+  begin
+    ShowMessage('Offer must be higher or equal to the asking price');
+  end;
+
+end;
+
+{ TListingDetailsManager }
+
+procedure TListingDetailsManager.Add(APropertyID: integer);
+var
+  Card: TListingDetails;
+begin
+  Card := TListingDetails.Create(fContainer, APropertyID);
+  fCards.Add(Card);
+  Card.Height := CARD_HEIGHT;
+  Card.Color := clSkyBlue;
+  Card.BevelInner := bvNone;
+  Card.Width := fContainer.ClientWidth; // Make the card the same width as the scrollbox
+  Card.BevelKind := bkFlat;
+  Card.BevelOuter := bvNone;
+  Card.Align := alClient;
+end;
+
+procedure TListingDetailsManager.AddOffer(OfferPrice : real; APropertyID : integer);
+begin
+//
+end;
+
+constructor TListingDetailsManager.Create(AContainer : TWinControl);
+begin
+  inherited Create;
+  fContainer := AContainer;
+  fCards := TList.Create;
+
+end;
+
+destructor TListingDetailsManager.Destroy;  // Kyk
+var
+  I: Integer;
+begin
+  for I := 0 to FCards.Count - 1 do
+    TListingDetails(FCards[I]).Free;
+    FCards.Free;
+  inherited;
+end;
+
+end.

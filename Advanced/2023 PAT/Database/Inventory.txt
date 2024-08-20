@@ -1,0 +1,46 @@
+ProductID,ProductName,Category,Size,Price,QuantityInStock
+1,Coffee,Drinks,Small,15,50
+2,Coffee,Drinks,Regular,20,100
+3,Coffee,Drinks,Large,25,50
+4,Espresso,Drinks,Single,18,25
+5,Espresso,Drinks,Double,22,15
+6,Cappuccino,Drinks,Small,20,75
+7,Cappuccino,Drinks,Regular,25,50
+8,Cappuccino,Drinks,Large,30,25
+9,Latte,Drinks,Small,25,100
+10,Latte,Drinks,Regular,28,75
+11,Latte,Drinks,Large,32,50
+12,Mocha,Drinks,Small,25,75
+13,Mocha,Drinks,Regular,30,50
+14,Mocha,Drinks,Large,35,25
+15,Hot chocolate,Drinks,Small,20,100
+16,Hot chocolate,Drinks,Regular,25,75
+17,Hot chocolate,Drinks,Large,30,50
+18,Chai latte,Drinks,Small,25,75
+19,Chai latte,Drinks,Regular,30,50
+20,Chai latte,Drinks,Large,35,25
+21,Iced coffee,Drinks,Regular,22,100
+22,Iced mocha,Drinks,Small,28,75
+23,Iced mocha,Drinks,Regular,32,50
+24,Iced mocha,Drinks,Large,36,25
+25,Fresh juice,Drinks,Regular,35,100
+26,Soda,Drinks,Regular,18,100
+27,Bottled water,Drinks,Regular,12,100
+28,Breakfast sandwich,Breakfast,Regular,40,50
+29,Breakfast wrap,Breakfast,Regular,38,50
+30,Avocado toast,Breakfast,Regular,35,50
+31,Baked goods,Breakfast,Regular,20,50
+32,Yogurt parfait,Breakfast,Regular,30,50
+33,Oatmeal,Breakfast,Regular,25,50
+34,Fruit bowl,Breakfast,Regular,30,50
+35,Salad,Lunch,Regular,60,50
+36,Sandwich,Lunch,Regular,48,50
+37,Panini,Lunch,Regular,55,50
+38,Soup,Lunch,Regular,40,50
+39,Cake slice,Dessert,Regular,28,50
+40,Cookies,Dessert,Regular,12,50
+41,Brownies,Dessert,Regular,25,50
+42,Biscotti,Dessert,Regular,15,50
+43,Chips,Snacks,Regular,20,50
+44,Nuts,Snacks,Regular,35,50
+45,Granola bar,Snacks,Regular,18,50
