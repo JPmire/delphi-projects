@@ -14,24 +14,24 @@ type
     dsListings: TDataSource;
     qryProperties: TADOQuery;
     qryListings: TADOQuery;
-    ADOTable1: TADOTable;
-    ADOTable2: TADOTable;
-    ADOTable3: TADOTable;
-    ADOTable4: TADOTable;
-    ADOTable5: TADOTable;
-    ADOTable6: TADOTable;
-    DataSource1: TDataSource;
-    DataSource2: TDataSource;
-    DataSource3: TDataSource;
-    DataSource4: TDataSource;
-    DataSource5: TDataSource;
-    DataSource6: TDataSource;
-    ADOQuery1: TADOQuery;
-    ADOQuery2: TADOQuery;
-    ADOQuery3: TADOQuery;
-    ADOQuery4: TADOQuery;
-    ADOQuery5: TADOQuery;
-    ADOQuery6: TADOQuery;
+    tblClients: TADOTable;
+    tblOffers: TADOTable;
+    tblOwners: TADOTable;
+    tblRentals: TADOTable;
+    tblRentalTransactions: TADOTable;
+    tblSales: TADOTable;
+    dsClients: TDataSource;
+    dsOffers: TDataSource;
+    dsOwners: TDataSource;
+    dsRentals: TDataSource;
+    dsRentalTransactions: TDataSource;
+    dsSales: TDataSource;
+    qryClients: TADOQuery;
+    qryOffers: TADOQuery;
+    qryOwners: TADOQuery;
+    qryRentals: TADOQuery;
+    qryRentalTransactions: TADOQuery;
+    qrySales: TADOQuery;
   private
     { Private declarations }
   public

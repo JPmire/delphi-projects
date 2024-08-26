@@ -1,7 +1,7 @@
 object dmPropertyHub: TdmPropertyHub
   OldCreateOrder = False
   Height = 456
-  Width = 1125
+  Width = 1021
   object conProperties: TADOConnection
     Connected = True
     ConnectionString = 
@@ -59,6 +59,7 @@ object dmPropertyHub: TdmPropertyHub
     Top = 262
   end
   object tblClients: TADOTable
+    Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblClients'
@@ -66,6 +67,7 @@ object dmPropertyHub: TdmPropertyHub
     Top = 112
   end
   object tblOffers: TADOTable
+    Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblOffers'
@@ -73,6 +75,7 @@ object dmPropertyHub: TdmPropertyHub
     Top = 117
   end
   object tblOwners: TADOTable
+    Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblOwners'
@@ -80,25 +83,28 @@ object dmPropertyHub: TdmPropertyHub
     Top = 115
   end
   object tblRentals: TADOTable
+    Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblRentals'
-    Left = 656
-    Top = 125
+    Left = 657
+    Top = 117
   end
   object tblRentalTransactions: TADOTable
+    Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblRentalTransactions'
-    Left = 802
-    Top = 124
+    Left = 803
+    Top = 116
   end
   object tblSales: TADOTable
+    Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblSales'
-    Left = 942
-    Top = 127
+    Left = 943
+    Top = 119
   end
   object dsClients: TDataSource
     DataSet = qryClients
@@ -117,18 +123,18 @@ object dmPropertyHub: TdmPropertyHub
   end
   object dsRentals: TDataSource
     DataSet = qryRentals
-    Left = 661
-    Top = 199
+    Left = 662
+    Top = 191
   end
   object dsRentalTransactions: TDataSource
     DataSet = qryRentalTransactions
-    Left = 803
-    Top = 200
+    Left = 804
+    Top = 192
   end
   object dsSales: TDataSource
     DataSet = qrySales
-    Left = 942
-    Top = 197
+    Left = 943
+    Top = 189
   end
   object qryClients: TADOQuery
     Connection = conProperties
@@ -151,19 +157,19 @@ object dmPropertyHub: TdmPropertyHub
   object qryRentals: TADOQuery
     Connection = conProperties
     Parameters = <>
-    Left = 657
-    Top = 274
+    Left = 658
+    Top = 266
   end
   object qryRentalTransactions: TADOQuery
     Connection = conProperties
     Parameters = <>
-    Left = 799
-    Top = 273
+    Left = 800
+    Top = 265
   end
   object qrySales: TADOQuery
     Connection = conProperties
     Parameters = <>
-    Left = 951
-    Top = 270
+    Left = 952
+    Top = 262
   end
 end

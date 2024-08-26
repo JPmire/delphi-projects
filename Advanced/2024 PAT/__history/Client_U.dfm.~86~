@@ -1972,6 +1972,8 @@ object frmClient: TfrmClient
       ParentFont = False
       TabOrder = 0
       OnClick = pnlViewPropertiesClick
+      OnMouseEnter = pnlViewPropertiesMouseEnter
+      OnMouseLeave = pnlViewPropertiesMouseLeave
       object imgPropertiesIcon: TImage
         Left = 137
         Top = 6
@@ -2030,6 +2032,9 @@ object frmClient: TfrmClient
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
+      OnClick = pnlViewOffersClick
+      OnMouseEnter = pnlViewOffersMouseEnter
+      OnMouseLeave = pnlViewOffersMouseLeave
       object imgOffersIcon: TImage
         Left = 103
         Top = 6
@@ -2128,9 +2133,9 @@ object frmClient: TfrmClient
         TabOrder = 0
         object dbgListings: TDBGrid
           Left = 0
-          Top = 407
+          Top = 487
           Width = 1297
-          Height = 172
+          Height = 92
           Align = alBottom
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -2286,8 +2291,8 @@ object frmClient: TfrmClient
             OnClick = pnlFilterShowResultsClick
           end
           object pnlViewAllProperties: TPanel
-            Left = 14
-            Top = 8
+            Left = 17
+            Top = 7
             Width = 185
             Height = 41
             BevelOuter = bvNone
@@ -2303,14 +2308,21 @@ object frmClient: TfrmClient
             TabOrder = 3
             OnClick = pnlViewAllPropertiesClick
           end
-          object rdgPersonalProperties: TRadioGroup
+          object pnlViewOwnedProperties: TPanel
             Left = 502
-            Top = 0
-            Width = 187
-            Height = 49
-            Caption = 'View your Properties:'
-            Items.Strings = (
-              'View Owned Properties')
+            Top = 7
+            Width = 185
+            Height = 41
+            BevelOuter = bvNone
+            Caption = 'View owned Properties'
+            Color = clYellow
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Arial'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
             TabOrder = 4
           end
         end
@@ -2338,11 +2350,10 @@ object frmClient: TfrmClient
           Caption = 'Select Your Offer below:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
-          Font.Height = -27
+          Font.Height = -24
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitWidth = 331
         end
         object splitOfferDivider: TSplitter
           Left = 507
@@ -2372,6 +2383,8 @@ object frmClient: TfrmClient
           ParentFont = False
           TabOrder = 0
           OnClick = lbOffersClick
+          ExplicitTop = 29
+          ExplicitHeight = 550
         end
         object gbxOfferDetails: TGroupBox
           Left = 512
@@ -2384,13 +2397,8 @@ object frmClient: TfrmClient
           ParentBackground = False
           ParentColor = False
           TabOrder = 1
-          object lblOfferDStreetName: TLabel
-            Left = 288
-            Top = 27
-            Width = 100
-            Height = 13
-            Caption = 'lblOfferDStreetName'
-          end
+          ExplicitTop = 29
+          ExplicitHeight = 550
         end
       end
     end

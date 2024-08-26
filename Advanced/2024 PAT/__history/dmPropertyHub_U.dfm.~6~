@@ -1,175 +1,42 @@
 object dmPropertyHub: TdmPropertyHub
   OldCreateOrder = False
-  Height = 456
-  Width = 882
-  object conProperties: TADOConnection
+  Height = 408
+  Width = 425
+  object conPropertyHub: TADOConnection
     Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=Prope' +
-      'rty.mdb;Mode=ReadWrite;Persist Security Info=False;Jet OLEDB:Sys' +
-      'tem database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Pa' +
-      'ssword="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mod' +
-      'e=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Tr' +
-      'ansactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create' +
-      ' System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLED' +
-      'B:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Without R' +
-      'eplica Repair=False;Jet OLEDB:SFP=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=PropertyHub.mdb;Mod' +
+      'e=Share Deny None;Persist Security Info=False;Jet OLEDB:System d' +
+      'atabase="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Passwor' +
+      'd="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;J' +
+      'et OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transac' +
+      'tions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create Syst' +
+      'em Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don' +
+      #39't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replic' +
+      'a Repair=False;Jet OLEDB:SFP=False'
     LoginPrompt = False
-    Mode = cmReadWrite
+    Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
-    Left = 378
-    Top = 42
+    Left = 216
+    Top = 72
   end
   object tblProperties: TADOTable
     Active = True
-    Connection = conProperties
+    Connection = conPropertyHub
     CursorType = ctStatic
     TableName = 'tblProperties'
-    Left = 131
-    Top = 111
+    Left = 80
+    Top = 200
   end
-  object tblListings: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 208
-    Top = 111
+  object qryProperties: TADOQuery
+    Connection = conPropertyHub
+    Parameters = <>
+    Left = 80
+    Top = 280
   end
   object dsProperties: TDataSource
     DataSet = qryProperties
-    Left = 131
-    Top = 182
-  end
-  object dsListings: TDataSource
-    DataSet = qryListings
-    Left = 207
-    Top = 182
-  end
-  object qryProperties: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 126
-    Top = 264
-  end
-  object qryListings: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 206
-    Top = 259
-  end
-  object ADOTable1: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 275
-    Top = 113
-  end
-  object ADOTable2: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 350
-    Top = 118
-  end
-  object ADOTable3: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 417
-    Top = 115
-  end
-  object ADOTable4: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 481
-    Top = 115
-  end
-  object ADOTable5: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 553
-    Top = 118
-  end
-  object ADOTable6: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 622
-    Top = 121
-  end
-  object DataSource1: TDataSource
-    DataSet = qryListings
-    Left = 274
-    Top = 183
-  end
-  object DataSource2: TDataSource
-    DataSet = qryListings
-    Left = 350
-    Top = 186
-  end
-  object DataSource3: TDataSource
-    DataSet = qryListings
-    Left = 415
-    Top = 191
-  end
-  object DataSource4: TDataSource
-    DataSet = qryListings
-    Left = 484
-    Top = 189
-  end
-  object DataSource5: TDataSource
-    DataSet = qryListings
-    Left = 551
-    Top = 188
-  end
-  object DataSource6: TDataSource
-    DataSet = qryListings
-    Left = 622
-    Top = 187
-  end
-  object ADOQuery1: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 276
-    Top = 263
-  end
-  object ADOQuery2: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 344
-    Top = 260
-  end
-  object ADOQuery3: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 417
-    Top = 261
-  end
-  object ADOQuery4: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 480
-    Top = 264
-  end
-  object ADOQuery5: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 547
-    Top = 264
-  end
-  object ADOQuery6: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 622
-    Top = 265
+    Left = 80
+    Top = 136
   end
 end

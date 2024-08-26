@@ -146,7 +146,7 @@ object dmPropertyHub: TdmPropertyHub
     Connection = conProperties
     Parameters = <>
     Left = 402
-    Top = 267
+    Top = 259
   end
   object qryOwners: TADOQuery
     Connection = conProperties

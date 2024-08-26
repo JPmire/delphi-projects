@@ -49,7 +49,7 @@ end;
       property Owner : TClient read fOwner;
       procedure Add(APropertyID : integer);
       procedure AddOffer(OfferPrice : real; APropertyID : integer);
-      property Cards: TList read fCards;
+      property Cards : TList read fCards;
   end;
 
 const
@@ -193,7 +193,9 @@ begin
     Font.Height := -13;
     Font.Name := 'Arial';
     Font.Style := [];
+    ReadOnly := True;
     Lines.Add('Owner Details:');
+    Lines.Add('');
     Lines.Add('Name: ' + fOwner.FirstName + ' ' + fOwner.LastName);
     Lines.Add('Email: ' + fOwner.Email);
     Lines.Add('Phone: ' + fOwner.PhoneNum);
@@ -216,8 +218,10 @@ begin
     //Font.Color := clWindowText;
     Font.Height := -13;
     Font.Name := 'Arial';
+    ReadOnly := True;
     Font.Style := [];
     Lines.Add('General Details:');
+    Lines.Add('');
     Lines.Add('Listing Date: ' + DateToStr(fListDate));
     Lines.Add('Days on Market: ' + IntToStr(fDaysOnMarket));
     Lines.Add('Sale Status: ' + fSaleStatus);

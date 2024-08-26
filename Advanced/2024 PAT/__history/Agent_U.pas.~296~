@@ -9,7 +9,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, pngimage, ComCtrls, ToolWin, StdCtrls, Grids, DBGrids,
   Menus, dmPropertyHub_U, PopupPanel, CustomButtons, ADODB, AgentPropertyCard,
-  Spin, Client, IOUtils, ListingDetails; // NEW
+  Spin, Client, IOUtils, ListingDetails, Generics.Collections;
 
 type
   TfrmAgent = class(TForm)
@@ -30,7 +30,6 @@ type
     pnlPendingOffersWidget: TPanel;
     pnlClientsWidget: TPanel;
     pnlPropertyWidget: TPanel;
-    pnlQuickLinksWidget: TPanel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -43,12 +42,8 @@ type
     Label6: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    btnQuickLinksAddClient: TButton;
-    btnQuickLinksAddProperty: TButton;
-    btnQuickLinksCreateListing: TButton;
     tbsProperties: TTabSheet;
     pnlHeader: TPanel;
-    Label1: TLabel;
     pnlProperties: TPanel;
     dbgPropertiesTable: TDBGrid;
     pnlPropertiesAdd: TPanel;
@@ -70,21 +65,18 @@ type
     pnlPopupProperties: TPanel;
     pnlPopupClients: TPanel;
     pnlPopupOffers: TPanel;
-    redDashboardOutput: TRichEdit;
     tbsClients: TTabSheet;
     tbsOffers: TTabSheet;
     pnlClients: TPanel;
     pcClientsTable: TPageControl;
-    Splitter2: TSplitter;
+    splitClients: TSplitter;
     tbsClientsTable: TTabSheet;
     tbsOwnersTable: TTabSheet;
     pnlClientsAdd: TPanel;
-    btnClientsReports: TPanel;
     btnClientsAssignProperties: TPanel;
     pcClients: TPageControl;
     tbsClientsDetails: TTabSheet;
     tbsClientsAdd: TTabSheet;
-    tbsClientsReports: TTabSheet;
     tbsClientsAssignProperties: TTabSheet;
     gbxClientsAdd: TGroupBox;
     lbledtClientsAddFirstName: TLabeledEdit;
@@ -94,7 +86,6 @@ type
     dtpClientsAddDateAdded: TDateTimePicker;
     btnClientsAddSave: TPanel;
     rdgClietsAddAssignProp: TRadioGroup;
-    tbsPropertiesClientsTable: TTabSheet;
     dbgClientsClientsTable: TDBGrid;
     dbgClientsOwnersTable: TDBGrid;
     btnClientsDetails: TPanel;
@@ -108,8 +99,6 @@ type
     tbsPropertiesAdd: TTabSheet;
     tbsPropertiesDetails: TTabSheet;
     btnPropertiesDetails: TPanel;
-    btnPropertiesReports: TPanel;
-    tbsPropertiesReports: TTabSheet;
     pnlClientsSearch: TPanel;
     edtClientsSearch: TEdit;
     cmbxClientsSearch: TComboBox;
@@ -121,7 +110,6 @@ type
     pnlPropertiesNavigation: TPanel;
     pnlPropertiesCurrentPage: TPanel;
     dbgListingsTable: TDBGrid;
-    pnlClientsAssignPropertiesCurrentClient: TPanel;
     pcClientstbsDetails: TPageControl;
     tbsClientsDetailsGeneral: TTabSheet;
     gbxClientsDetailsDetails: TGroupBox;
@@ -160,8 +148,6 @@ type
     Panel5: TPanel;
     Panel6: TPanel;
     tbsClientsDetailsFinance: TTabSheet;
-    tbsClientsSelectClient: TTabSheet;
-    pnlClientsSelectClient: TPanel;
     pnlClientsCurrentPage: TPanel;
     pnlClientsSearchConfirm: TPanel;
     lblClientsDetailsDateAddedCaption: TLabel;
@@ -184,16 +170,15 @@ type
     pnlOffersSearch: TPanel;
     edtOffersSearch: TEdit;
     cmbxOffersSearch: TComboBox;
-    Label17: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
-    Label22: TLabel;
     gbxOfferDetails: TGroupBox;
     gbxOfferActions: TGroupBox;
     pnlOffersAccept: TPanel;
-    pnlOffersReject: TPanel;
     pnlOffersViewMoreDetails: TPanel;
-    redPropertiesReports: TRichEdit;
+    pnlOffersReject: TPanel;
+    pnlPropertyViewOwnerDetails: TPanel;
+    pnlClientAssignProperty: TPanel;
+    lbClientsUAProperties: TListBox;
+    pnlClientUAPropertyDetails: TPanel;
     procedure FormActivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure pnlManagePropertiesMouseEnter(Sender: TObject);
@@ -221,7 +206,6 @@ type
     procedure pcClientsTableChange(Sender: TObject);
     procedure pcPropertiesTableChange(Sender: TObject);
     procedure btnClientsDetailsClick(Sender: TObject);
-    procedure btnClientsReportsClick(Sender: TObject);
     procedure btnClientsAssignPropertiesClick(Sender: TObject);
     procedure dbgClientsClientsTableCellClick(Column: TColumn);
     procedure pnlClientsSearchConfirmClick(Sender: TObject);
@@ -234,11 +218,20 @@ type
     procedure pnlClientsDetailsRestoreClick(Sender: TObject);
     procedure edtPropertiesSearchChange(Sender: TObject);
     procedure dbgPropertiesTableCellClick(Column: TColumn);
-    procedure dbgOffersCellClick(Column: TColumn);
-    procedure pnlOffersAcceptClick(Sender: TObject);
     procedure btnPropertiesDetailsClick(Sender: TObject);
     procedure btnPropertiesAddClick(Sender: TObject);
-    procedure btnPropertiesReportsClick(Sender: TObject);
+    procedure dbgOffersCellClick(Column: TColumn);
+    procedure pnlOffersAcceptClick(Sender: TObject);
+    procedure pnlOffersRejectClick(Sender: TObject);
+    procedure pnlOffersViewMoreDetailsClick(Sender: TObject);
+    procedure pnlPropertyViewOwnerDetailsClick(Sender: TObject);
+    procedure btnWidgetPendingOffersToOffersClick(Sender: TObject);
+    procedure btnWidgetActiveListToListingsClick(Sender: TObject);
+    procedure btnWidgetPropertyAmountToPropertiesClick(Sender: TObject);
+    procedure btnWidgetClientAmountToClientsClick(Sender: TObject);
+    procedure pcAgentChange(Sender: TObject);
+    procedure pnlClientAssignPropertyClick(Sender: TObject);
+    procedure pnlClientUAPropertyDetailsClick(Sender: TObject);
   private
     { Private declarations }
     tmrHovering : TTimer;
@@ -256,7 +249,7 @@ type
 
     // Property Cards
     fCardManager : TPropertyCardManager;
-    fListingManager : TListingDetailsManager; // NEW
+    fListingManager : TListingDetailsManager;
 
     // Clients
     iGridClientID : integer;
@@ -267,11 +260,13 @@ type
     // Properties
     iGridPropertyID : integer;
 
-    // Offers // NEW
+    // Offers
     iOfferID : integer;
     iOfferPropertyID : integer;
     iOfferListingID : integer;
     iOfferClientID : integer;
+    iOfferOwnerID, iOfferOwnerClientID : integer;
+    rOfferPrice : real;
 
     // Popup Panels Events
     procedure PopupPropertiesMouseLeave(Sender: TObject);
@@ -282,8 +277,12 @@ type
 
     // General
     function CreateID(Table : string; Query : TADOQuery): integer;
+    function CheckID(iID: integer):integer;
 
-
+    // Popups
+    procedure propOnClick(Sender: TObject);
+    procedure clientOnClick(Sender: TObject);
+    procedure offerOnClick(Sender: TObject);
 
   public
     { Public declarations }
@@ -302,8 +301,17 @@ var
   dDateAdded : TDateTime;
   sSQL : string;
   iID : integer;
+  bValidID : boolean;
+
+  sDirectory : string;
+  SearchRec : TSearchRec;
+  FileExt : string;
+  dir : string;
+
 begin
   iID := CreateID('tblClients', dmPropertyHub.qryClients);
+  iID := CheckID(iID);
+
   sFirstName := lbledtClientsAddFirstName.Text;
   sLastName := lbledtClientsAddLastName.Text;
   sEmail := lbledtClientsEmail.Text;
@@ -332,7 +340,43 @@ begin
 end;
 
 procedure TfrmAgent.btnClientsAssignPropertiesClick(Sender: TObject);
+var
+  lstUAProperties : TStringList;
+  i: integer;
 begin
+  with dmPropertyHub do
+  begin
+    qryProperties.SQL.Clear;
+
+      
+    lstUAProperties := TStringList.Create;
+
+    lstUAProperties.Clear;
+    dsProperties.DataSet := tblProperties;
+    dsOwners.DataSet := tblOwners;
+
+    tblProperties.First;
+    while not tblProperties.Eof do
+    begin
+      tblOwners.First;
+      if tblOwners.Locate('PropertyID', tblProperties['PropertyID'], []) = False then
+      begin
+        lstUAProperties.Add(IntToStr(tblProperties['PropertyID']));
+      end;    
+      tblProperties.Next;
+    end;
+    
+    for i := 0 to lstUAProperties.Count - 1 do
+    begin
+      tblProperties.Locate('PropertyID', StrToInt(lstUAProperties[i]), []);
+      lbClientsUAProperties.Items.Add(IntToStr(tblProperties['PropertyID']) + ' | ' + tblProperties['StreetAddress'] + ' | ' + tblProperties['Province']);
+    end;
+ 
+    
+  end;
+
+
+  
   tbsClientsAssignProperties.Show;
   pnlClientsCurrentPage.Caption := 'Assign Properties';
 end;
@@ -388,7 +432,7 @@ begin
   with dmPropertyHub do
   begin
     dsClients.DataSet :=tblClients;
-    if MessageDlg('Are you sure you want to delete ' + tblClients['FirstName'] + '?', mtWarning, [mbYes, mbNo], 0) = mrYes then
+    if MessageDlg('Are you sure you want to delete ' + tblClients['FirstName'] + '?' + #13 + 'You will lose all associated information with the client', mtWarning, [mbYes, mbNo], 0) = mrYes then
     begin
       dsClients.DataSet := qryClients;
       qryClients.SQL.Clear;
@@ -414,19 +458,13 @@ begin
   lbledtClientsDetailsPassword.Enabled := True;
 end;
 
-procedure TfrmAgent.btnClientsDetailsManagePropertiesClick(Sender: TObject);  // NEW
+procedure TfrmAgent.btnClientsDetailsManagePropertiesClick(Sender: TObject);
 begin
   tbsClientsDetailsProperties.Show;
   pnlClientsCurrentPage.Caption := 'Details';
 end;
 
-procedure TfrmAgent.btnClientsReportsClick(Sender: TObject); // NEW
-begin
-  tbsClientsReports.Show;
-  pnlClientsCurrentPage.Caption := 'Reports';
-end;
-
-procedure TfrmAgent.btnPropertiesAddClick(Sender: TObject);    // NEW
+procedure TfrmAgent.btnPropertiesAddClick(Sender: TObject);
 begin
   tbsPropertiesAdd.Show;
   pnlPropertiesCurrentPage.Caption := 'Add';
@@ -441,7 +479,7 @@ var
   sSQL : string;
 begin
   with dmPropertyHub do
-  begin                             // NEW
+  begin
     qryProperties.SQL.Clear;
     qryProperties.SQL.Add('SELECT COUNT(*) AS RecordCount FROM tblProperties');
     qryProperties.Open;
@@ -476,16 +514,30 @@ begin
   end;
 end;
 
-procedure TfrmAgent.btnPropertiesDetailsClick(Sender: TObject);  // NEW
+procedure TfrmAgent.btnPropertiesDetailsClick(Sender: TObject);
 begin
   tbsPropertiesDetails.Show;
   pnlPropertiesCurrentPage.Caption := 'Details';
 end;
 
-procedure TfrmAgent.btnPropertiesReportsClick(Sender: TObject);
+procedure TfrmAgent.btnWidgetActiveListToListingsClick(Sender: TObject);
 begin
-  tbsPropertiesReports.Show;
-  pnlPropertiesCurrentPage.Caption := 'Reports';
+  pnlManageProperties.OnClick(self);
+end;
+
+procedure TfrmAgent.btnWidgetClientAmountToClientsClick(Sender: TObject);
+begin
+  pnlManageClients.OnClick(self);
+end;
+
+procedure TfrmAgent.btnWidgetPendingOffersToOffersClick(Sender: TObject);
+begin
+  pnlManageOffers.OnClick(self);
+end;
+
+procedure TfrmAgent.btnWidgetPropertyAmountToPropertiesClick(Sender: TObject);
+begin
+  pnlManageProperties.OnClick(self);
 end;
 
 procedure TfrmAgent.Button1Click(Sender: TObject);
@@ -503,6 +555,41 @@ end;
 procedure TfrmAgent.Button2Click(Sender: TObject);
 begin
   fCardManager.Delete(1);
+end;
+
+function TfrmAgent.CheckID(iID: integer):integer;
+var
+  sDirectory : string;
+  dir : string;
+
+begin
+  sDirectory := 'Backups\Clients\';
+
+  for dir in TDirectory.GetDirectories(sDirectory) do
+  begin
+    if ExtractFileName(dir) = IntToStr(iID) then
+    begin
+      inc(iID);
+      CheckID(iID);
+    end;
+  end;
+  Result := iID;
+end;
+
+procedure TfrmAgent.clientOnClick(Sender: TObject);
+var
+  tempPanel : TPanel;
+begin
+  tempPanel := Sender as TPanel;
+
+  if tempPanel.Caption = 'Add' then
+  begin 
+    tbsClientsAdd.Show;
+  end else if tempPanel.Caption = 'Details' then
+  begin
+    tbsClientsDetails.Show.Show;
+  end;
+end;
 end;
 
 function TfrmAgent.CreateID(Table: string; Query : TADOQuery): integer;
@@ -594,12 +681,12 @@ begin
     lbledtClientsDetailsUsername.Text := tblClients['Username'];
     lbledtClientsDetailsPassword.Text := tblClients['UserPassword'];
     pnlClientsGeneralPropertyCount.Caption := IntToStr(iPropertyCount);
+    dsClients.DataSet := qryClients;
+
 
     objClient := TClient.Create(iGridClientID);
-    dsClients.DataSet := qryClients; // NEW
+    dsClients.DataSet := qryClients;
   end;
-
-
 
 
 //  for i := 1 to iPropertyCount do
@@ -609,16 +696,14 @@ begin
 //  end;
 end;
 
-
-
-procedure TfrmAgent.dbgOffersCellClick(Column: TColumn); // NEW
+procedure TfrmAgent.dbgOffersCellClick(Column: TColumn);
 var
   objListingDetails : TListingDetailsManager;
-  rOfferPrice : real;
+  
   Card : TList;
   TempEdit : TEdit;
   TempPanel : TPanel;
-  i: Integer;
+  i : Integer;
   lblOfferPrice : TLabel;
 begin
   with dmPropertyHub do
@@ -627,15 +712,22 @@ begin
     iOfferListingID := dbgOffers.Columns[1].Field.Value;
     iOfferClientID := dbgOffers.Columns[2].Field.Value;
     rOfferPrice := dbgOffers.Columns[3].Field.Value;
+
     dsListings.DataSet := qryListings;
     qryListings.SQL.Clear;
     qryListings.SQL.Add('SELECT * FROM tblListings WHERE ListingID = ' + IntToStr(iOfferListingID));
     qryListings.Open;
     iOfferPropertyID := qryListings.FieldByName('PropertyID').AsInteger;
+    iOfferOwnerID := qryListings.FieldByName('OwnerID').AsInteger;
+
+    dsOwners.DataSet := qryOwners;
+    qryOwners.SQL.Clear;
+    qryOwners.SQL.Add('SELECT * FROM tblOwners WHERE OwnerID = ' + IntToStr(iOfferOwnerID));
+    qryOwners.Open;
+    iOfferOwnerClientID := qryOwners.FieldByName('ClientID').AsInteger;
   end;
-  
 
-
+  // If Offer is not accepted yet
   objListingDetails := TListingDetailsManager.Create(gbxOfferDetails);
   objListingDetails.Add(iOfferPropertyID);
   Card := objListingDetails.Cards;
@@ -644,14 +736,14 @@ begin
   with lblOfferPrice do
   begin
     Left := 100;
-    Top := 240;
+    top := 240;
     Width := 249;
     Height := 33;
     Caption := 'Offer Amount: ' + FloatToStrF(rOfferPrice, ffCurrency, 10, 2);
     Font.Charset := DEFAULT_CHARSET;
-    Font.Color := clNavy ;
+    Font.Color := clNavy;
     Font.Size := 18;
-    Font.Name := 'Tahoma';
+    Font.Name := 'Arial';
     Font.Style := [fsBold];
     ParentColor := False;
     ParentFont := False;
@@ -674,6 +766,7 @@ begin
 
   gbxOfferActions.Enabled := True;
 
+
 end;
 
 procedure TfrmAgent.dbgPropertiesTableCellClick(Column: TColumn);
@@ -682,6 +775,16 @@ var
 
 
 begin
+
+  with dmPropertyHub do
+  begin
+    dsOwners.DataSet := qryOwners;
+    qryOwners.SQL.Clear;
+    qryOwners.SQL.Add('SELECT * FROM tblOwners WHERE PropertyID = ' + IntToStr(dbgPropertiesTable.Columns[0].Field.Value));
+    qryOwners.Open;
+    iOfferOwnerClientID := qryOwners.FieldByName('ClientID').AsInteger;
+  end;
+
   if not Assigned(fCardManager) then
   begin
     fCardManager := TPropertyCardManager.Create(scrlbPropertiesPropertiesDetails);
@@ -691,26 +794,18 @@ begin
     fCardManager := TPropertyCardManager.Create(scrlbPropertiesPropertiesDetails);
   end;
 
-  iGridPropertyID := dbgPropertiesTable.Columns[0].Field.Value;
-
-  if not Assigned(fCardManager) then
-  begin
-    fListingManager := TListingDetailsManager.Create(gbxPropertiesClientDetails);
-
-  end else
-  begin
-    fListingManager.Free;
-    fListingManager := TListingDetailsManager.Create(gbxPropertiesClientDetails);
-  end;
 
   with dmPropertyHub do
   begin
-
-    //fListingManager.Add(iGridPropertyID);
-
+    iGridPropertyID := dbgPropertiesTable.Columns[0].Field.Value;
+  end;
+  with dmPropertyHub do
+  begin
     fCardManager.Add(iGridPropertyID);
     fCardManager.MoveLastToFirst;
   end;
+
+  pnlPropertyViewOwnerDetails.Visible := True;
 end;
 
 procedure TfrmAgent.edtClientsSearchChange(Sender: TObject);
@@ -929,7 +1024,6 @@ begin
   pnlPendingOffersWidget.Color := rgb(35, 40, 45);
   pnlPropertyWidget.Color := rgb(35, 40, 45);
   pnlClientsWidget.Color := rgb(35, 40, 45);
-  pnlQuickLinksWidget.Color := clSkyBlue;
   pnlHeader.Color := RGB(70, 130, 180);
   pnlHeader.Font.Color := clYellow;
   pnlProperties.Color := pnlDashboard.Color;
@@ -952,7 +1046,24 @@ begin
   begin
     pcAgent.Pages[i].TabVisible := False;
   end;
-  pcAgent.ActivePageIndex := 0;
+
+  pnlManageProperties.OnMouseEnter(self);
+  pnlManageProperties.OnMouseLeave(self);
+  pnlManageProperties.onclick(self);
+
+
+  pnlManageOffers.OnMouseEnter(self);
+  pnlManageOffers.OnMouseLeave(self);
+  pnlManageOffers.onclick(self);
+
+  pnlManageClients.OnMouseEnter(self);
+  pnlManageClients.OnMouseLeave(self);
+  pnlManageClients.onclick(self);
+
+  pnlToDashboard.OnClick(self);
+
+
+
   bClientSelected := False;
 end;
 
@@ -985,6 +1096,61 @@ begin
   p := control.ScreenToClient(Mouse.CursorPos);
   r := Rect(0, 0, control.Width, control.Height);
   Result := PtInRect(r, p);
+end;
+
+procedure TfrmAgent.offerOnClick(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmAgent.pcAgentChange(Sender: TObject);
+var
+  iPendingOffers, iActiveListings, iPropertyAmount, iClientAmount : integer;
+begin
+  if pcAgent.ActivePageIndex = 0 then
+  begin
+    with dmPropertyHub do
+    begin
+      iPendingOffers := 0;
+      iActiveListings := 0;
+      iPropertyAmount := 0;
+      iClientAmount := 0;
+
+      dsOffers.DataSet := qryOffers;
+      dsListings.DataSet := qryListings;
+      dsProperties.DataSet := qryProperties;
+      dsClients.DataSet := qryClients;
+
+      qryOffers.SQL.Clear;
+      qryOffers.SQL.Add('SELECT COUNT(*) AS OfferCount FROM tblOffers');
+      qryOffers.Open;
+
+      qryListings.SQL.Clear;
+      qryListings.SQL.Add('SELECT COUNT(*) AS ListingCount FROM tblListings');
+      qryListings.Open;
+
+      qryProperties.SQL.Clear;
+      qryProperties.SQL.Add('SELECT COUNT(*) AS PropertyCount FROM tblProperties');
+      qryProperties.Open;
+
+      qryClients.SQL.Clear;
+      qryClients.SQL.Add('SELECT COUNT(*) AS ClientCount FROM tblClients');
+      qryClients.Open;
+
+
+      iPendingOffers := qryOffers.FieldByName('OfferCount').AsInteger;
+      iActiveListings := qryListings.FieldByName('ListingCount').AsInteger;
+      iPropertyAmount := qryProperties.FieldByName('PropertyCount').AsInteger;
+      iClientAmount := qryClients.FieldByName('ClientCount').AsInteger;
+    end;
+  end;
+
+  lblPendingOffersWidgetAmount.Caption := IntToStr(iPendingOffers);
+  lblActiveListingsWidgetAmount.Caption := IntToStr(iActiveListings);
+  lblPropertyAmountWidgetAmount.Caption := IntToStr(iPropertyAmount);
+  lblClientAmountWidgetAmount.Caption := IntToStr(iClientAmount);
+
+
 end;
 
 procedure TfrmAgent.pcClientsTableChange(Sender: TObject);
@@ -1047,6 +1213,44 @@ begin
   end;
 end;
 
+procedure TfrmAgent.pnlClientAssignPropertyClick(Sender: TObject);
+var
+  iUAPropertyID : integer;
+  sLine : string;
+  iPos : integer;
+  iOwnerID : integer;
+begin
+  sLine := lbClientsUAProperties.Items[lbClientsUAProperties.ItemIndex];
+  iPos := pos(' ', sLine);
+  iUAPropertyID := StrToInt(copy(sLine, 1, iPos - 1)); 
+  if iGridClientID <> 0 then
+  begin  
+    with dmPropertyHub do
+    begin
+      iOwnerID := CreateID('tblOwners', qryOwners);
+      dsOwners.DataSet := tblOwners;
+      tblOwners.Insert;
+      tblOwners['OwnerID'] := iOwnerID;
+      tblOwners['ClientID'] := iGridClientID;
+      tblOwners['PropertyID'] := iUAPropertyID;
+      tblOwners['OwnStartDate'] := Date;
+      tblOwners.Post;
+    end;
+
+    ShowMessage('Property Successfully Assigned'); 
+    pnlClientAssignProperty.OnClick(Self); 
+  end else
+  begin
+    ShowMessage('Please select a Client from the Grid');
+    exit;  
+  end;
+  
+  
+
+
+
+end;
+
 procedure TfrmAgent.pnlClientsAddClick(Sender: TObject);
 begin
   tbsClientsAdd.Show;
@@ -1066,7 +1270,8 @@ procedure TfrmAgent.pnlClientsDetailsRestoreClick(Sender: TObject); // NEW
 var
   iID : integer;
 begin
-  iID := StrToInt(InputBox('ClientID', 'Enter the ClientID', ''));
+
+  iID := StrToInt(InputBox('ClientID', 'Enter the ClientID to Restore', ''));
 
   if Assigned(objClient) then
   begin
@@ -1077,7 +1282,9 @@ begin
     objClient := TClient.Create(iID);
   end;
 
-  objClient.RestoreClient;
+  //objClient.
+
+
 
 end;
 
@@ -1122,6 +1329,48 @@ begin
 
 end;
 
+procedure TfrmAgent.pnlClientUAPropertyDetailsClick(Sender: TObject);
+var
+  i : integer;
+  iPos : integer;
+  sline : string;
+  iUAPropertyID : integer;
+begin
+  sLine := lbClientsUAProperties.Items[lbClientsUAProperties.ItemIndex];
+  iPos := pos(' ', sLine);
+  iUAPropertyID := StrToInt(copy(sLine, 1, iPos - 1)); 
+  with dmPropertyHub do
+  begin
+    dsOwners.DataSet := qryOwners;
+    qryOwners.SQL.Clear;
+    qryOwners.SQL.Add('SELECT * FROM tblOwners WHERE PropertyID = ' + IntToStr(iUAPropertyID));
+    qryOwners.Open;
+    iOfferOwnerClientID := qryOwners.FieldByName('ClientID').AsInteger;
+  end;
+
+  if not Assigned(fCardManager) then
+  begin
+    fCardManager := TPropertyCardManager.Create(scrlbPropertiesPropertiesDetails);
+  end else
+  begin
+    fCardManager.Free;
+    fCardManager := TPropertyCardManager.Create(scrlbPropertiesPropertiesDetails);
+  end;
+
+
+  with dmPropertyHub do
+  begin
+    iGridPropertyID := iUAPropertyID;
+  end;
+  with dmPropertyHub do
+  begin
+    fCardManager.Add(iGridPropertyID);
+    fCardManager.MoveLastToFirst;
+  end;
+  pnlPropertyViewOwnerDetails.Visible := False;
+  tbsPropertiesDetails.Show;
+end;
+
 procedure TfrmAgent.pnlManageClientsClick(Sender: TObject);
 begin
   if bClientSelected = False then
@@ -1154,6 +1403,7 @@ var                                                                    // Just p
   Point : TPoint;
   i : integer;
   popupCustomButton : TCustomButtons;
+  lstClientButtons : TList<TPanel>;
 begin
   pnlManageClients.Font.Color := clYellow;
   Point.X := pnlManageClients.Left;
@@ -1164,11 +1414,16 @@ begin
     popupClients := TPopupPanel.Create(pnlPopupClients);
     with popupClients do
     begin
-      Add('Add Client');
-      Add('Delete Client');
-      Add('Modify Client');
-      Add('Manage Clients');
-      Add('Reports');
+      Add('Add');
+      Add('Details');
+      // Add('Reports');
+    end;
+
+    lstClientButtons := popupClients.Buttons;
+
+    for i := 0 to lstClientButtons.Count - 1 do
+    begin
+      lstClientButtons[i].OnClick := clientOnclick;
     end;
 
     for i := 0 to popupClients.Count - 1 do
@@ -1207,14 +1462,16 @@ begin
   end;
 end;
 
-procedure TfrmAgent.pnlManageOffersClick(Sender: TObject);   // NEW
+procedure TfrmAgent.pnlManageOffersClick(Sender: TObject);
 var
   sSQL : string;
 begin
   tbsOffers.Show;
   popupOffers.Close;
   pnlHeader.Caption := 'Offers';
+
   sSQL := 'SELECT * FROM tblOffers ORDER BY OfferID';
+
   with dmPropertyHub do
   begin
     qryOffers.SQL.Clear;
@@ -1222,6 +1479,7 @@ begin
     qryOffers.Open;
   end;
   pcPropertiesTable.OnChange(Self);
+
 end;
 
 procedure TfrmAgent.pnlManageOffersMouseEnter(Sender: TObject);
@@ -1229,6 +1487,7 @@ var
   Point : TPoint;
   i : integer;
   popupCustomButton : TCustomButtons;
+  lstOfferButtons : TList<TPanel>;
 begin
   pnlManageOffers.Font.Color := clYellow;
   Point.X := pnlManageOffers.Left;
@@ -1239,10 +1498,14 @@ begin
     popupoffers := TPopupPanel.Create(pnlPopupoffers);
     with popupoffers do
     begin
-      Add('Add Offer');
-      Add('Delete Offer');
       Add('View Offers');
-      Add('Reports');
+    end;
+
+    lstOfferButtons := popupOffers.Buttons;
+
+    for i := 0 to lstOfferButtons.Count - 1 do
+    begin
+      lstOfferButtons[i].OnClick := offerOnclick;
     end;
 
     for i := 0 to popupoffers.Count - 1 do
@@ -1311,6 +1574,7 @@ var
   Point : TPoint;
   i : integer;
   popupCustomButton : TCustomButtons;
+  lstPropButtons : TList<TPanel>;
 begin
   pnlManageProperties.Font.Color := clYellow;
   Point.X := pnlManageProperties.Left;
@@ -1321,12 +1585,17 @@ begin
     popupProperties := TPopupPanel.Create(pnlPopupProperties);
     with popupProperties do
     begin
-      Add('Add Property');
-      Add('Delete Property');
-      Add('Modify Property');
-      Add('View Listings');
-      Add('Reports');
+      Add('Add');
+      Add('Details');
     end;
+
+    lstPropButtons := popupProperties.Buttons;
+
+    for i := 0 to lstPropButtons.Count - 1 do
+    begin
+      lstPropButtons[i].OnClick := propOnclick;
+    end;
+
 
     for i := 0 to popupProperties.Count - 1 do
     begin
@@ -1373,14 +1642,16 @@ begin
  //
 end;
 
-procedure TfrmAgent.pnlOffersAcceptClick(Sender: TObject);   // NEW
+procedure TfrmAgent.pnlOffersAcceptClick(Sender: TObject);
 var
   iOwnerID : integer;
+  iSaleID : integer;
+
+  iOwnerClientID : integer;
+  iListingOwnerID : integer;
 begin
   with dmPropertyHub do
   begin
-
-
     dsOffers.DataSet := qryOffers;
     qryOffers.SQL.Clear;
     qryOffers.SQL.Add('UPDATE tblOffers SET OfferStatus = "Accepted" WHERE OfferID = ' + IntToStr(iOfferID));
@@ -1392,14 +1663,22 @@ begin
 
     dsListings.DataSet := qryListings;
     qryListings.SQL.Clear;
-    qryListings.SQL.Add('DELETE FROM tblListings WHERE ListingID = ' + IntToStr(iOfferListingID));
-    qryListings.ExecSQL;
+    qryListings.SQL.Add('SELECT * FROM tblListings WHERE ListingID = ' + IntToStr(iOfferListingID));
+    qryListings.Open;
+
+    iListingOwnerID := qryListings.FieldByName('OwnerID').AsInteger;
 
     dsOwners.DataSet := qryOwners;
     qryOwners.SQL.Clear;
-    qryOwners.SQL.Add('DELETE FROM tblOwners WHERE PropertyID = ' + IntToStr(iOfferPropertyID));
-    qryOwners.ExecSQL;
+    qryOwners.SQL.Add('SELECT * FROM tblOwners WHERE OwnerID = ' + IntToStr(iListingOwnerID));
+    qryOwners.Open;
 
+    iOwnerClientID := qryOwners.FieldByName('ClientID').AsInteger;
+    
+
+    qryListings.SQL.Clear;
+    qryListings.SQL.Add('DELETE FROM tblListings WHERE ListingID = ' + IntToStr(iOfferListingID));
+    qryListings.ExecSQL;
 
     iOwnerID := CreateID('tblOwners', qryOwners);
     dsOwners.DataSet := tblOwners;
@@ -1414,12 +1693,130 @@ begin
     qryProperties.SQL.Clear;
     qryProperties.SQL.Add('UPDATE tblProperties SET Type = "None" WHERE PropertyID = ' + IntToStr(iOfferPropertyID));
     qryProperties.ExecSQL;
+
+    // Adding to Sales
+    iSaleID := CreateID('tblSales', qrySales);
+    dsSales.DataSet := qrySales;
+    qrySales.SQL.Clear;
+    qrySales.SQL.Add('INSERT INTO tblSales VALUES (' + IntToStr(iSaleID) + ',' + IntToStr(iOwnerClientID) + ',' + IntToStr(iOfferPropertyID) + ',' + IntToStr(iOfferClientID) + 
+    ',' + FloatToStr(rOfferPrice) + ',#' + DateToStr(Date) + '#)');
+    qrySales.ExecSQL;
+
   end;
+end;
+
+procedure TfrmAgent.pnlOffersRejectClick(Sender: TObject);
+begin
+  with dmPropertyHub do
+  begin
+    dsOffers.DataSet := qryOffers;
+    qryOffers.SQL.Clear;
+    qryOffers.SQL.Add('UPDATE tblOffers SET OfferStatus = "Rejected" WHERE OfferID = ' + IntToStr(iOfferID));
+    qryOffers.ExecSQL;
+
+    qryOffers.SQL.Clear;
+    qryOffers.SQL.Add('SELECT * FROM tblOffers');
+    qryOffers.Open;
+  end;
+end;
+
+procedure TfrmAgent.pnlOffersViewMoreDetailsClick(Sender: TObject);
+var
+  i : integer;
+begin
+  tbsPropertiesDetails.Show;
+  if not Assigned(fCardManager) then
+  begin
+    fCardManager := TPropertyCardManager.Create(scrlbPropertiesPropertiesDetails);
+  end else
+  begin
+    fCardManager.Free;
+    fCardManager := TPropertyCardManager.Create(scrlbPropertiesPropertiesDetails);
+  end;
+
+  if not Assigned(fListingManager) then
+  begin
+    fListingManager := TListingDetailsManager.Create(gbxPropertiesClientDetails);
+  end else
+  begin
+    fListingManager.Free;
+    fListingManager := TListingDetailsManager.Create(gbxPropertiesClientDetails);
+  end;
+
+  with dmPropertyHub do
+  begin
+    fCardManager.Add(iOfferPropertyID);
+    fCardManager.MoveLastToFirst;
+  end;
+
+
+end;
+
+procedure TfrmAgent.pnlPropertyViewOwnerDetailsClick(Sender: TObject);
+begin
+
+  if not Assigned(fCardManager) then
+  begin
+    fCardManager := TPropertyCardManager.Create(scrlbClientsPropertiesDetails);
+  end else
+  begin
+    fCardManager.Free;
+    fCardManager := TPropertyCardManager.Create(scrlbClientsPropertiesDetails);
+  end;
+
+  with dmPropertyHub do
+  begin
+    dsOwners.DataSet := qryOwners;
+    qryOwners.SQL.Clear;
+    qryOwners.SQL.Add('SELECT COUNT(*) as PropertyCount FROM tblOwners WHERE (ClientID = ' + IntToStr(iOfferOwnerClientID) + ')' );
+    qryOwners.Open;
+    iPropertyCount := qryOwners.FieldByName('PropertyCount').AsInteger;
+
+  end;
+  //ShowMessage(IntToStr(iPropertyCount));
+  with dmPropertyHub do
+  begin
+    dsProperties.DataSet := tblProperties;
+    dsOwners.DataSet := tblOwners;
+    tblOwners.Open;
+    tblOwners.First;
+    while not tblOwners.Eof do
+    begin
+      if tblOwners['ClientID'] = iOfferOwnerClientID then
+      begin
+        fCardManager.Add(tblOwners['PropertyID']);
+        fCardManager.MoveLastToFirst;
+      end;
+      tblOwners.Next;
+    end;
+
+    // Adding information to gui components (CLIENT)
+//    dsClients.DataSet := tblClients;
+//    tblClients.Open;
+//    tblClients.Active := True;
+    tblClients.Locate('ClientID', iOfferOwnerClientID, []);
+    pnlClientsCurrentClient.Caption := tblClients['FirstName'] + ' ' + tblClients['LastName'];
+    lbledtClientsDetailsFirstName.Text := tblClients['FirstName'];
+    lbledtClientsDetailsLastName.Text := tblClients['LastName'];
+    lbledtClientsDetailsEmail.Text := tblClients['Email'];
+    lbledtClientsDetailsPhone.Text := tblClients['Phone'];
+    dtpClientsDetailsDateAdded.Date := tblClients['DateAdded'];
+    lbledtClientsDetailsUsername.Text := tblClients['Username'];
+    lbledtClientsDetailsPassword.Text := tblClients['UserPassword'];
+    pnlClientsGeneralPropertyCount.Caption := IntToStr(iPropertyCount);
+    dsClients.DataSet := qryClients;
+
+
+    objClient := TClient.Create(iOfferOwnerClientID);
+    dsClients.DataSet := qryClients;
+  end;
+  tbsClientsDetails.Show;
 end;
 
 procedure TfrmAgent.pnlToDashboardClick(Sender: TObject);
 begin
-  tbsDashboard.Show;
+  pcAgent.ActivePageIndex := 0;
+  pcAgent.OnChange(self);
   pnlHeader.Caption := 'Dashboard';
 end;
 
@@ -1474,6 +1871,21 @@ begin
 
   end;
 
+end;
+
+procedure TfrmAgent.propOnClick(Sender: TObject);
+var
+  tempPanel : TPanel;
+begin
+  tempPanel := Sender as TPanel;
+
+  if tempPanel.Caption = 'Add' then
+  begin 
+    tbsPropertiesAdd.Show;
+  end else if tempPanel.Caption = 'Details' then
+  begin
+    tbsPropertiesDetails.Show;
+  end;
 end;
 
 end.

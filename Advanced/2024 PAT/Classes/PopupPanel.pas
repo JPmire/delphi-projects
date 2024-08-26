@@ -23,6 +23,7 @@ type
     procedure Popup(X, Y: Integer);
     procedure Close;
     function Count : Integer;
+    property Buttons : TList<TPanel> read fItems;
   end;
 
 implementation

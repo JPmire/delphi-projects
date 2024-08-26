@@ -437,7 +437,8 @@ begin
     Font.Size := 9;
     Font.Name := 'Arial';
     Columns := 3;
-    Items.Add('Listing'); // NEW
+    Items.Add('Listing');
+    Items.Add('Rental');
     Items.Add('None');
     Caption := 'Type:';
     ItemIndex := Items.IndexOf(dmPropertyHub.tblProperties['Type']);

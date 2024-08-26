@@ -49,7 +49,7 @@ end;
       property Owner : TClient read fOwner;
       procedure Add(APropertyID : integer);
       procedure AddOffer(OfferPrice : real; APropertyID : integer);
-      property Cards: TList read fCards; // NEW
+      property Cards : TList read fCards;
   end;
 
 const
@@ -77,8 +77,6 @@ begin
     fListingID := qryListings.FieldByName('ListingID').AsInteger;
     fOwnerID := qryListings.FieldByName('OwnerID').AsInteger;
     fPrice := qryListings.FieldByName('Price').AsCurrency;
-    fListDate := qryListings.FieldByName('ListDate').AsDateTime;
-    fSaleStatus := qryListings.FieldByName('SaleStatus').AsString;
 
     dsOwners.DataSet := qryOwners;
     qryOwners.SQL.Clear;
@@ -188,14 +186,14 @@ begin
     Top := 117;
     Width := 241;
     Height := 100;
-    ReadOnly := True; // NEW
     Font.Charset := ANSI_CHARSET;
     //Font.Color := clWindowText;
     Font.Height := -13;
     Font.Name := 'Arial';
     Font.Style := [];
+    ReadOnly := True;
     Lines.Add('Owner Details:');
-    Lines.Add('');     // NEW
+    Lines.Add('');
     Lines.Add('Name: ' + fOwner.FirstName + ' ' + fOwner.LastName);
     Lines.Add('Email: ' + fOwner.Email);
     Lines.Add('Phone: ' + fOwner.PhoneNum);
@@ -214,17 +212,16 @@ begin
     Top := 117;
     Width := 241;
     Height := 100;
-    ReadOnly := True; // NEW
     Font.Charset := ANSI_CHARSET;
     //Font.Color := clWindowText;
     Font.Height := -13;
     Font.Name := 'Arial';
+    ReadOnly := True;
     Font.Style := [];
     Lines.Add('General Details:');
-    Lines.Add('');      // NEW
+    Lines.Add('');
     Lines.Add('Listing Date: ' + DateToStr(fListDate));
     Lines.Add('Days on Market: ' + IntToStr(fDaysOnMarket));
-    Lines.Add('Sale Status: ' + fSaleStatus);
     ParentFont := False;
     TabOrder := 3;
 
@@ -285,7 +282,7 @@ begin
   Card := TListingDetails.Create(fContainer, APropertyID);
   fCards.Add(Card);
   Card.Height := CARD_HEIGHT;
-  Card.Color := clSilver;
+  Card.Color := clSkyBlue;
   Card.BevelInner := bvNone;
   Card.Width := fContainer.ClientWidth; // Make the card the same width as the scrollbox
   Card.BevelKind := bkFlat;

@@ -1,61 +1,42 @@
 object dmPropertyHub: TdmPropertyHub
   OldCreateOrder = False
-  Height = 456
-  Width = 882
-  object conProperties: TADOConnection
+  Height = 479
+  Width = 682
+  object conPropertyHub: TADOConnection
     Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=Prope' +
-      'rty.mdb;Mode=ReadWrite;Persist Security Info=False;Jet OLEDB:Sys' +
-      'tem database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Pa' +
-      'ssword="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mod' +
-      'e=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Tr' +
-      'ansactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create' +
-      ' System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLED' +
-      'B:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Without R' +
-      'eplica Repair=False;Jet OLEDB:SFP=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=PropertyHub.mdb;Mod' +
+      'e=Share Deny None;Persist Security Info=False;Jet OLEDB:System d' +
+      'atabase="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Passwor' +
+      'd="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;J' +
+      'et OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transac' +
+      'tions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create Syst' +
+      'em Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don' +
+      #39't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replic' +
+      'a Repair=False;Jet OLEDB:SFP=False'
     LoginPrompt = False
-    Mode = cmReadWrite
+    Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
-    Left = 293
-    Top = 55
+    Left = 288
+    Top = 64
   end
   object tblProperties: TADOTable
     Active = True
-    Connection = conProperties
+    Connection = conPropertyHub
     CursorType = ctStatic
     TableName = 'tblProperties'
-    Left = 261
-    Top = 145
+    Left = 80
+    Top = 200
   end
-  object tblListings: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 361
-    Top = 142
+  object qryProperties: TADOQuery
+    Connection = conPropertyHub
+    Parameters = <>
+    Left = 80
+    Top = 280
   end
   object dsProperties: TDataSource
     DataSet = qryProperties
-    Left = 261
-    Top = 216
-  end
-  object dsListings: TDataSource
-    DataSet = qryListings
-    Left = 362
-    Top = 220
-  end
-  object qryProperties: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 256
-    Top = 298
-  end
-  object qryListings: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 359
-    Top = 292
+    Left = 80
+    Top = 136
   end
 end

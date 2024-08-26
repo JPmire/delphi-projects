@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, pngimage, ComCtrls, ToolWin, StdCtrls, Grids, DBGrids,
-  Menus, PopupPanel, CustomButtons, ADODB, Spin, ListingDetails; // NEW
+  Menus, PopupPanel, CustomButtons, ADODB, Spin, ListingDetails, IOUtils; // NEW
+
 
 type
   TClientPropertyCard = class(TPanel)
@@ -27,12 +28,15 @@ type
     fListingDetailsManager : TListingDetailsManager;
     fIsOwnedProperty : boolean;
     fAddListingPanel : TPanel;
+    function CreateID(Table : string; Query : TADOQuery): integer;
+    function CheckID(iID: integer):integer;
 
   public
     constructor Create(AOwner: TWinControl; APropertyID: Integer; AIsOwnedProperty : boolean); reintroduce;
     property PropertyID: Integer read FPropertyID;
     property ListingManager : TListingDetailsManager read fListingDetailsManager write fListingDetailsManager; // Kyk
     procedure ViewListingClick(Sender: TObject); // Kyk
+    procedure AddListingClick(Sender: TObject);
   end;
 
   TPropertyCardManager = class
@@ -68,12 +72,59 @@ uses
 
 { TPropertyCard }
 
+procedure TClientPropertyCard.AddListingClick(Sender: TObject);     // stopped here
+var
+  rListingPrice : real;
+  iOwnerID : integer;
+begin
+  rListingPrice := StrToFloat(InputBox('Listing Price', 'Enter the Listing Price for your Property', ''));
+
+  with dmPropertyHub do
+  begin
+    dsOwners.DataSet := qryOwners;
+    qryOwners.SQL.Clear;
+    qryOwners.SQL.Add('SELECT * FROM tblOwners WHERE PropertyID = ' + IntToStr(FPropertyID));
+    qryOwners.Open;
+    iOwnerID := qryOwners.FieldByName('OwnerID').AsInteger;
+
+    dsListings.DataSet := tblListings;
+    tblListings.First;
+    tblListings.Insert;
+    tblListings['ListingID'] := CreateID('tblListings', qryListings);
+    tblListings['PropertyID'] := IntToStr(FPropertyID);
+    tblListings['OwnerID'] := iOwnerID;
+    tblListings['Price'] := rListingPrice;
+    tblListings['ListDate'] := Date;
+    tblListings.Post;
+  end;
+end;
+
+function TClientPropertyCard.CheckID(iID: integer): integer;
+var
+  sDirectory : string;
+  dir : string;
+
+begin
+  sDirectory := 'Backups\Clients\';
+
+  for dir in TDirectory.GetDirectories(sDirectory) do
+  begin
+    if ExtractFileName(dir) = IntToStr(iID) then
+    begin
+      inc(iID);
+      CheckID(iID);
+    end;
+  end;
+  Result := iID;
+end;
+
 constructor TClientPropertyCard.Create(AOwner: TWinControl; APropertyID: Integer; AIsOwnedProperty : boolean);
 var
   ButtonWidth, ButtonSpacing, TotalWidth, StartPos: Integer;
   CardHeight : integer;
 
   sProvinces : TStrings;
+  iListingCount : integer;
 begin
   inherited Create(AOwner);
   fPropertyID := APropertyID;
@@ -131,9 +182,19 @@ begin
   // Create Memo
   fmemNotes := TMemo.Create(Self);
 
-  // Create and configure the Edit panel
-  if AIsOwnedProperty = False then
+  // Create and configure the Listing panel
+
+  with dmPropertyHub do
   begin
+    qryListings.SQL.Clear;
+    qryListings.SQL.Add('SELECT COUNT(*) as LCount FROM tblListings WHERE PropertyID = ' + IntToStr(FPropertyID));
+    qryListings.Open;
+    iListingCount := qryListings.FieldByName('LCount').AsInteger;
+
+
+
+    if iListingCount > 0 then
+    begin
     fViewListingPanel := TPanel.Create(Self);
     with fViewListingPanel do    // Kyk
     begin
@@ -155,8 +216,46 @@ begin
       Font.Style := [fsBold];
       OnClick := ViewListingClick;
     end;
+    end;
+
+
   end;
 
+  if AIsOwnedProperty = True then
+  begin
+  fAddListingPanel := TPanel.Create(Self);
+    with fAddListingPanel do    // Kyk
+    begin
+      Parent := Self;
+      ParentBackground := False;
+      Caption := 'Create Listing';
+      BevelInner := bvNone;
+      BevelKind := bkNone;
+      BevelOuter := bvNone;
+      Font.Color := clWhite;
+      Width := 200;
+      Height := 30;
+      if iListingCount > 0 then
+      begin
+        Top :=  225 + Height + 10;
+      end else
+      begin
+        Top := 225;
+      end;
+
+      Left := 205;
+      //Color := clSkyBlue;
+      Color := clGreen;
+      Font.Name := 'Arail';
+      Font.Size := 12;
+      Font.Style := [fsBold];
+      OnClick := AddListingClick;
+    end;
+
+
+
+
+  end;
 
   with fpnlPropertyID do
   begin
@@ -386,6 +485,37 @@ end;
 
 
 
+function TClientPropertyCard.CreateID(Table: string; Query: TADOQuery): integer;
+var
+  MaxID: Integer;
+  FieldName : string;
+
+begin
+  with Query do
+  begin
+    SQL.Clear;
+    SQL.Add('SELECT TOP 1 * FROM ' + Table);
+    Open;
+    FieldName := Fields[0].FieldName;
+    Close;
+
+    SQL.Clear;
+    SQL.Add('SELECT MAX(' + FieldName + ') AS MaxID FROM ' + Table);
+    Open;
+    try
+      if Fields[0].IsNull then
+      begin
+        MaxID := 0;
+      end else
+      MaxID := Fields[0].AsInteger;
+    finally
+      Close;
+    end;
+  end;
+
+  Result := MaxID + 1;
+end;
+
 { TPropertyCardManager }
 
 
@@ -544,6 +674,7 @@ procedure TClientPropertyCard.ViewListingClick(Sender: TObject);  // Kyk
 var
   i : integer;
 begin
+
   if not Assigned(fListingDetailsManager) then
   begin
     fListingDetailsManager := TListingDetailsManager.Create(FListingDetailsContainer);

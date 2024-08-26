@@ -1,7 +1,7 @@
 object dmPropertyHub: TdmPropertyHub
   OldCreateOrder = False
   Height = 456
-  Width = 1125
+  Width = 1021
   object conProperties: TADOConnection
     Connected = True
     ConnectionString = 
@@ -25,15 +25,15 @@ object dmPropertyHub: TdmPropertyHub
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblProperties'
-    Left = 71
-    Top = 110
+    Left = 70
+    Top = 109
   end
   object tblListings: TADOTable
     Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblListings'
-    Left = 182
+    Left = 181
     Top = 115
   end
   object dsProperties: TDataSource
@@ -56,85 +56,79 @@ object dmPropertyHub: TdmPropertyHub
     Connection = conProperties
     Parameters = <>
     Left = 180
-    Top = 263
+    Top = 262
   end
   object tblClients: TADOTable
-    Active = True
     Connection = conProperties
     CursorType = ctStatic
-    TableName = 'tblListings'
+    TableName = 'tblClients'
     Left = 274
-    Top = 113
+    Top = 112
   end
   object tblOffers: TADOTable
-    Active = True
     Connection = conProperties
     CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 410
+    TableName = 'tblOffers'
+    Left = 409
     Top = 117
   end
   object tblOwners: TADOTable
-    Active = True
     Connection = conProperties
     CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 535
+    TableName = 'tblOwners'
+    Left = 534
     Top = 115
   end
   object tblRentals: TADOTable
-    Active = True
     Connection = conProperties
     CursorType = ctStatic
-    TableName = 'tblListings'
+    TableName = 'tblRentals'
     Left = 657
-    Top = 125
+    Top = 117
   end
   object tblRentalTransactions: TADOTable
-    Active = True
     Connection = conProperties
     CursorType = ctStatic
-    TableName = 'tblListings'
+    TableName = 'tblRentalTransactions'
     Left = 803
-    Top = 124
+    Top = 116
   end
   object tblSales: TADOTable
-    Active = True
     Connection = conProperties
     CursorType = ctStatic
-    TableName = 'tblListings'
-    Left = 942
-    Top = 128
+    TableName = 'tblSales'
+    Left = 943
+    Top = 119
   end
   object dsClients: TDataSource
-    DataSet = qryListings
+    DataSet = qryClients
     Left = 274
     Top = 183
   end
   object dsOffers: TDataSource
-    DataSet = qryListings
-    Left = 403
-    Top = 184
+    DataSet = qryOffers
+    Left = 402
+    Top = 183
   end
   object dsOwners: TDataSource
-    DataSet = qryListings
-    Left = 534
+    DataSet = qryOwners
+    Left = 533
     Top = 192
   end
   object dsRentals: TDataSource
-    DataSet = qryListings
-    Left = 661
-    Top = 199
+    DataSet = qryRentals
+    Left = 662
+    Top = 191
   end
   object dsRentalTransactions: TDataSource
-    DataSet = qryListings
-    Left = 803
-    Top = 200
+    DataSet = qryRentalTransactions
+    Left = 804
+    Top = 192
   end
   object dsSales: TDataSource
-    DataSet = qryListings
-    Left = 942
-    Top = 197
+    DataSet = qrySales
+    Left = 943
+    Top = 189
   end
   object qryClients: TADOQuery
     Connection = conProperties
@@ -145,7 +139,7 @@ object dmPropertyHub: TdmPropertyHub
   object qryOffers: TADOQuery
     Connection = conProperties
     Parameters = <>
-    Left = 403
+    Left = 402
     Top = 259
   end
   object qryOwners: TADOQuery
@@ -157,19 +151,19 @@ object dmPropertyHub: TdmPropertyHub
   object qryRentals: TADOQuery
     Connection = conProperties
     Parameters = <>
-    Left = 657
-    Top = 274
+    Left = 658
+    Top = 266
   end
   object qryRentalTransactions: TADOQuery
     Connection = conProperties
     Parameters = <>
-    Left = 799
-    Top = 273
+    Left = 800
+    Top = 265
   end
   object qrySales: TADOQuery
     Connection = conProperties
     Parameters = <>
     Left = 952
-    Top = 270
+    Top = 262
   end
 end

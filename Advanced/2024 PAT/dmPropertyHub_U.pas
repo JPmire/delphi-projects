@@ -17,20 +17,14 @@ type
     tblClients: TADOTable;
     tblOffers: TADOTable;
     tblOwners: TADOTable;
-    tblRentals: TADOTable;
-    tblRentalTransactions: TADOTable;
     tblSales: TADOTable;
     dsClients: TDataSource;
     dsOffers: TDataSource;
     dsOwners: TDataSource;
-    dsRentals: TDataSource;
-    dsRentalTransactions: TDataSource;
     dsSales: TDataSource;
     qryClients: TADOQuery;
     qryOffers: TADOQuery;
     qryOwners: TADOQuery;
-    qryRentals: TADOQuery;
-    qryRentalTransactions: TADOQuery;
     qrySales: TADOQuery;
   private
     { Private declarations }

@@ -42,8 +42,8 @@ type
     pnlViewMoreContainer: TPanel;
     pnlViewMore: TPanel;
     Shape1: TShape;
-    rdgPersonalProperties: TRadioGroup;
     splitOfferDivider: TSplitter;
+    pnlViewOwnedProperties: TPanel;
     procedure FormActivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -56,6 +56,11 @@ type
     procedure piLogoutClick(Sender: TObject);
     procedure lbOffersClick(Sender: TObject);
     procedure pnlViewOffersClick(Sender: TObject);
+    procedure pnlViewPropertiesMouseEnter(Sender: TObject);
+    procedure pnlViewPropertiesMouseLeave(Sender: TObject);
+    procedure pnlViewOffersMouseEnter(Sender: TObject);
+    procedure pnlViewOffersMouseLeave(Sender: TObject);
+    procedure pnlViewOwnedPropertiesClick(Sender: TObject);
   private
     { Private declarations }
     objClient : TClient;
@@ -64,7 +69,7 @@ type
     iPanelLimit, iPanelAmount : integer;
     procedure GetOfferDetails;
 
-    procedure ViewFilters(listPropertyID : TStringList; Limit : integer; VisiblePanels : integer);
+    procedure ViewFilters(PropertyIDList : TStringList; Limit : integer; VisiblePanels : integer);
   public
     { Public declarations }
     iClientID : integer;
@@ -117,6 +122,7 @@ begin
       tempClientCard.ListingManager.Destroy;
     end;
   end;
+
   objPropertyManager.Free;
   objClient.Free;
   pnlViewMoreContainer.Visible := False;
@@ -165,8 +171,6 @@ begin
       qryListings.SQL.Add('SELECT * FROM tblListings WHERE ListingID = ' + IntToStr(iListingID));
       qryListings.Open;
 
-      sStatus := qryListings.FieldByName('SaleStatus').AsString;
-
 
       iPropertyID := qryListings.FieldByName('PropertyID').AsInteger;
 
@@ -184,7 +188,7 @@ begin
       else if sStatus = 'Rejected' then
         lbOffers.SetItemColor(lbOffers.Count - 1, clRed)
       else if sStatus = 'Accepted' then
-        lbOffers.SetItemColor(lbOffers.Count - 1, clLime);
+        lbOffers.SetItemColor(lbOffers.Count - 1, clGreen);
 
         qryOffers.Next
     end;
@@ -254,7 +258,8 @@ begin
 
   listPropertyID := objPropertyManager.Filter(cmbxCustomFilter.Text, edtFilterValue.Text);
   ViewFilters(listPropertyID, PANEL_LIMIT, 0);
-  pnlViewMore.OnClick(Self);
+  if pnlViewMoreContainer.Visible = True then
+    pnlViewMore.OnClick(Self);
 end;
 
 procedure TfrmClient.pnlProfileClick(Sender: TObject);
@@ -288,7 +293,8 @@ begin
 
   listPropertyID := objPropertyManager.Filter('*');
   ViewFilters(listPropertyID, PANEL_LIMIT, 0);
-  pnlViewMore.OnClick(Self);
+  if pnlViewMoreContainer.Visible = True then
+    pnlViewMore.OnClick(Self);
 end;
 
 procedure TfrmClient.pnlViewMoreClick(Sender: TObject);
@@ -300,12 +306,70 @@ begin
 
 end;
 
-procedure TfrmClient.pnlViewOffersClick(Sender: TObject);  // N
+procedure TfrmClient.pnlViewOffersClick(Sender: TObject);
 begin
   tbsOffers.Show;
+  pcClient.OnChange(self);
 end;
 
-procedure TfrmClient.pnlViewPropertiesClick(Sender: TObject); // N
+procedure TfrmClient.pnlViewOffersMouseEnter(Sender: TObject);
+begin
+  pnlViewOffers.Font.Color := clYellow;
+end;
+
+procedure TfrmClient.pnlViewOffersMouseLeave(Sender: TObject);
+begin
+  pnlViewOffers.Font.Color := clWhite;
+end;
+
+procedure TfrmClient.pnlViewOwnedPropertiesClick(Sender: TObject);
+var
+  i, iCount : integer;
+begin
+  if not Assigned(objPropertyManager) then
+  begin
+    objPropertyManager := TPropertyCardManager.Create(scrlbPropertyDetails, gbxListingDetails);
+
+  end else
+  begin
+    objPropertyManager.Free;
+    objPropertyManager := TPropertyCardManager.Create(scrlbPropertyDetails, gbxListingDetails);
+    iPanelLimit := 0;
+    iPanelAmount := 0;
+  end;
+
+  objPropertyManager.IsOwnedProperty := True;
+
+
+  if not Assigned(listPropertyID) then
+  begin
+    listPropertyID := TStringList.Create;
+  end else
+  begin
+    listPropertyID.Free;
+    listPropertyID := TStringList.Create;
+  end;
+  with dmPropertyHub do
+    begin
+
+      dsOwners.DataSet := qryOwners;
+      qryOwners.SQL.Clear;
+      qryOwners.SQL.Add('SELECT * FROM tblOwners WHERE ClientID = ' + IntToStr(iClientID) + ' ORDER BY PropertyID ASC');
+      qryOwners.Open;
+      qryOwners.First;
+      while not qryOwners.Eof do
+      begin
+        listPropertyID.Add(IntToStr(qryOwners['PropertyID']));
+        qryOwners.Next;
+      end;
+    end;
+
+  ViewFilters(listPropertyID, PANEL_LIMIT, 0);
+  if pnlViewMoreContainer.Visible = True then
+    pnlViewMore.OnClick(Self);
+end;
+
+procedure TfrmClient.pnlViewPropertiesClick(Sender: TObject);
 begin
 //  if not Assigned(objPropertyManager) then
 //  begin
@@ -318,16 +382,27 @@ begin
 //
 //  objPropertyManager.Filter('City', 'Vanderbijlpark');
   tbsProperties.Show;
+  pcClient.OnChange(self);
 end;
 
-procedure TfrmClient.ViewFilters(listPropertyID: TStringList; Limit,
+procedure TfrmClient.pnlViewPropertiesMouseEnter(Sender: TObject);
+begin
+ pnlViewProperties.Font.Color := clYellow;
+end;
+
+procedure TfrmClient.pnlViewPropertiesMouseLeave(Sender: TObject);
+begin
+  pnlViewProperties.Font.Color := clWhite;
+end;
+
+procedure TfrmClient.ViewFilters(PropertyIDList: TStringList; Limit,
   VisiblePanels: integer);
 var
   i : integer;
 begin
   for i := VisiblePanels to Limit - 1 do
   begin
-    if iPanelAmount = listPropertyID.Count then
+    if iPanelAmount = PropertyIDList.Count then
     begin
       exit;
       pnlViewMoreContainer.Visible := False;
@@ -335,10 +410,10 @@ begin
 
     inc(iPanelAmount);
     objPropertyManager.CardCount := objPropertyManager.CardCount + 1;
-    objPropertyManager.Add(StrToInt(listPropertyID[i]));
+    objPropertyManager.Add(StrToInt(PropertyIDList[i]));
   end;
 
-  if iPanelAmount < listPropertyID.Count then
+  if iPanelAmount < PropertyIDList.Count then
   begin
     pnlViewMoreContainer.Visible := True;
   end else

@@ -6,12 +6,11 @@ uses
   SysUtils, Classes, DB, ADODB;
 
 type
-  TdmPropertyHub = class(TDataModule)
-    conProperties: TADOConnection;
+  TDataModule1 = class(TDataModule)
+    conPropertyHub: TADOConnection;
     tblProperties: TADOTable;
-    tblListings: TADOTable;
+    qryProperties: TADOQuery;
     dsProperties: TDataSource;
-    dsListings: TDataSource;
   private
     { Private declarations }
   public
@@ -19,7 +18,7 @@ type
   end;
 
 var
-  dmPropertyHub: TdmPropertyHub;
+  DataModule1: TDataModule1;
 
 implementation
 

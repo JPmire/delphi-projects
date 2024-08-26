@@ -2,8 +2,8 @@ object frmAgent: TfrmAgent
   Left = 0
   Top = 0
   Caption = 'Agent'
-  ClientHeight = 722
-  ClientWidth = 1217
+  ClientHeight = 732
+  ClientWidth = 1219
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object frmAgent: TfrmAgent
   object pnlNavBar: TPanel
     Left = 0
     Top = 0
-    Width = 1217
+    Width = 1219
     Height = 60
     Align = alTop
     ParentBackground = False
@@ -3765,25 +3765,27 @@ object frmAgent: TfrmAgent
   object pcAgent: TPageControl
     Left = 0
     Top = 104
-    Width = 1217
-    Height = 618
-    ActivePage = tbsProperties
+    Width = 1219
+    Height = 628
+    ActivePage = tbsClients
     Align = alClient
     TabOrder = 1
+    OnChange = pcAgentChange
+    ExplicitTop = 110
     object tbsDashboard: TTabSheet
       Caption = 'Dashboard'
       object pnlDashboard: TPanel
         Left = 0
         Top = 0
-        Width = 1209
-        Height = 590
+        Width = 1211
+        Height = 600
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
         object pnlActiveListingsWidget: TPanel
-          Left = 314
-          Top = 9
+          Left = 662
+          Top = 17
           Width = 280
           Height = 220
           BevelKind = bkFlat
@@ -3847,11 +3849,12 @@ object frmAgent: TfrmAgent
             ParentBackground = False
             ParentFont = False
             TabOrder = 0
+            OnClick = btnWidgetActiveListToListingsClick
           end
         end
         object pnlPendingOffersWidget: TPanel
-          Left = 0
-          Top = 9
+          Left = 319
+          Top = 17
           Width = 280
           Height = 220
           BevelKind = bkFlat
@@ -3916,10 +3919,11 @@ object frmAgent: TfrmAgent
             ParentBackground = False
             ParentFont = False
             TabOrder = 0
+            OnClick = btnWidgetPendingOffersToOffersClick
           end
         end
         object pnlClientsWidget: TPanel
-          Left = 314
+          Left = 662
           Top = 262
           Width = 280
           Height = 220
@@ -3928,7 +3932,7 @@ object frmAgent: TfrmAgent
           ParentBackground = False
           TabOrder = 2
           object Label5: TLabel
-            Left = 89
+            Left = 97
             Top = 26
             Width = 95
             Height = 18
@@ -3984,10 +3988,11 @@ object frmAgent: TfrmAgent
             ParentBackground = False
             ParentFont = False
             TabOrder = 0
+            OnClick = btnWidgetClientAmountToClientsClick
           end
         end
         object pnlPropertyWidget: TPanel
-          Left = 0
+          Left = 319
           Top = 262
           Width = 280
           Height = 220
@@ -4052,68 +4057,8 @@ object frmAgent: TfrmAgent
             ParentBackground = False
             ParentFont = False
             TabOrder = 0
+            OnClick = btnWidgetPropertyAmountToPropertiesClick
           end
-        end
-        object pnlQuickLinksWidget: TPanel
-          Left = 1094
-          Top = 0
-          Width = 115
-          Height = 590
-          Align = alRight
-          BevelOuter = bvNone
-          Color = clSkyBlue
-          ParentBackground = False
-          TabOrder = 4
-          object Label1: TLabel
-            Left = 14
-            Top = 17
-            Width = 93
-            Height = 23
-            Caption = 'Quick Links'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -19
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-          end
-          object btnQuickLinksAddClient: TButton
-            Left = 20
-            Top = 81
-            Width = 78
-            Height = 29
-            Caption = 'Add Client'
-            TabOrder = 0
-          end
-          object btnQuickLinksAddProperty: TButton
-            Left = 20
-            Top = 132
-            Width = 78
-            Height = 29
-            Caption = 'Add Property'
-            TabOrder = 1
-          end
-          object btnQuickLinksCreateListing: TButton
-            Left = 20
-            Top = 184
-            Width = 78
-            Height = 29
-            Caption = 'Add Listing'
-            TabOrder = 2
-          end
-        end
-        object redDashboardOutput: TRichEdit
-          Left = 614
-          Top = 9
-          Width = 299
-          Height = 220
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 5
         end
       end
     end
@@ -4123,16 +4068,16 @@ object frmAgent: TfrmAgent
       object pnlProperties: TPanel
         Left = 0
         Top = 0
-        Width = 1209
-        Height = 590
+        Width = 1211
+        Height = 600
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
         object Splitter1: TSplitter
           Left = 0
-          Top = 453
-          Width = 1209
+          Top = 394
+          Width = 1211
           Height = 5
           Cursor = crVSplit
           Align = alBottom
@@ -4143,21 +4088,20 @@ object frmAgent: TfrmAgent
         end
         object pcPropertiesTable: TPageControl
           Left = 0
-          Top = 458
-          Width = 1209
-          Height = 132
+          Top = 399
+          Width = 1211
+          Height = 201
           ActivePage = tbsPropertiesTable
           Align = alBottom
           TabOrder = 0
           OnChange = pcPropertiesTableChange
           object tbsPropertiesTable: TTabSheet
             Caption = 'Properties'
-            ExplicitHeight = 62
             object dbgPropertiesTable: TDBGrid
               Left = 0
               Top = 0
-              Width = 1201
-              Height = 104
+              Width = 1203
+              Height = 173
               Align = alClient
               DataSource = dmPropertyHub.dsProperties
               TabOrder = 0
@@ -4172,12 +4116,11 @@ object frmAgent: TfrmAgent
           object tbsListingsTable: TTabSheet
             Caption = 'Listings'
             ImageIndex = 1
-            ExplicitHeight = 62
             object dbgListingsTable: TDBGrid
               Left = 0
               Top = 0
-              Width = 1201
-              Height = 104
+              Width = 1203
+              Height = 173
               Align = alClient
               DataSource = dmPropertyHub.dsListings
               TabOrder = 0
@@ -4192,20 +4135,18 @@ object frmAgent: TfrmAgent
         object pcProperties: TPageControl
           Left = 0
           Top = 57
-          Width = 1209
-          Height = 357
-          ActivePage = tbsPropertiesDetails
+          Width = 1211
+          Height = 298
+          ActivePage = tbsPropertiesAdd
           Align = alClient
           TabOrder = 1
-          ExplicitHeight = 399
           object tbsPropertiesAdd: TTabSheet
             Caption = 'tbsPropertiesAdd'
-            ExplicitHeight = 371
             object pnlPropertiesAdd: TPanel
-              Left = 3
-              Top = 35
+              Left = 15
+              Top = 51
               Width = 654
-              Height = 206
+              Height = 230
               BevelOuter = bvNone
               Color = clSilver
               ParentBackground = False
@@ -4222,34 +4163,6 @@ object frmAgent: TfrmAgent
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentFont = False
-              end
-              object Label17: TLabel
-                Left = 446
-                Top = 24
-                Width = 28
-                Height = 13
-                Caption = 'Notes'
-              end
-              object Label20: TLabel
-                Left = 17
-                Top = 136
-                Width = 41
-                Height = 13
-                Caption = 'Province'
-              end
-              object Label21: TLabel
-                Left = 178
-                Top = 136
-                Width = 24
-                Height = 13
-                Caption = 'Type'
-              end
-              object Label22: TLabel
-                Left = 177
-                Top = 93
-                Width = 45
-                Height = 13
-                Caption = 'Category'
               end
               object lbledtPropertiesAddStreetAddress: TLabeledEdit
                 Left = 17
@@ -4274,7 +4187,7 @@ object frmAgent: TfrmAgent
                 Text = 'Vanderbijlpark'
               end
               object lbledtPropertiesAddPostalCode: TLabeledEdit
-                Left = 177
+                Left = 178
                 Top = 57
                 Width = 74
                 Height = 21
@@ -4325,20 +4238,17 @@ object frmAgent: TfrmAgent
                 TextHint = 'Category'
               end
               object cmbxPropertiesAddType: TComboBox
-                Left = 177
+                Left = 178
                 Top = 155
                 Width = 104
                 Height = 21
                 TabOrder = 7
                 Text = 'Listing'
                 TextHint = 'Type'
-                Items.Strings = (
-                  'Listing'
-                  'None')
               end
               object memPropertiesAddNotes: TMemo
-                Left = 446
-                Top = 43
+                Left = 459
+                Top = 35
                 Width = 185
                 Height = 116
                 Lines.Strings = (
@@ -4357,8 +4267,8 @@ object frmAgent: TfrmAgent
                 Text = '100'
               end
               object btnPropertiesAddPropertyAdd: TPanel
-                Left = 499
-                Top = 165
+                Left = 507
+                Top = 175
                 Width = 83
                 Height = 32
                 BevelOuter = bvNone
@@ -4379,10 +4289,9 @@ object frmAgent: TfrmAgent
           object tbsPropertiesDetails: TTabSheet
             Caption = 'tbsPropertiesDetails'
             ImageIndex = 1
-            ExplicitHeight = 371
             object scrlbPropertiesPropertiesDetails: TScrollBox
               Left = 3
-              Top = 16
+              Top = 12
               Width = 699
               Height = 300
               VertScrollBar.Smooth = True
@@ -4395,44 +4304,43 @@ object frmAgent: TfrmAgent
               TabOrder = 0
             end
             object gbxPropertiesClientDetails: TGroupBox
-              Left = 708
-              Top = 16
+              Left = 717
+              Top = 12
               Width = 466
-              Height = 300
+              Height = 301
               Caption = 'Owner Details'
               TabOrder = 1
-            end
-          end
-          object tbsPropertiesReports: TTabSheet
-            Caption = 'tbsPropertiesReports'
-            ImageIndex = 2
-            ExplicitHeight = 371
-            object redPropertiesReports: TRichEdit
-              Left = 536
-              Top = 16
-              Width = 647
-              Height = 324
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentFont = False
-              TabOrder = 0
+              object pnlPropertyViewOwnerDetails: TPanel
+                Left = 144
+                Top = 120
+                Width = 185
+                Height = 41
+                BevelOuter = bvNone
+                Caption = 'View Owner Details'
+                Color = clNavy
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clWhite
+                Font.Height = -16
+                Font.Name = 'Arial'
+                Font.Style = [fsBold]
+                ParentBackground = False
+                ParentFont = False
+                TabOrder = 0
+                OnClick = pnlPropertyViewOwnerDetailsClick
+              end
             end
           end
         end
         object Panel2: TPanel
           Left = 0
-          Top = 414
-          Width = 1209
+          Top = 355
+          Width = 1211
           Height = 39
           Align = alBottom
           Color = clSilver
           Constraints.MaxHeight = 39
           ParentBackground = False
           TabOrder = 2
-          ExplicitTop = 456
           object edtPropertiesSearch: TEdit
             Left = 1056
             Top = 12
@@ -4454,7 +4362,7 @@ object frmAgent: TfrmAgent
         object pnlPropertiesNavigation: TPanel
           Left = 0
           Top = 0
-          Width = 1209
+          Width = 1211
           Height = 57
           Align = alTop
           BevelOuter = bvNone
@@ -4463,7 +4371,7 @@ object frmAgent: TfrmAgent
           TabOrder = 3
           object btnPropertiesAdd: TPanel
             Left = 19
-            Top = 17
+            Top = 14
             Width = 100
             Height = 30
             BevelOuter = bvNone
@@ -4480,8 +4388,8 @@ object frmAgent: TfrmAgent
             OnClick = btnPropertiesAddClick
           end
           object btnPropertiesDetails: TPanel
-            Left = 161
-            Top = 17
+            Left = 155
+            Top = 14
             Width = 100
             Height = 30
             BevelOuter = bvNone
@@ -4497,40 +4405,22 @@ object frmAgent: TfrmAgent
             TabOrder = 1
             OnClick = btnPropertiesDetailsClick
           end
-          object btnPropertiesReports: TPanel
-            Left = 287
-            Top = 17
-            Width = 100
-            Height = 30
-            BevelOuter = bvNone
-            Caption = 'Reports'
-            Color = clNavy
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentBackground = False
-            ParentFont = False
-            TabOrder = 2
-            OnClick = btnPropertiesReportsClick
-          end
           object pnlPropertiesCurrentPage: TPanel
-            Left = 1024
-            Top = 10
-            Width = 163
+            Left = 1032
+            Top = 7
+            Width = 155
             Height = 41
             BevelOuter = bvNone
             Caption = 'Add'
             Color = clHighlight
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
-            Font.Height = -19
+            Font.Height = -29
             Font.Name = 'Arial'
             Font.Style = [fsBold]
             ParentBackground = False
             ParentFont = False
-            TabOrder = 3
+            TabOrder = 2
           end
         end
       end
@@ -4541,16 +4431,16 @@ object frmAgent: TfrmAgent
       object pnlClients: TPanel
         Left = 0
         Top = 0
-        Width = 1209
-        Height = 590
+        Width = 1211
+        Height = 600
         Align = alClient
         Color = cl3DDkShadow
         ParentBackground = False
         TabOrder = 0
-        object Splitter2: TSplitter
+        object splitClients: TSplitter
           Left = 1
-          Top = 465
-          Width = 1207
+          Top = 459
+          Width = 1209
           Height = 5
           Cursor = crVSplit
           Align = alBottom
@@ -4562,17 +4452,17 @@ object frmAgent: TfrmAgent
         object pcClients: TPageControl
           Left = 1
           Top = 65
-          Width = 1207
-          Height = 361
-          ActivePage = tbsClientsSelectClient
+          Width = 1209
+          Height = 355
+          ActivePage = tbsClientsDetails
           Align = alClient
           TabOrder = 1
           object tbsClientsAdd: TTabSheet
             Caption = 'tbsClientsAdd'
             ImageIndex = 1
             object gbxClientsAdd: TGroupBox
-              Left = 15
-              Top = 16
+              Left = 14
+              Top = 40
               Width = 423
               Height = 265
               Caption = 'Add Client'
@@ -4748,8 +4638,8 @@ object frmAgent: TfrmAgent
             object pcClientstbsDetails: TPageControl
               Left = 0
               Top = 0
-              Width = 1199
-              Height = 333
+              Width = 1201
+              Height = 327
               ActivePage = tbsClientsDetailsGeneral
               Align = alClient
               TabOrder = 0
@@ -5099,7 +4989,7 @@ object frmAgent: TfrmAgent
                   TabOrder = 0
                 end
                 object Panel3: TPanel
-                  Left = -1
+                  Left = 0
                   Top = 3
                   Width = 699
                   Height = 300
@@ -5266,11 +5156,11 @@ object frmAgent: TfrmAgent
                   end
                   object RadioGroup1: TRadioGroup
                     Left = 214
-                    Top = 94
+                    Top = 95
                     Width = 185
                     Height = 51
                     Caption = 'Type:'
-                    Color = clWhite
+                    Color = clBlack
                     Columns = 3
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWhite
@@ -5401,21 +5291,17 @@ object frmAgent: TfrmAgent
               end
             end
           end
-          object tbsClientsReports: TTabSheet
-            Caption = 'tbsClientsReports'
-            ImageIndex = 2
-          end
           object tbsClientsAssignProperties: TTabSheet
             Caption = 'tbsClientsAssignProperties'
             ImageIndex = 3
-            object pnlClientsAssignPropertiesCurrentClient: TPanel
-              Left = 31
-              Top = 24
-              Width = 289
+            object pnlClientAssignProperty: TPanel
+              Left = 588
+              Top = 267
+              Width = 185
               Height = 41
               BevelOuter = bvNone
-              Caption = 'Select a Client from the Clients Table'
-              Color = clHighlight
+              Caption = 'Assign Property'
+              Color = clNavy
               Font.Charset = ANSI_CHARSET
               Font.Color = clWhite
               Font.Height = -16
@@ -5424,36 +5310,41 @@ object frmAgent: TfrmAgent
               ParentBackground = False
               ParentFont = False
               TabOrder = 0
+              OnClick = pnlClientAssignPropertyClick
             end
-          end
-          object tbsClientsSelectClient: TTabSheet
-            Caption = 'tbsClientsSelectClient'
-            ImageIndex = 4
-            object pnlClientsSelectClient: TPanel
-              Left = 0
-              Top = 0
-              Width = 1199
-              Height = 333
-              Align = alClient
+            object lbClientsUAProperties: TListBox
+              Left = 207
+              Top = 16
+              Width = 642
+              Height = 229
+              ItemHeight = 13
+              TabOrder = 1
+            end
+            object pnlClientUAPropertyDetails: TPanel
+              Left = 332
+              Top = 267
+              Width = 185
+              Height = 41
               BevelOuter = bvNone
-              Caption = 'Select a Client'
-              Color = clHighlight
+              Caption = 'Property Details'
+              Color = clNavy
               Font.Charset = ANSI_CHARSET
               Font.Color = clWhite
-              Font.Height = -96
-              Font.Name = 'Arial Black'
+              Font.Height = -16
+              Font.Name = 'Arial'
               Font.Style = [fsBold]
               ParentBackground = False
               ParentFont = False
-              TabOrder = 0
+              TabOrder = 2
+              OnClick = pnlClientUAPropertyDetailsClick
             end
           end
         end
         object pcClientsTable: TPageControl
           Left = 1
-          Top = 470
-          Width = 1207
-          Height = 119
+          Top = 464
+          Width = 1209
+          Height = 135
           ActivePage = tbsClientsTable
           Align = alBottom
           TabOrder = 0
@@ -5463,8 +5354,8 @@ object frmAgent: TfrmAgent
             object dbgClientsClientsTable: TDBGrid
               Left = 0
               Top = 0
-              Width = 1199
-              Height = 91
+              Width = 1201
+              Height = 107
               Align = alClient
               DataSource = dmPropertyHub.dsClients
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -5483,8 +5374,8 @@ object frmAgent: TfrmAgent
             object dbgClientsOwnersTable: TDBGrid
               Left = 0
               Top = 0
-              Width = 1199
-              Height = 91
+              Width = 1201
+              Height = 107
               Align = alClient
               DataSource = dmPropertyHub.dsOwners
               TabOrder = 0
@@ -5498,8 +5389,8 @@ object frmAgent: TfrmAgent
         end
         object pnlClientsSearch: TPanel
           Left = 1
-          Top = 426
-          Width = 1207
+          Top = 420
+          Width = 1209
           Height = 39
           Align = alBottom
           Color = clSilver
@@ -5545,7 +5436,7 @@ object frmAgent: TfrmAgent
         object pnlClientsNavigation: TPanel
           Left = 1
           Top = 1
-          Width = 1207
+          Width = 1209
           Height = 64
           Align = alTop
           BevelOuter = bvNone
@@ -5553,7 +5444,7 @@ object frmAgent: TfrmAgent
           ParentBackground = False
           TabOrder = 3
           object btnClientsAssignProperties: TPanel
-            Left = 408
+            Left = 291
             Top = 20
             Width = 147
             Height = 30
@@ -5588,24 +5479,6 @@ object frmAgent: TfrmAgent
             TabOrder = 1
             OnClick = btnClientsDetailsClick
           end
-          object btnClientsReports: TPanel
-            Left = 285
-            Top = 20
-            Width = 100
-            Height = 30
-            BevelOuter = bvNone
-            Caption = 'Reports'
-            Color = clNavy
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Arial'
-            Font.Style = [fsBold]
-            ParentBackground = False
-            ParentFont = False
-            TabOrder = 2
-            OnClick = btnClientsReportsClick
-          end
           object pnlClientsCurrentClient: TPanel
             Left = 769
             Top = 18
@@ -5621,7 +5494,7 @@ object frmAgent: TfrmAgent
             Font.Style = [fsBold]
             ParentBackground = False
             ParentFont = False
-            TabOrder = 3
+            TabOrder = 2
           end
           object pnlClientsAdd: TPanel
             Left = 19
@@ -5638,7 +5511,7 @@ object frmAgent: TfrmAgent
             Font.Style = [fsBold]
             ParentBackground = False
             ParentFont = False
-            TabOrder = 4
+            TabOrder = 3
             OnClick = pnlClientsAddClick
           end
           object pnlClientsCurrentPage: TPanel
@@ -5656,7 +5529,7 @@ object frmAgent: TfrmAgent
             Font.Style = [fsBold]
             ParentBackground = False
             ParentFont = False
-            TabOrder = 5
+            TabOrder = 4
           end
         end
       end
@@ -5666,8 +5539,8 @@ object frmAgent: TfrmAgent
       ImageIndex = 3
       object splitOffers: TSplitter
         Left = 0
-        Top = 490
-        Width = 1209
+        Top = 440
+        Width = 1211
         Height = 8
         Cursor = crVSplit
         Align = alBottom
@@ -5680,8 +5553,8 @@ object frmAgent: TfrmAgent
       object pnlOffersContainer: TPanel
         Left = 0
         Top = 0
-        Width = 1209
-        Height = 449
+        Width = 1211
+        Height = 408
         Align = alClient
         BevelOuter = bvNone
         Color = clSkyBlue
@@ -5690,8 +5563,8 @@ object frmAgent: TfrmAgent
         object gbxOfferDetails: TGroupBox
           Left = 19
           Top = 16
-          Width = 581
-          Height = 329
+          Width = 598
+          Height = 338
           Caption = 'Offer Details:'
           Color = clSilver
           ParentBackground = False
@@ -5699,10 +5572,10 @@ object frmAgent: TfrmAgent
           TabOrder = 0
         end
         object gbxOfferActions: TGroupBox
-          Left = 629
+          Left = 712
           Top = 16
-          Width = 308
-          Height = 329
+          Width = 409
+          Height = 338
           Caption = 'Offer Actions:'
           Color = clSilver
           Enabled = False
@@ -5710,8 +5583,8 @@ object frmAgent: TfrmAgent
           ParentColor = False
           TabOrder = 1
           object pnlOffersAccept: TPanel
-            Left = 59
-            Top = 40
+            Left = 112
+            Top = 72
             Width = 185
             Height = 41
             BevelOuter = bvNone
@@ -5727,27 +5600,9 @@ object frmAgent: TfrmAgent
             TabOrder = 0
             OnClick = pnlOffersAcceptClick
           end
-          object pnlOffersReject: TPanel
-            Left = 59
-            Top = 144
-            Width = 185
-            Height = 41
-            BevelOuter = bvNone
-            Caption = 'Reject'
-            Color = clRed
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -29
-            Font.Name = 'Arial'
-            Font.Style = []
-            ParentBackground = False
-            ParentFont = False
-            TabOrder = 1
-            OnClick = pnlOffersRejectClick
-          end
           object pnlOffersViewMoreDetails: TPanel
-            Left = 59
-            Top = 254
+            Left = 112
+            Top = 264
             Width = 185
             Height = 41
             BevelOuter = bvNone
@@ -5760,16 +5615,34 @@ object frmAgent: TfrmAgent
             Font.Style = []
             ParentBackground = False
             ParentFont = False
-            TabOrder = 2
+            TabOrder = 1
             OnClick = pnlOffersViewMoreDetailsClick
+          end
+          object pnlOffersReject: TPanel
+            Left = 112
+            Top = 167
+            Width = 185
+            Height = 41
+            BevelOuter = bvNone
+            Caption = 'Reject'
+            Color = clRed
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -29
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 2
+            OnClick = pnlOffersRejectClick
           end
         end
       end
       object pcOffersTable: TPageControl
         Left = 0
-        Top = 498
-        Width = 1209
-        Height = 92
+        Top = 448
+        Width = 1211
+        Height = 152
         ActivePage = tbsOffersTable
         Align = alBottom
         TabOrder = 1
@@ -5778,8 +5651,8 @@ object frmAgent: TfrmAgent
           object dbgOffers: TDBGrid
             Left = 0
             Top = 0
-            Width = 1201
-            Height = 64
+            Width = 1203
+            Height = 124
             Align = alClient
             DataSource = dmPropertyHub.dsOffers
             TabOrder = 0
@@ -5794,9 +5667,9 @@ object frmAgent: TfrmAgent
       end
       object pnlOffersSearch: TPanel
         Left = 0
-        Top = 449
-        Width = 1209
-        Height = 41
+        Top = 408
+        Width = 1211
+        Height = 32
         Align = alBottom
         BevelOuter = bvLowered
         Color = clSilver
@@ -5812,7 +5685,7 @@ object frmAgent: TfrmAgent
           OnChange = edtPropertiesSearchChange
         end
         object cmbxOffersSearch: TComboBox
-          Left = 963
+          Left = 956
           Top = 12
           Width = 84
           Height = 21
@@ -5827,7 +5700,7 @@ object frmAgent: TfrmAgent
   object pnlHeader: TPanel
     Left = 0
     Top = 60
-    Width = 1217
+    Width = 1219
     Height = 44
     Align = alTop
     BevelOuter = bvNone
@@ -5877,7 +5750,7 @@ object frmAgent: TfrmAgent
     FavoriteLinks = <>
     FileTypes = <>
     Options = [fdoPickFolders]
-    Left = 968
-    Top = 24
+    Left = 368
+    Top = 8
   end
 end

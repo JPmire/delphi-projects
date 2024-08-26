@@ -82,28 +82,12 @@ object dmPropertyHub: TdmPropertyHub
     Left = 534
     Top = 115
   end
-  object tblRentals: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblRentals'
-    Left = 657
-    Top = 117
-  end
-  object tblRentalTransactions: TADOTable
-    Active = True
-    Connection = conProperties
-    CursorType = ctStatic
-    TableName = 'tblRentalTransactions'
-    Left = 803
-    Top = 116
-  end
   object tblSales: TADOTable
     Active = True
     Connection = conProperties
     CursorType = ctStatic
     TableName = 'tblSales'
-    Left = 943
+    Left = 703
     Top = 119
   end
   object dsClients: TDataSource
@@ -121,20 +105,10 @@ object dmPropertyHub: TdmPropertyHub
     Left = 533
     Top = 192
   end
-  object dsRentals: TDataSource
-    DataSet = qryRentals
-    Left = 662
-    Top = 191
-  end
-  object dsRentalTransactions: TDataSource
-    DataSet = qryRentalTransactions
-    Left = 804
-    Top = 192
-  end
   object dsSales: TDataSource
     DataSet = qrySales
-    Left = 943
-    Top = 189
+    Left = 703
+    Top = 205
   end
   object qryClients: TADOQuery
     Connection = conProperties
@@ -154,22 +128,10 @@ object dmPropertyHub: TdmPropertyHub
     Left = 535
     Top = 262
   end
-  object qryRentals: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 658
-    Top = 266
-  end
-  object qryRentalTransactions: TADOQuery
-    Connection = conProperties
-    Parameters = <>
-    Left = 800
-    Top = 265
-  end
   object qrySales: TADOQuery
     Connection = conProperties
     Parameters = <>
-    Left = 952
-    Top = 262
+    Left = 704
+    Top = 270
   end
 end

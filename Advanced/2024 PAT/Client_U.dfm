@@ -2,7 +2,7 @@ object frmClient: TfrmClient
   Left = 0
   Top = 0
   Caption = 'Client'
-  ClientHeight = 672
+  ClientHeight = 711
   ClientWidth = 1305
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -1954,7 +1954,7 @@ object frmClient: TfrmClient
     object pnlViewProperties: TPanel
       AlignWithMargins = True
       Left = 102
-      Top = 11
+      Top = 13
       Width = 166
       Height = 32
       Alignment = taLeftJustify
@@ -1972,6 +1972,8 @@ object frmClient: TfrmClient
       ParentFont = False
       TabOrder = 0
       OnClick = pnlViewPropertiesClick
+      OnMouseEnter = pnlViewPropertiesMouseEnter
+      OnMouseLeave = pnlViewPropertiesMouseLeave
       object imgPropertiesIcon: TImage
         Left = 137
         Top = 6
@@ -2015,7 +2017,7 @@ object frmClient: TfrmClient
     end
     object pnlViewOffers: TPanel
       Left = 325
-      Top = 11
+      Top = 13
       Width = 129
       Height = 32
       Alignment = taLeftJustify
@@ -2031,6 +2033,8 @@ object frmClient: TfrmClient
       ParentFont = False
       TabOrder = 1
       OnClick = pnlViewOffersClick
+      OnMouseEnter = pnlViewOffersMouseEnter
+      OnMouseLeave = pnlViewOffersMouseLeave
       object imgOffersIcon: TImage
         Left = 103
         Top = 6
@@ -2111,7 +2115,7 @@ object frmClient: TfrmClient
     Left = 0
     Top = 104
     Width = 1305
-    Height = 568
+    Height = 607
     ActivePage = tbsProperties
     Align = alClient
     TabOrder = 2
@@ -2122,16 +2126,16 @@ object frmClient: TfrmClient
         Left = 0
         Top = 0
         Width = 1297
-        Height = 540
+        Height = 579
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
         object dbgListings: TDBGrid
           Left = 0
-          Top = 368
+          Top = 487
           Width = 1297
-          Height = 172
+          Height = 92
           Align = alBottom
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -2287,8 +2291,8 @@ object frmClient: TfrmClient
             OnClick = pnlFilterShowResultsClick
           end
           object pnlViewAllProperties: TPanel
-            Left = 14
-            Top = 8
+            Left = 17
+            Top = 7
             Width = 185
             Height = 41
             BevelOuter = bvNone
@@ -2304,15 +2308,23 @@ object frmClient: TfrmClient
             TabOrder = 3
             OnClick = pnlViewAllPropertiesClick
           end
-          object rdgPersonalProperties: TRadioGroup
+          object pnlViewOwnedProperties: TPanel
             Left = 502
-            Top = 0
-            Width = 187
-            Height = 49
-            Caption = 'View your Properties:'
-            Items.Strings = (
-              'View Owned Properties')
+            Top = 7
+            Width = 185
+            Height = 41
+            BevelOuter = bvNone
+            Caption = 'View owned Properties'
+            Color = clYellow
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Arial'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
             TabOrder = 4
+            OnClick = pnlViewOwnedPropertiesClick
           end
         end
       end
@@ -2324,7 +2336,7 @@ object frmClient: TfrmClient
         Left = 0
         Top = 0
         Width = 1297
-        Height = 540
+        Height = 579
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
@@ -2339,31 +2351,29 @@ object frmClient: TfrmClient
           Caption = 'Select Your Offer below:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
-          Font.Height = -27
+          Font.Height = -24
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitWidth = 331
         end
         object splitOfferDivider: TSplitter
-          Left = 574
+          Left = 507
           Top = 33
           Width = 5
-          Height = 507
+          Height = 546
           Color = clSilver
           ParentColor = False
-          ExplicitLeft = 507
           ExplicitTop = 29
           ExplicitHeight = 550
         end
         object lbOffers: TListBox
           Left = 0
           Top = 33
-          Width = 574
-          Height = 507
+          Width = 507
+          Height = 546
           Align = alLeft
           BevelOuter = bvNone
-          Color = clBlack
+          Color = clGray
           Columns = 1
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -2374,18 +2384,22 @@ object frmClient: TfrmClient
           ParentFont = False
           TabOrder = 0
           OnClick = lbOffersClick
+          ExplicitTop = 29
+          ExplicitHeight = 550
         end
         object gbxOfferDetails: TGroupBox
-          Left = 579
+          Left = 512
           Top = 33
-          Width = 718
-          Height = 507
+          Width = 785
+          Height = 546
           Align = alClient
           Caption = 'Offer Details:'
           Color = clSilver
           ParentBackground = False
           ParentColor = False
           TabOrder = 1
+          ExplicitTop = 29
+          ExplicitHeight = 550
         end
       end
     end

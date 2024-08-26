@@ -7,13 +7,10 @@ uses
 
 type
   TdmPropertyHub = class(TDataModule)
-    conProperties: TADOConnection;
+    conPropertyHub: TADOConnection;
     tblProperties: TADOTable;
-    tblListings: TADOTable;
-    dsProperties: TDataSource;
-    dsListings: TDataSource;
     qryProperties: TADOQuery;
-    qryListings: TADOQuery;
+    dsProperties: TDataSource;
   private
     { Private declarations }
   public
