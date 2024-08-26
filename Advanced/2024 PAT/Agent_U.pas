@@ -147,7 +147,6 @@ type
     Panel4: TPanel;
     Panel5: TPanel;
     Panel6: TPanel;
-    tbsClientsDetailsFinance: TTabSheet;
     pnlClientsCurrentPage: TPanel;
     pnlClientsSearchConfirm: TPanel;
     lblClientsDetailsDateAddedCaption: TLabel;
@@ -671,9 +670,11 @@ begin
   if tempPanel.Caption = 'Add' then
   begin 
     tbsClientsAdd.Show;
+    pnlClientsCurrentPage.Caption := 'Add';
   end else if tempPanel.Caption = 'Details' then
   begin
     tbsClientsDetails.Show;
+    pnlClientsCurrentPage.Caption := 'Details';
   end;
 end;
 
@@ -1979,11 +1980,13 @@ begin
   if tempPanel.Caption = 'Add' then
   begin 
     tbsPropertiesAdd.Show;
+    pnlPropertiesCurrentPage.Caption := 'Add';
   end else if tempPanel.Caption = 'Details' then
   begin
     pnlManageOffers.OnMouseEnter(self);
     pnlManageOffers.OnMouseLeave(self);
     pnlManageOffers.OnClick(Self);
+    pnlPropertiesCurrentPage.Caption := 'Details';
     tbsPropertiesDetails.Show;
   end;
 end;

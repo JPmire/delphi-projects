@@ -2116,24 +2116,27 @@ object frmClient: TfrmClient
     Top = 104
     Width = 1305
     Height = 607
-    ActivePage = tbsProperties
     Align = alClient
     TabOrder = 2
     OnChange = pcClientChange
     object tbsProperties: TTabSheet
       Caption = 'tbsProperties'
+      TabVisible = False
+      ExplicitTop = 24
+      ExplicitHeight = 579
       object pnlProperties: TPanel
         Left = 0
         Top = 0
         Width = 1297
-        Height = 579
+        Height = 597
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 579
         object dbgListings: TDBGrid
           Left = 0
-          Top = 487
+          Top = 505
           Width = 1297
           Height = 92
           Align = alBottom
@@ -2332,20 +2335,24 @@ object frmClient: TfrmClient
     object tbsOffers: TTabSheet
       Caption = 'tbsOffers'
       ImageIndex = 1
+      TabVisible = False
+      ExplicitTop = 24
+      ExplicitHeight = 579
       object pnlOffers: TPanel
         Left = 0
         Top = 0
         Width = 1297
-        Height = 579
+        Height = 597
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 579
         object lblOfferInstruction: TLabel
           Left = 0
           Top = 0
           Width = 1297
-          Height = 33
+          Height = 29
           Align = alTop
           Alignment = taCenter
           Caption = 'Select Your Offer below:'
@@ -2355,22 +2362,22 @@ object frmClient: TfrmClient
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
+          ExplicitWidth = 291
         end
         object splitOfferDivider: TSplitter
           Left = 507
-          Top = 33
+          Top = 29
           Width = 5
-          Height = 546
+          Height = 568
           Color = clSilver
           ParentColor = False
-          ExplicitTop = 29
           ExplicitHeight = 550
         end
         object lbOffers: TListBox
           Left = 0
-          Top = 33
+          Top = 29
           Width = 507
-          Height = 546
+          Height = 568
           Align = alLeft
           BevelOuter = bvNone
           Color = clGray
@@ -2384,21 +2391,6 @@ object frmClient: TfrmClient
           ParentFont = False
           TabOrder = 0
           OnClick = lbOffersClick
-          ExplicitTop = 29
-          ExplicitHeight = 550
-        end
-        object gbxOfferDetails: TGroupBox
-          Left = 512
-          Top = 33
-          Width = 785
-          Height = 546
-          Align = alClient
-          Caption = 'Offer Details:'
-          Color = clSilver
-          ParentBackground = False
-          ParentColor = False
-          TabOrder = 1
-          ExplicitTop = 29
           ExplicitHeight = 550
         end
       end

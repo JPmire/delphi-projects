@@ -23,7 +23,6 @@ type
     pnlProperties: TPanel;
     pnlOffers: TPanel;
     lbOffers: TListBox;
-    gbxOfferDetails: TGroupBox;
     lblOfferInstruction: TLabel;
     dbgListings: TDBGrid;
     gbxPropertyDetails: TGroupBox;
@@ -100,8 +99,6 @@ begin
   pnlHeader.Font.Color := clYellow;
   pnlProperties.Color := RGB(173,216,230);
   pnlOffers.Color := RGB(70, 130, 180);
-  gbxOfferDetails.Color := RGB(173,216,230);
-  gbxOfferDetails.Color := RGB(173, 216, 230);
 
   iPanelLimit := 0;
   iPanelAmount := 0;
@@ -309,7 +306,7 @@ end;
 procedure TfrmClient.pnlViewOffersClick(Sender: TObject);
 begin
   tbsOffers.Show;
-  pcClient.OnChange(self);
+  GetOfferDetails;
 end;
 
 procedure TfrmClient.pnlViewOffersMouseEnter(Sender: TObject);
