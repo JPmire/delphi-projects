@@ -3767,14 +3767,16 @@ object frmAgent: TfrmAgent
     Top = 104
     Width = 1219
     Height = 628
-    ActivePage = tbsProperties
+    ActivePage = tbsClients
     Align = alClient
     TabOrder = 1
     OnChange = pcAgentChange
     object tbsDashboard: TTabSheet
       Caption = 'Dashboard'
       TabVisible = False
+      ExplicitLeft = 0
       ExplicitTop = 24
+      ExplicitWidth = 0
       ExplicitHeight = 600
       object pnlDashboard: TPanel
         Left = 0
@@ -4069,8 +4071,6 @@ object frmAgent: TfrmAgent
       Caption = 'Properties'
       ImageIndex = 1
       TabVisible = False
-      ExplicitTop = 24
-      ExplicitHeight = 600
       object pnlProperties: TPanel
         Left = 0
         Top = 0
@@ -4080,7 +4080,6 @@ object frmAgent: TfrmAgent
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 600
         object Splitter1: TSplitter
           Left = 0
           Top = 412
@@ -4102,7 +4101,6 @@ object frmAgent: TfrmAgent
           Align = alBottom
           TabOrder = 0
           OnChange = pcPropertiesTableChange
-          ExplicitTop = 399
           object tbsPropertiesTable: TTabSheet
             Caption = 'Properties'
             object dbgPropertiesTable: TDBGrid
@@ -4124,6 +4122,10 @@ object frmAgent: TfrmAgent
           object tbsListingsTable: TTabSheet
             Caption = 'Listings'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object dbgListingsTable: TDBGrid
               Left = 0
               Top = 0
@@ -4150,8 +4152,6 @@ object frmAgent: TfrmAgent
           object tbsPropertiesAdd: TTabSheet
             Caption = 'tbsPropertiesAdd'
             TabVisible = False
-            ExplicitTop = 22
-            ExplicitHeight = 288
             object pnlPropertiesAdd: TPanel
               Left = 15
               Top = 51
@@ -4300,7 +4300,9 @@ object frmAgent: TfrmAgent
             Caption = 'tbsPropertiesDetails'
             ImageIndex = 1
             TabVisible = False
+            ExplicitLeft = 0
             ExplicitTop = 24
+            ExplicitWidth = 0
             ExplicitHeight = 270
             object scrlbPropertiesPropertiesDetails: TScrollBox
               Left = 3
@@ -4354,7 +4356,6 @@ object frmAgent: TfrmAgent
           Constraints.MaxHeight = 39
           ParentBackground = False
           TabOrder = 2
-          ExplicitTop = 355
           object edtPropertiesSearch: TEdit
             Left = 1056
             Top = 12
@@ -4443,8 +4444,6 @@ object frmAgent: TfrmAgent
       Caption = 'Clients'
       ImageIndex = 2
       TabVisible = False
-      ExplicitTop = 24
-      ExplicitHeight = 600
       object pnlClients: TPanel
         Left = 0
         Top = 0
@@ -4454,7 +4453,6 @@ object frmAgent: TfrmAgent
         Color = cl3DDkShadow
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 600
         object splitClients: TSplitter
           Left = 1
           Top = 477
@@ -4472,17 +4470,13 @@ object frmAgent: TfrmAgent
           Top = 65
           Width = 1209
           Height = 373
-          ActivePage = tbsClientsDetails
+          ActivePage = tbsClientsAdd
           Align = alClient
           TabOrder = 1
-          ExplicitHeight = 355
           object tbsClientsAdd: TTabSheet
             Caption = 'tbsClientsAdd'
             ImageIndex = 1
             TabVisible = False
-            ExplicitLeft = 3
-            ExplicitTop = 22
-            ExplicitHeight = 327
             object gbxClientsAdd: TGroupBox
               Left = 14
               Top = 40
@@ -4659,8 +4653,6 @@ object frmAgent: TfrmAgent
           object tbsClientsDetails: TTabSheet
             Caption = 'tbsClientsDetails'
             TabVisible = False
-            ExplicitTop = 24
-            ExplicitHeight = 327
             object pcClientstbsDetails: TPageControl
               Left = 0
               Top = 0
@@ -4669,12 +4661,8 @@ object frmAgent: TfrmAgent
               ActivePage = tbsClientsDetailsGeneral
               Align = alClient
               TabOrder = 0
-              ExplicitHeight = 345
               object tbsClientsDetailsGeneral: TTabSheet
                 Caption = 'General'
-                ExplicitLeft = 0
-                ExplicitTop = 26
-                ExplicitHeight = 299
                 object gbxClientsDetailsDetails: TGroupBox
                   Left = 21
                   Top = 15
@@ -5004,7 +4992,6 @@ object frmAgent: TfrmAgent
               object tbsClientsDetailsProperties: TTabSheet
                 Caption = 'Properties'
                 ImageIndex = 1
-                ExplicitHeight = 299
                 object scrlbClientsPropertiesDetails: TScrollBox
                   Left = -1
                   Top = 4
@@ -5322,8 +5309,6 @@ object frmAgent: TfrmAgent
             Caption = 'tbsClientsAssignProperties'
             ImageIndex = 3
             TabVisible = False
-            ExplicitTop = 24
-            ExplicitHeight = 327
             object pnlClientAssignProperty: TPanel
               Left = 588
               Top = 267
@@ -5379,7 +5364,6 @@ object frmAgent: TfrmAgent
           Align = alBottom
           TabOrder = 0
           OnChange = pcClientsTableChange
-          ExplicitTop = 464
           object tbsClientsTable: TTabSheet
             Caption = 'Clients'
             object dbgClientsClientsTable: TDBGrid
@@ -5402,6 +5386,10 @@ object frmAgent: TfrmAgent
           object tbsOwnersTable: TTabSheet
             Caption = 'Owners'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object dbgClientsOwnersTable: TDBGrid
               Left = 0
               Top = 0
@@ -5428,7 +5416,6 @@ object frmAgent: TfrmAgent
           Constraints.MaxHeight = 39
           ParentBackground = False
           TabOrder = 2
-          ExplicitTop = 420
           object edtClientsSearch: TEdit
             Left = 990
             Top = 12
@@ -5570,8 +5557,6 @@ object frmAgent: TfrmAgent
       Caption = 'Offers'
       ImageIndex = 3
       TabVisible = False
-      ExplicitTop = 24
-      ExplicitHeight = 600
       object splitOffers: TSplitter
         Left = 0
         Top = 458
@@ -5685,6 +5670,10 @@ object frmAgent: TfrmAgent
         ExplicitTop = 448
         object tbsOffersTable: TTabSheet
           Caption = 'Offers Table'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dbgOffers: TDBGrid
             Left = 0
             Top = 0
@@ -5712,7 +5701,6 @@ object frmAgent: TfrmAgent
         Color = clSilver
         ParentBackground = False
         TabOrder = 2
-        ExplicitTop = 408
         object edtOffersSearch: TEdit
           Left = 1056
           Top = 12

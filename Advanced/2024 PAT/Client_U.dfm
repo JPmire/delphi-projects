@@ -2101,7 +2101,7 @@ object frmClient: TfrmClient
     Height = 44
     Align = alTop
     BevelOuter = bvNone
-    Caption = 'Dashboard'
+    Caption = 'Properties'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -29
@@ -2116,14 +2116,13 @@ object frmClient: TfrmClient
     Top = 104
     Width = 1305
     Height = 607
+    ActivePage = tbsProperties
     Align = alClient
     TabOrder = 2
     OnChange = pcClientChange
     object tbsProperties: TTabSheet
       Caption = 'tbsProperties'
       TabVisible = False
-      ExplicitTop = 24
-      ExplicitHeight = 579
       object pnlProperties: TPanel
         Left = 0
         Top = 0
@@ -2133,7 +2132,6 @@ object frmClient: TfrmClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 579
         object dbgListings: TDBGrid
           Left = 0
           Top = 505
@@ -2336,8 +2334,6 @@ object frmClient: TfrmClient
       Caption = 'tbsOffers'
       ImageIndex = 1
       TabVisible = False
-      ExplicitTop = 24
-      ExplicitHeight = 579
       object pnlOffers: TPanel
         Left = 0
         Top = 0
@@ -2347,7 +2343,6 @@ object frmClient: TfrmClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 579
         object lblOfferInstruction: TLabel
           Left = 0
           Top = 0
@@ -2391,7 +2386,6 @@ object frmClient: TfrmClient
           ParentFont = False
           TabOrder = 0
           OnClick = lbOffersClick
-          ExplicitHeight = 550
         end
       end
     end

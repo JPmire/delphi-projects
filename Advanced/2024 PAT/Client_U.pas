@@ -306,6 +306,7 @@ end;
 procedure TfrmClient.pnlViewOffersClick(Sender: TObject);
 begin
   tbsOffers.Show;
+  pnlHeader.Caption := 'Offers';
   GetOfferDetails;
 end;
 
@@ -379,6 +380,7 @@ begin
 //
 //  objPropertyManager.Filter('City', 'Vanderbijlpark');
   tbsProperties.Show;
+  pnlHeader.Caption := 'Properties';
   pcClient.OnChange(self);
 end;
 

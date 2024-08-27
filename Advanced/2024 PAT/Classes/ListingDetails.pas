@@ -77,6 +77,7 @@ begin
     fListingID := qryListings.FieldByName('ListingID').AsInteger;
     fOwnerID := qryListings.FieldByName('OwnerID').AsInteger;
     fPrice := qryListings.FieldByName('Price').AsCurrency;
+    fListDate := qryListings.FieldByName('ListDate').AsDateTime;
 
     dsOwners.DataSet := qryOwners;
     qryOwners.SQL.Clear;
